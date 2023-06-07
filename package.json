@@ -5,7 +5,7 @@
   "homepage": "https://filip-bak.github.io/filmoteka-project/",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url filmoteka-project"
+    "build": "parcel build src/*.html --public-url /filmoteka-project/"
   },
   "repository": {
     "type": "git",
