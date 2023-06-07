@@ -1,0 +1,31 @@
+@use "../abstracts/variables" as *;
+@use "sass:map";
+
+// MEDIA QUERY
+@mixin mq($key, $add: null, $key2: null) {
+    $size: map.get($breakpoints, $key);
+    $size2: map.get($breakpoints, $key2);
+
+    @if ($add == null) {
+        @media screen and (min-width: $size) {
+            @content;
+        }
+    } @else if ($add == and) {
+        @media screen and (min-width: $size) and (max-width: calc($size2 - 1px)) {
+            @content;
+        }
+    }
+}
+
+// Retina Display
+@mixin screen-density($density: null) {
+    @if ($density == 2) {
+        @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+            @content;
+        }
+    } @else if($density == 3) {
+        @media (min-device-pixel-ratio: 3), (min-resolution: 268dpi), (min-resolution: 3dppx) {
+            @content;
+        }
+    }
+}
