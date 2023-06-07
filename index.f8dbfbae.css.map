@@ -1,0 +1,1 @@
+{"mappings":"AEAA","sources":["index.f8dbfbae.css","src/sass/main.scss","src/sass/_example.scss"],"sourcesContent":["h1 {\n  color: red;\n}\n\n/*# sourceMappingURL=index.f8dbfbae.css.map */\n","@use \"./example\";\n","h1 {\n    color: red;\n}\n"],"names":[],"version":3,"file":"index.f8dbfbae.css.map"}
