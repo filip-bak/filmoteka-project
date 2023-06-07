@@ -1,0 +1,56 @@
+//
+//    || MEDIA QUERIES ||
+//
+$breakpoints: (
+    // small
+    mobile: 320px,
+    // medium
+    tablet: 768px,
+    // large
+    desktop: 1280px
+);
+
+//
+//    || FONT FAMILIES ||
+//
+$FF: "Roboto", sans-serif;
+
+//
+//    || FONT COLORS ||
+//
+$font-color-dark: #000;
+$font-color-light: #fff;
+
+$font-color-accent: #ff6b08;
+$font-color-dark-red: #ff001b;
+
+$font-color-info: #8c8c8c;
+
+$font-color-copyright: #545454;
+
+//
+//    || BACKGROUNDS ||
+//
+$bg-color-light: #fff;
+$bg-color-accent: #ff6b08;
+
+$bg-color-rating-primary: #ff6b01;
+$bg-color-rating-secondary: #f7f7f7;
+
+//
+//    || BORDERS ||
+//
+$border-dark: #000;
+$border-light: #fff;
+
+//
+//    || BUTTONS ||
+//
+$button-font-color-dark: #000;
+$button-font-color-light: #fff;
+
+// button backgrounds
+$button-bg-color-light-grey: #f7f7f7;
+$button-bg-color-accent-priamry: #ff6b08;
+$button-bg-color-accent-secondary: #ff6b08;
+$button-bg-color-transparent: transparent;
