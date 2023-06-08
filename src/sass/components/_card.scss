@@ -1,0 +1,11 @@
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+
+.card {
+    font-size: var(--fs-card-info);
+    line-height: var(--lh-card-info);
+
+    @include mq(tablet) {
+        --lh-card: 1.2;
+    }
+}

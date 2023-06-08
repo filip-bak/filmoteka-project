@@ -1,0 +1,6 @@
+@use "../base/typography" as *;
+
+.copyright {
+    font-size: var(--fs-copyright);
+    line-height: var(--lh-300);
+}
