@@ -1,7 +1,7 @@
 @use "../base/typography" as *;
 
 .movie-lightbox {
-    display: none;
+    display: grid;
 }
 .movie-lightbox__title {
     font-size: var(--fs-lightbox-title);
