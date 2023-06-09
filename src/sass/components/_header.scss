@@ -1,74 +1,116 @@
 @use '../abstracts/variables' as *;
 
-@media screen and (max-width: 767px) {
-  .header-home {
-    padding: 42px 20px 92px;
-    background-image: url('/src/images/home-banner/home-banner.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+.header-home {
+  padding: 42px 20px 92px;
+  background-image: url('/src/images/home-banner/home-banner.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__h1 {
+    display: none;
+  }
+
+  &__main-content {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 56px;
+  }
 
-    &__main-content {
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__navigation {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__home {
+    color: $font-color-light;
+    font-family: $FF;
+    font-size: var(--fs-400);
+    font-weight: var(--fs-500);
+    line-height: var(--lh-400);
+  }
+
+  &__my-library {
+    color: $font-color-light;
+    font-family: $FF;
+    font-size: var(--fs-400);
+    font-weight: var(--fs-500);
+    line-height: var(--lh-400);
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    background-color: bisque;
+    border-radius: 3px;
+  }
+
+  &__search-input {
+    display: flex;
+    align-self: center;
+    width: 280px;
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid #ffffff;
+    color: $font-color-light;
+    font-family: $FF;
+    font-size: var(--fs-500);
+    font-weight: var(--fs-400);
+    line-height: var(--lh-300);
+  }
+
+  &__search-input::placeholder {
+    color: $font-color-light;
+    font-family: $FF;
+    font-size: var(--fs-500);
+    font-weight: var(--fs-400);
+    line-height: var(--lh-300);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .header-home {
+    padding: 47px 32px 81px;
+
+    &__h1 {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 56px;
-    }
-
-    &__navigation {
-      display: flex;
-      gap: 40px;
-    }
-
-    &__home {
       color: $font-color-light;
       font-family: $FF;
-      font-size: var(--fs-400);
+      font-size: var(--fs-800);
       font-weight: var(--fs-500);
-      line-height: var(--lh-400);
-    }
-
-    &__my-library {
-      color: $font-color-light;
-      font-family: $FF;
-      font-size: var(--fs-400);
-      font-weight: var(--fs-500);
-      line-height: var(--lh-400);
+      line-height: var(--lh-600);
+      height: 35px;
+      margin-left: 12px;
     }
 
     &__icon {
-      width: 24px;
-      height: 24px;
-      background-color: bisque;
-      border-radius: 3px;
+      margin-bottom: 2px;
+    }
+
+    &__main-content {
+      margin-bottom: 48px;
     }
 
     &__search-input {
-      display: flex;
-      align-self: center;
-      width: 280px;
-      background: transparent;
-      border: none;
-      border-bottom: 0.5px solid #ffffff;
-      color: $font-color-light;
-      font-family: $FF;
-      font-size: var(--fs-500);
-      font-weight: var(--fs-400);
-      line-height: var(--lh-300);
-    }
-
-    &__search-input::placeholder {
-      color: $font-color-light;
-      font-family: $FF;
-      font-size: var(--fs-500);
-      font-weight: var(--fs-400);
-      line-height: var(--lh-300);
+      width: 336px;
     }
   }
 }
 
-// @include mq(mobile) {
+@media screen and (min-width: 1280px) {
+    
+}
+
+
+// @include mq(min-width: $breakpoints) {
 // }
 
 // @include mq(tablet, and, deskopt) {
