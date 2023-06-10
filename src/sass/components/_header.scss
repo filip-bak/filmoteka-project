@@ -47,7 +47,7 @@
     position: absolute;
     height: 3px;
     width: 100%;
-    background-color: red;
+    background-color: $font-color-dark-red;
     left: 0;
     bottom: -3px;
   }
@@ -81,8 +81,6 @@
   &__icon {
     width: 24px;
     height: 24px;
-    background-color: bisque;
-    border-radius: 3px;
   }
 
   &__search-input {
@@ -90,6 +88,7 @@
     align-self: center;
     width: 280px;
     background: transparent;
+    background: url('/src/images/icons.svg#icon-film_header');
     border: none;
     border-bottom: 0.5px solid #ffffff;
     color: $font-color-light;
