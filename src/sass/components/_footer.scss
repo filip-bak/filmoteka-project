@@ -1,12 +1,13 @@
 @use '../base/typography' as *;
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .copyright {
   font-size: var(--fs-copyright);
   line-height: var(--lh-300);
 }
 
-.footer-container {
+.footer {
   background-color: $bg-color-rating-secondary;
   min-width: 320px;
   height: 100px;
@@ -16,13 +17,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-items: center;
   justify-content: center;
-  @media screen and (max-width: 767px) {
-    padding-top: 28px;
-    padding-bottom: 29px;
-  }
-  @media screen and (min-width: 768px) {
+  @include mq(tablet) {
     padding-top: 30px;
     padding-bottom: 30px;
     min-width: 768px;
@@ -30,7 +26,7 @@
     display: flex;
     flex-direction: row;
   }
-  @media screen and (min-width: 1280px) {
+  @include mq(desktop) {
     padding-top: 29px;
     padding-bottom: 29px;
     width: 1280px;
@@ -38,14 +34,14 @@
   }
 }
 
-.footer-content {
+.footer__content {
   font-family: $FF;
   color: $font-color-copyright;
   font-size: 14px;
   text-align: center;
   font-weight: 400;
   line-height: 16.41px;
-  @media screen and (min-width: 768px) {
+  @include mq(tablet) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +50,7 @@
   }
 }
 
-.footer-text {
+.footer__text {
   display: inline;
 }
 
@@ -67,54 +63,47 @@
   position: relative;
   transition: color 500ms ease-in-out, transform 500ms ease-in-out;
   transition: font-weight 500ms ease-in-out, transform 500ms ease-in-out;
-  font-family: $FF;
-  font-size: 14px;
   line-height: 1.14;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  @media screen and (min-width: 768px) {
+  &:hover,
+  &:focus,
+  &:focus-within {
+    font-weight: 600;
+    transform: scale(1.05);
+    color: $button-bg-color-accent-secondary;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $button-bg-color-accent-secondary;
+    opacity: 0.5;
+    animation-name: animateLine;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    transition: opacity 500ms ease-in-out;
+    &:focus,
+    &:hover,
+    &:focus-within {
+      opacity: 1;
+    }
+  }
+  &:hover::after {
+    opacity: 0;
+  }
+  @include mq(tablet) {
     align-items: center;
     font-size: 16px;
     line-height: 18.75px;
     margin-top: 0;
   }
-}
-
-.footer-text {
-  display: inline;
-}
-
-.team-btn:hover,
-.team-btn:focus,
-.team-btn:focus-within {
-  font-weight: 600;
-  transform: scale(1.05);
-}
-
-.team-btn::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  opacity: 0.5;
-  animation-name: animateLine;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  transition: opacity 500ms ease-in-out;
-  &:focus,
-  &:hover,
-  &:focus-within {
-    opacity: 1;
-  }
-}
-.team-btn:hover::after {
-  opacity: 0;
 }
 
 @keyframes animateLine {
@@ -126,5 +115,26 @@
   }
   100% {
     transform: scaleX(1);
+  }
+}
+
+.heart-svg {
+  animation-name: heartScale;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@keyframes heartScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
