@@ -2,8 +2,9 @@
     display: grid;
     max-width: 1280px;
 }
-.show {
-    display: block;
+.is-hidden {
+    visibility: hidden;
+    pointer-events: none;
 }
 .link {
     text-decoration: none;
