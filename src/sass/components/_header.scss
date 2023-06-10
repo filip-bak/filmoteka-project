@@ -1,7 +1,7 @@
 @use '../abstracts/variables' as *;
 
 .header-home {
-  padding: 42px 20px 92px;
+  padding: 40px 20px 92px;
   background-image: url('/src/images/home-banner/home-banner.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -10,13 +10,21 @@
 
   &__h1 {
     display: none;
+    align-items: center;
+    color: $font-color-light;
+    font-family: $FF;
+    font-size: var(--fs-800);
+    font-weight: var(--fs-500);
+    line-height: var(--lh-600);
+    height: 35px;
+    margin-left: 12px;
   }
 
   &__main-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 56px;
+    margin-bottom: 54px;
   }
 
   &__title {
@@ -77,18 +85,10 @@
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .header-home {
-    padding: 47px 32px 81px;
+    padding: 40px 32px 81px;
 
     &__h1 {
       display: flex;
-      align-items: center;
-      color: $font-color-light;
-      font-family: $FF;
-      font-size: var(--fs-800);
-      font-weight: var(--fs-500);
-      line-height: var(--lh-600);
-      height: 35px;
-      margin-left: 12px;
     }
 
     &__icon {
@@ -96,7 +96,7 @@
     }
 
     &__main-content {
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     &__search-input {
@@ -106,9 +106,22 @@
 }
 
 @media screen and (min-width: 1280px) {
-    
-}
+  .header-home {
+    padding: 40px 32px 80px;
 
+    &__h1 {
+      display: flex;
+    }
+
+    &__search-input {
+      width: 394px;
+    }
+
+    &__main-content {
+      margin-bottom: 41px;
+    }
+  }
+}
 
 // @include mq(min-width: $breakpoints) {
 // }
