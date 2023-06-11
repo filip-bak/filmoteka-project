@@ -1,2 +1,72 @@
 <!-- adding and removing class "show" -->
-<div id="movie-lightbox"></div>
+<div class="backdrop-movie">
+  <div id="movie-lightbox">
+    <div class="modal-movie">
+      <button type="button" class="close-modal-btn">
+        <svg class="close-btn-icon" width="14" height="14">
+          <use href="/src/images/icons.svg#icon-close-btn"></use>
+        </svg>
+      </button>
+
+      <div class="movie-card">
+        <div class="movie-image_wrapper">
+          <div class="movie-image"></div>
+        </div>
+        <div class="movie-description">
+          <h2 class="movie-title">Title</h2>
+          <table class="movie-table">
+            <tbody>
+              <tr class="movie-table_row">
+                <td>
+                  <p class="movie-table_title">Vote/Votes</p>
+                </td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+              <tr class="movie-table_row">
+                <td>
+                  <p class="movie-table_title">Popularity</p>
+                </td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+              <tr class="movie-table_row">
+                <td>
+                  <p class="movie-table_title">Original Title</p>
+                </td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+              <tr class="movie-table_row">
+                <td>
+                  <p class="movie-table_title">Genre</p>
+                </td>
+                <td>
+                  <p></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="movie-about_container">
+            <h3 class="movie-about">About</h3>
+            <p class="movie-about_text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam totam nisi suscipit
+              asperiores nulla laborum neque amet aut maxime consequatur? Iusto fugiat non totam nam
+              distinctio reiciendis omnis, eos minus? Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Voluptatibus sunt soluta, iure sint in assumenda reiciendis totam
+              quos consectetur voluptatem architecto non fuga impedit repudiandae, voluptates nemo
+              vel doloribus pariatur.
+            </p>
+          </div>
+          <div class="movie-btn_container">
+            <button type="button" class="movie-btn movie-btn-wached">add to Watched</button>
+            <button type="button" class="movie-btn movie-btn-queue">add to queue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
