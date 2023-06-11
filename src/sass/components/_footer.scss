@@ -62,7 +62,6 @@
   color: $font-color-copyright;
   position: relative;
   transition: color 500ms ease-in-out, transform 500ms ease-in-out;
-  transition: font-weight 500ms ease-in-out, transform 500ms ease-in-out;
   line-height: 1.14;
   display: flex;
   align-items: center;
@@ -71,7 +70,6 @@
   &:hover,
   &:focus,
   &:focus-within {
-    font-weight: 600;
     transform: scale(1.05);
     color: $button-bg-color-accent-secondary;
   }
