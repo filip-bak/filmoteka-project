@@ -2,14 +2,14 @@
 @use '../abstracts/mixins' as *;
 @use '../abstracts/variables' as *;
 
-.movie-lightbox {
+.modal {
   display: grid;
 }
-.movie-lightbox__title {
+.modal__title {
   font-size: var(--fs-lightbox-title);
   line-height: var(--lh-lightbox-title);
 }
-.backdrop-movie {
+.backdrop {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -25,7 +25,7 @@
     pointer-events: none;
   }
 }
-.modal-movie {
+.movie-form {
   position: relative;
   justify-content: center;
   background-color: $bg-color-light;
@@ -41,7 +41,7 @@
     margin-left: 237px;
   }
 }
-.movie-card {
+.movie {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,8 +50,9 @@
     flex-direction: row;
   }
 }
-.close-modal-btn {
+.close-btn {
   padding: 0;
+  stroke: $font-color-dark;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -63,29 +64,20 @@
   border: none;
   background-color: $bg-color-light;
   cursor: pointer;
-}
-
-.close-btn-icon {
-  transition: fill 250ms ease;
   &:hover,
   &:focus {
-    fill: $font-color-accent;
+    stroke: $font-color-accent;
   }
 }
-.movie-information_container {
+
+.movie__description {
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
   margin: 0;
-
-  @include mq(tablet) {
-    align-items: center;
-    gap: 68px;
-    flex-direction: row;
-  }
 }
-.movie-image_wrapper {
+.movie-image__delay {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
@@ -103,6 +95,7 @@
   border-radius: 5px;
   width: 240px;
   height: 357px;
+  border-radius: 5px;
 
   @include mq(tablet) {
     width: 264px;
@@ -113,7 +106,7 @@
     height: 478px;
   }
 }
-.movie-description {
+.movie__description {
   padding-left: 20px;
   padding-right: 20px;
 
@@ -124,7 +117,7 @@
     padding: 40px 12px 111px 16px;
   }
 }
-.movie-title {
+.movie__title {
   font-family: $FF;
   font-weight: var(--fw-500);
   font-size: var(--fs-700);
@@ -133,21 +126,25 @@
   text-transform: uppercase;
 }
 
-.movie-table {
+.table {
   margin-top: 20px;
-  width: 100%;
+  width: 215px;
+
+  @include mq(desktop) {
+    width: 259px;
+  }
 }
-.movie-table_row {
+.table__row {
   font-family: $FF;
   font-weight: var(--fw-500);
   font-size: var(--fs-400);
   line-height: var(--lh-500);
   color: $font-color-info;
 }
-.movie-about_container {
+.details_container {
   margin-top: 20px;
 }
-.movie-about {
+.details {
   font-size: var(--fs-400);
   font-family: $FF;
   font-weight: var(--fw-500);
@@ -155,14 +152,14 @@
   text-transform: uppercase;
   color: $font-color-dark;
 }
-.movie-about_text {
+.details__description {
   margin-top: 8px;
   font-family: $FF;
   font-weight: var(--fw-500);
   font-size: var(--fs-400);
   line-height: var(--lh-600);
 }
-.movie-btn_container {
+.grouped-buttons__delay {
   margin-top: 20px;
   display: flex;
   gap: 20px;
@@ -178,7 +175,7 @@
   }
 }
 
-.movie-btn {
+.grouped-buttons {
   width: 110px;
   height: 44px;
   font-family: $FF;
