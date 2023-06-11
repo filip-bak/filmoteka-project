@@ -16,7 +16,6 @@
   left: 0px;
   top: 0px;
   opacity: 1;
-  padding: 20px 0;
   background: rgba(0, 0, 0, 0.25);
   transition: opacity 250ms linear;
   &.is-hidden {
@@ -26,19 +25,27 @@
   }
 }
 .movie-form {
-  position: relative;
-  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: $bg-color-light;
   overflow-y: hidden;
-  margin: 48px 20px 40px 20px;
+  width: 280px;
+  height: 85%;
+  margin-top: 20px;
+  margin-bottom: 38px;
+  overflow-y: scroll;
 
   @include mq(tablet) {
-    margin: 219px 32px 253px 32px;
+    width: 704px;
+    height: 552px;
+    overflow: hidden;
   }
   @include mq(desktop) {
-    margin-top: 150x;
-    margin-right: 237px;
-    margin-left: 237px;
+    width: 806px;
+    height: 558px;
+    overflow: hidden;
   }
 }
 .movie {
@@ -80,15 +87,16 @@
 .movie-image__delay {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 48px;
+  padding-bottom: 20px;
+  padding-top: 48px;
 
   @include mq(tablet) {
-    margin-top: 40px;
-    margin-left: 36px;
+    padding-top: 40px;
+    padding-left: 36px;
   }
   @include mq(desktop) {
-    margin-left: 12px;
+    padding-top: 40px;
+    padding-left: 12px;
   }
 }
 .movie-image {
