@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .header {
   padding: 40px 20px 92px;
@@ -28,9 +29,11 @@
     margin-left: 12px;
   }
 
-  &__h1 a {
+  &__link {
+    display: flex;
+    align-items: center;
     color: $font-color-light;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__main-content {
@@ -43,6 +46,7 @@
   &__title {
     display: flex;
     align-items: center;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__navigation {
@@ -53,17 +57,6 @@
   &__navigation a {
     position: relative;
   }
-
-  // &__home:hover::after,
-  // &__my-library:hover::after {
-  //   content: '';
-  //   position: absolute;
-  //   height: 3px;
-  //   width: 100%;
-  //   background-color: $font-color-dark-red;
-  //   left: 0;
-  //   bottom: -3px;
-  // }
 
   &__navigation .active::after {
     content: '';
@@ -95,32 +88,59 @@
 
   &__home:hover,
   &__my-library:hover,
-  &__title:hover &__h1 a {
+  &__home:focus,
+  &__my-library:focus {
+    color: $bg-color-accent;
+  }
+  &__search-input:hover,
+  &__search-input:focus {
+    border-color: $bg-color-accent;
+  }
+  &__link:hover,
+  &__link:focus {
     color: $bg-color-accent;
   }
 
-  &__title:hover &__icon {
+  &__link:hover svg {
     fill: $bg-color-accent;
   }
 
+  &__div-input {
+    display: flex;
+    justify-content: center;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   &__icon {
+    fill: $bg-color-accent;
     width: 24px;
     height: 24px;
+  }
+
+  &__icon-search {
+    position: relative;
+    top: 4px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
   }
 
   &__search-input {
     display: flex;
     align-self: center;
+    margin-left: 12px;
     width: 280px;
     background: transparent;
     background: url('/src/images/icons.svg#icon-film_header');
     border: none;
     border-bottom: 0.5px solid #ffffff;
+    outline: none;
     color: $font-color-light;
     font-family: $FF;
     font-size: var(--fs-500);
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__search-input::placeholder {
@@ -129,10 +149,11 @@
     font-size: var(--fs-500);
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
+    padding-top: 10px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
+@include mq(tablet, and, desktop) {
   .header {
     padding: 40px 32px 81px;
 
@@ -154,7 +175,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@include mq(desktop) {
   .header {
     padding: 40px 32px 80px;
 
@@ -172,11 +193,14 @@
   }
 }
 
-// @include mq(min-width: $breakpoints) {
-// }
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header {
+    &__main-image {
+      background-image: url('/src/images/home-banner/home-banner@2x.png');
+    }
 
-// @include mq(tablet, and, deskopt) {
-// }
-
-// @include mq(deskopt) {
-// }
+    &__library-image {
+      background-image: url('/src/images/library-banner/library-banner@2x.jpg');
+    }
+  }
+}
