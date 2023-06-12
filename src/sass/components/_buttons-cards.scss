@@ -1,0 +1,70 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.buttons-box {
+    display: flex;
+    list-style: none;
+}
+.btn {
+    position: relative;
+    display: flex;
+    width: 110px;
+    height: 44px;
+    background-color: $button-bg-color-light-white;   
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid $border-dark;
+    @include mq(tablet) {
+        width: 126px;
+    }
+    @include mq(desktop) {
+        width: 136px;
+    }
+    &__text {
+        font-family: $FF;
+        display: flex;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        font-style: normal;
+        color:$font-color-dark;
+        &:is(:hover, :focus, :focus-within) {
+            color: $button-font-color-light;
+        }
+    }
+    &--watched {
+        margin-right: 15px;
+    }
+    &:is(:hover, :focus, :focus-within) {
+        background-color: $button-bg-color-accent-priamry;
+        border: none;
+        outline: none;
+        color: $button-font-color-light;     
+    }
+    &:is(:hover, :focus, :focus-within) &__text{
+        color: $button-font-color-light;
+    } 
+    &:is(:hover, :focus)::before {
+        box-shadow: inset 1rem 3rem 1rem #000000aa;       
+    }
+    &:active &__icon {
+        transform: translateX(1px);
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        transform: translateY(2px);
+        border-radius: 5px;
+        background-color: transparent;
+        pointer-events: none;
+        transition: box-shadow 400ms ease-in-out;
+    }
+}
