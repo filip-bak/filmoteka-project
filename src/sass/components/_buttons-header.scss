@@ -1,0 +1,83 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+main {
+    background-color: black;
+}
+.buttons-box-header {
+    display: flex;
+    list-style: none;
+}
+
+.btn-header {
+    position: relative;
+    display: flex;
+    width: 129px;
+    height: 44px;
+    background-color: $button-bg-color-light-white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid $border-light;
+
+    @include mq(tablet) {
+        width: 152px;
+    }
+
+    @include mq(desktop) {
+        width: 148px;
+    }
+
+    &__text {
+        font-family: $FF;
+        display: flex;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        font-style: normal;
+        color: $button-font-color-light;
+       
+    }
+    &--watched-watched {
+        margin-right: 20px;
+        background-color: $button-bg-color-accent-priamry;
+        border: none;
+        @include mq(tablet) {
+            margin-right: 32px;
+        }
+    
+        @include mq(desktop) {
+            margin-right: 16px;
+        }
+    }
+    &--watched-queue {
+        background-color: $button-bg-color-transparent;
+        &:is(:hover, :focus, :focus-within) {  
+            border: 1px solid $button-bg-color-accent-priamry;
+            outline: none;
+            color: $button-bg-color-accent-priamry;
+        }
+    }
+    &--queue-queue {
+        
+        background-color: $button-bg-color-accent-priamry;
+        border: none;
+    }
+    &--queue-watched {
+        margin-right: 20px;
+        background-color: $button-bg-color-transparent;
+        &:is(:hover, :focus, :focus-within) {  
+            border: 1px solid $button-bg-color-accent-priamry;
+            outline: none;
+            color: $button-bg-color-accent-priamry;
+        }
+        @include mq(tablet) {
+            margin-right: 32px;
+        }
+        @include mq(desktop) {
+            margin-right: 16px;
+        }
+    }
+}
