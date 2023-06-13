@@ -4,8 +4,48 @@
 .card {
     font-size: var(--fs-card-info);
     line-height: var(--lh-card-info);
+    font-weight: 500;
 
     @include mq(tablet) {
         --lh-card: 1.2;
     }
+    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+    &__poster {
+        width: 395px;
+        height: 574px;
+        margin-bottom: 12px;
+        border-radius: 5px;
+    }
+
+    &__title {
+        font-size: inherit;
+        font-weight: 500;
+    }
+
+    &__description {
+        color: #FF6B08;
+
+    }
+
+    &__tags {
+        margin-right: 7px;
+        padding-right: 7px;
+        border-right: 2px solid #FF6B08;
+    }
+
+    &__year {
+        margin-right: 7px;
+    }
+
+    &__rating {
+        color: #FFFFFF;
+        font-size: 12px;
+        padding: 3px 11px;
+        background-color: #FF6B08;
+        border-radius: 5px;
+    }
+
 }
