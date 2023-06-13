@@ -20,7 +20,6 @@ export const app = {
   },
   checkPage: () => {
     let page = document.body.id;
-    // prettier-ignore-start
     switch (page) {
       case 'home':
         // renderCards(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
@@ -33,7 +32,6 @@ export const app = {
         */
 
         break;
-      // prettier-ignore-end
       case 'library':
         // renderCardsFromLocalStorage(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
 

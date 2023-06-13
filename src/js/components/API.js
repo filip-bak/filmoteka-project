@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const api_key = '8ffc049be01c9ac683da541d3958668c';
 
-export default Api = {
+const Api = {
   page: 1,
 
   getTrendingMovies: async () => {
@@ -59,7 +59,7 @@ export default Api = {
     Api.page = 1;
   },
 };
-
+export default Api;
 async function getData({ request, params } = {}) {
   try {
     const apiParams = new URLSearchParams(params);
