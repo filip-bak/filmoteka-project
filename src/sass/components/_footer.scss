@@ -35,7 +35,6 @@
 }
 
 .footer__content {
-  font-family: $FF;
   color: $font-color-copyright;
   font-size: 14px;
   text-align: center;
@@ -74,7 +73,7 @@
     color: $button-bg-color-accent-secondary;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
     left: 0;
