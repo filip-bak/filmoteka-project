@@ -1,6 +1,7 @@
 'use strict';
 
-import './components/API';
+import Api from './components/API';
+import './components/utils';
 import './components/cards';
 import { elements } from './components/elements';
 import './components/handlers';
