@@ -1,0 +1,74 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn-trailer {
+  outline: none;
+  position: relative;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  background-color: $button-bg-color-light-white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.playTrail {
+  display: inline-block;
+  -webkit-transition: all 0.5s ease;
+  &--circle {
+      stroke: #f8aa28;
+      stroke-dasharray: 650;
+      stroke-dashoffset: 650;
+      -webkit-transition: all 0.5s ease-in-out;
+      opacity: 0.3;
+    }
+
+  &--triangle {
+    -webkit-transition: all 0.7s ease-in-out;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 480;
+    stroke: #000;
+    transform: translateY(0)
+  }
+
+  &:is(:hover, :focus, :focus-within) {
+    outline: none;
+    .playTrail--triangle {
+      stroke-dashoffset: 0;
+      opacity: 1;
+      stroke: #f8aa28;
+      animation: nudge 0.7s ease-in-out;
+
+      @keyframes nudge {
+        0% {
+          transform: translateX(0)
+        }
+
+        30% {
+          transform: translateX(-5px)
+        }
+
+        50% {
+          transform: translateX(5px)
+        }
+
+        70% {
+          transform: translateX(-2px)
+        }
+
+        100% {
+          transform: translateX(0)
+        }
+      }
+    }
+
+    .playTrail--circle {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+}
