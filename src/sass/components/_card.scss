@@ -1,10 +1,11 @@
 @use "../base/typography" as *;
+@use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
 .card {
     font-size: var(--fs-card-info);
     line-height: var(--lh-card-info);
-    font-weight: 500;
+    font-weight: var(--fw-500);
 
     @include mq(tablet) {
         --lh-card: 1.2;
@@ -22,18 +23,18 @@
 
     &__title {
         font-size: inherit;
-        font-weight: 500;
+        font-weight: var(--fw-500);
     }
 
     &__description {
-        color: #FF6B08;
+        color: $font-color-accent;
 
     }
 
     &__tags {
         margin-right: 7px;
         padding-right: 7px;
-        border-right: 2px solid #FF6B08;
+        border-right: 2px solid $font-color-accent;
     }
 
     &__year {
@@ -42,9 +43,9 @@
 
     &__rating {
         color: #FFFFFF;
-        font-size: 12px;
+        font-size: var(--fs-400);
         padding: 3px 11px;
-        background-color: #FF6B08;
+        background-color: $bg-color-accent;
         border-radius: 5px;
     }
 
