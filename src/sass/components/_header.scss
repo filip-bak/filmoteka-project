@@ -21,7 +21,7 @@
   &__h1 {
     display: none;
     align-items: center;
-    font-family: $FF;
+    font-family: $font-color-light;
     font-size: var(--fs-800);
     font-weight: var(--fs-500);
     line-height: var(--lh-600);
@@ -51,6 +51,7 @@
 
   &__navigation {
     display: flex;
+    align-items: center;
     gap: 40px;
   }
 
@@ -70,7 +71,7 @@
 
   &__home {
     color: $font-color-light;
-    font-family: $FF;
+    font-family: $font-color-light;
     font-size: var(--fs-400);
     font-weight: var(--fs-500);
     line-height: var(--lh-400);
@@ -79,7 +80,7 @@
 
   &__my-library {
     color: $font-color-light;
-    font-family: $FF;
+    font-family: $font-color-light;
     font-size: var(--fs-400);
     font-weight: var(--fs-500);
     line-height: var(--lh-400);
@@ -129,6 +130,7 @@
     display: flex;
     align-self: center;
     margin-left: 12px;
+    padding-right: 13px;
     width: 280px;
     background: transparent;
     background: url('/src/images/icons.svg#icon-film_header');
@@ -136,7 +138,7 @@
     border-bottom: 0.5px solid #ffffff;
     outline: none;
     color: $font-color-light;
-    font-family: $FF;
+    font-family: $font-color-light;
     font-size: var(--fs-500);
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
@@ -145,7 +147,7 @@
 
   &__search-input::placeholder {
     color: $font-color-light;
-    font-family: $FF;
+    font-family: $font-color-light;
     font-size: var(--fs-500);
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
@@ -161,16 +163,20 @@
       display: flex;
     }
 
-    &__icon {
-      margin-bottom: 2px;
-    }
-
     &__main-content {
       margin-bottom: 40px;
     }
 
     &__search-input {
       width: 336px;
+    }
+  }
+}
+
+@include mq(tablet) {
+  .header {
+    &__icon {
+      transform: translateY(2px);
     }
   }
 }
@@ -193,7 +199,7 @@
   }
 }
 
-@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+@include screen-density(2) {
   .header {
     &__main-image {
       background-image: url('/src/images/home-banner/home-banner@2x.png');
