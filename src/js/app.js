@@ -5,6 +5,7 @@ import './components/cards';
 import { elements } from './components/elements';
 import './components/handlers';
 import './components/local-storage';
+import { theme } from './components/local-storage_theme-switch';
 import './components/movie-modal';
 import { showLoader } from './components/notifications';
 import './components/pagination';
