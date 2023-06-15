@@ -99,7 +99,9 @@
     border-color: $bg-color-accent;
   }
   &__link:hover,
-  &__link:focus {
+  &__link:focus,
+  &__link:hover &__icon,
+  &__link:focus &__icon {
     color: $bg-color-accent;
     stroke: $bg-color-accent;
   }
@@ -112,9 +114,11 @@
 
   &__icon {
     margin-bottom: 5px;
-    fill: $bg-color-accent;
+    fill: transparent;
+    stroke: white;
     width: 24px;
     height: 24px;
+    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &__icon-search {
