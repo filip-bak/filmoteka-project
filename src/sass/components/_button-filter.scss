@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .filter-svg {
   animation-name: heartScale;
@@ -10,6 +10,10 @@
   fill: $fill-filter;
 }
 .btn-filter {
+  display: grid;
+  align-self: end;
+  width: min-content;
+  padding: 0;
   background: none;
   border: none;
 }

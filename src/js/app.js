@@ -9,7 +9,7 @@ import './components/local-storage';
 import './components/movie-modal';
 import { showLoader } from './components/notifications';
 import './components/pagination';
-import './components/button-filter';
+import { ifAdult } from './components/button-filter';
 
 export const app = {
   init: () => {

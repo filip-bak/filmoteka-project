@@ -2,7 +2,9 @@ const buttonFilter = document.querySelector('#buttonFilter');
 
 const svgFilter = document.querySelector('#buttonFilter svg');
 
-let ifAdult = false;
+export let ifAdult = false;
+
+if (buttonFilter === null) return;
 
 buttonFilter.addEventListener('click', () => {
   if (ifAdult === false) {
