@@ -1,2 +1,22 @@
-<h1>My library</h1>
-<a href="./index.html" class="link uppercase">Home</a>
+<header class="header header__library-image">
+  <div class="header__main-content">
+    <div class="header__title">
+      <a href="./index.html" class="header__link link">
+        <svg class="header__icon">
+          <use href="/src/images/icons.svg#icon-film_header"></use>
+        </svg>
+        <h1 class="header__h1">Filmoteka</h1>
+      </a>
+    </div>
+
+    <nav class="header__navigation">
+      <a href="./index.html" class="header__home link uppercase"> Home </a>
+      <a href="./library.html" class="header__my-library active link uppercase"> My library </a>
+    </nav>
+  </div>
+
+  <include src="./partials/buttons-header-queue.html"></include>
+  <!-- <include src="./partials/buttons-header-watched.html"></include> -->
+</header>
+<!-- <include src="./partials/buttons-header-watched.html"></include>
+<include src="./partials/buttons-header-queue.html"></include> -->

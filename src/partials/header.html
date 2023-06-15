@@ -1,2 +1,29 @@
-<h1>Home</h1>
-<a href="./library.html" class="link uppercase"> My library </a>
+<header class="header header__main-image">
+  <div class="header__main-content">
+    <div class="header__title">
+      <a href="./index.html" class="header__link link">
+        <svg class="header__icon">
+          <use href="/src/images/icons.svg#icon-film_header"></use>
+        </svg>
+        <h1 class="header__h1">Filmoteka</h1>
+      </a>
+    </div>
+
+    <nav class="header__navigation">
+      <a href="./index.html" class="header__home active link uppercase"> Home </a>
+      <a href="./library.html" class="header__my-library link uppercase"> My library </a>
+    </nav>
+  </div>
+
+  <div class="header__div-input">
+    <input
+      type="text"
+      name="movie search"
+      placeholder="Movie search"
+      class="header__search-input"
+    />
+    <svg class="header__icon-search">
+      <use href="/src/images/icons.svg#icon-search_header"></use>
+    </svg>
+  </div>
+</header>
