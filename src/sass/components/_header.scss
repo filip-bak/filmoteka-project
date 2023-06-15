@@ -8,6 +8,14 @@
   display: flex;
   flex-direction: column;
 
+  &-library {
+    padding: 40px 20px 46px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__main-image {
     background-image: url('/src/images/home-banner/home-banner.png');
   }
@@ -32,7 +40,6 @@
   &__link {
     display: flex;
     align-items: center;
-    // justify-content: center;
     color: $font-color-light;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -42,6 +49,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 54px;
+  }
+
+  &__library-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 46px;
   }
 
   &__title {
@@ -89,19 +103,14 @@
   }
 
   &__home:hover,
-  &__my-library:hover,
-  &__home:focus,
-  &__my-library:focus {
+  &__my-library:hover {
     color: $bg-color-accent;
   }
-  &__search-input:hover,
-  &__search-input:focus {
+  &__search-input:hover {
     border-color: $bg-color-accent;
   }
   &__link:hover,
-  &__link:focus,
-  &__link:hover &__icon,
-  &__link:focus &__icon {
+  &__link:hover &__icon {
     color: $bg-color-accent;
     stroke: $bg-color-accent;
   }
@@ -113,7 +122,6 @@
   }
 
   &__icon {
-    margin-bottom: 5px;
     fill: transparent;
     stroke: white;
     width: 24px;
@@ -164,6 +172,10 @@
   .header {
     padding: 40px 32px 81px;
 
+    &-library {
+      padding: 40px 32px 44px;
+    }
+
     &__h1 {
       display: flex;
     }
@@ -172,16 +184,12 @@
       margin-bottom: 40px;
     }
 
+    &__library-main-content {
+      margin-bottom: 24px;
+    }
+
     &__search-input {
       width: 336px;
-    }
-  }
-}
-
-@include mq(tablet) {
-  .header {
-    &__icon {
-      transform: translateY(2px);
     }
   }
 }
@@ -189,6 +197,14 @@
 @include mq(desktop) {
   .header {
     padding: 40px 32px 80px;
+
+    &-library {
+      padding: 40px 32px 44px;
+    }
+
+    &__library-main-content {
+      margin-bottom: 24px;
+    }
 
     &__h1 {
       display: flex;
