@@ -1,0 +1,66 @@
+export default [
+  {
+    name: 'Filip Bączkowski',
+    photo: '',
+    position: 'Team Lead',
+    github: 'https://github.com/filip-bak/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Bartosz Drzazga',
+    photo: '',
+    position: 'Scrum Master',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+
+  {
+    name: 'Anna Dawiec',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/annadawiec',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Tomasz Nejman',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Artur Sekretarski',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Izabela Świadkowska',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Kamil Szymański',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Arkadiusz Myszka',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+  {
+    name: 'Oskar Sadkowski',
+    photo: '',
+    position: 'Front-end Developer',
+    github: 'https://github.com/',
+    linkedin: 'https://pl.linkedin.com/',
+  },
+];
