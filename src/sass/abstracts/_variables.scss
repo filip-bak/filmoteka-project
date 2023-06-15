@@ -2,12 +2,12 @@
 //    || MEDIA QUERIES ||
 //
 $breakpoints: (
-    // small
-    mobile: 320px,
-    // medium
-    tablet: 768px,
-    // large
-    desktop: 1280px
+  // small
+  mobile: 320px,
+  // medium
+  tablet: 768px,
+  // large
+  desktop: 1280px
 );
 
 //
@@ -54,3 +54,5 @@ $button-bg-color-light-white: #fff;
 //    || SVG ||
 //
 $fill-light: #fff;
+$fill-filter: green;
+$fill-filter-adult: red;
