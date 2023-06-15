@@ -7,12 +7,12 @@
   animation-duration: 2500ms;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
+  fill: $fill-filter;
 }
 .btn-filter {
   background: none;
   border: none;
 }
-.filter-color-changer{
-fill: $fill-filter;
+.filter-color-adult {
+  fill: $fill-filter-adult;
 }
