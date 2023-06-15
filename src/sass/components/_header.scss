@@ -101,10 +101,7 @@
   &__link:hover,
   &__link:focus {
     color: $bg-color-accent;
-  }
-
-  &__link:hover svg {
-    fill: $bg-color-accent;
+    stroke: $bg-color-accent;
   }
 
   &__div-input {
