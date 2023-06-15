@@ -1,0 +1,90 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.buttons-box-header {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0px;
+}
+
+.btn-header {
+  position: relative;
+  display: flex;
+  width: 129px;
+  height: 44px;
+  background-color: $button-bg-color-light-white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid $border-light;
+
+  @include mq(tablet) {
+    width: 152px;
+  }
+
+  @include mq(desktop) {
+    width: 148px;
+  }
+
+  &__text {
+    display: flex;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    font-style: normal;
+    color: $button-font-color-light;
+  }
+  &--watched-watched {
+    margin-right: 20px;
+    background-color: $button-bg-color-accent-priamry;
+    border: none;
+    @include mq(tablet) {
+      margin-right: 32px;
+    }
+
+    @include mq(desktop) {
+      margin-right: 16px;
+    }
+  }
+  &--watched-queue {
+    background-color: $button-bg-color-transparent;
+    &:is(:hover, :focus, :focus-within) {
+      border: 1px solid $button-bg-color-accent-priamry;
+      outline: none;
+      color: $button-bg-color-accent-priamry;
+    }
+  }
+  &--queue-queue {
+    background-color: $button-bg-color-accent-priamry;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    border: none;
+  }
+  &--queue-watched:focus {
+    background-color: $button-bg-color-accent-priamry;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    border: none;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &--queue-watched {
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    margin-right: 20px;
+    background-color: $button-bg-color-transparent;
+    &:is(:hover, :focus, :focus-within) {
+      border: 1px solid $button-bg-color-accent-priamry;
+      outline: none;
+      color: $button-bg-color-accent-priamry;
+    }
+    @include mq(tablet) {
+      margin-right: 32px;
+    }
+    @include mq(desktop) {
+      margin-right: 16px;
+    }
+  }
+}
