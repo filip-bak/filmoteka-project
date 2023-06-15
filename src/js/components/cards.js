@@ -31,7 +31,7 @@ function getGenraByID(ID) {
     ];
     const movieGenras = [];
     const genraIDs = [];
-    for (genra of genreIdName) {
+    for (const genra of genreIdName) {
         genraIDs.push(genra.id)
     }
     ID.forEach(el => { 
