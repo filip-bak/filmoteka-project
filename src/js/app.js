@@ -2,7 +2,7 @@
 
 import Api from './components/API';
 import './components/utils';
-import './components/cards';
+import { renderCards } from './components/cards';
 import { elements } from './components/elements';
 import './components/handlers';
 import './components/local-storage';
@@ -22,7 +22,11 @@ export const app = {
     let page = document.body.id;
     switch (page) {
       case 'home':
-        // renderCards(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
+        try {
+          renderCards();
+        } catch (e) {
+          console.log(`renderCards() Error ${e}`);
+        }
 
         // potrzebne event Listener-y
 
