@@ -10,6 +10,7 @@ import { theme } from './components/local-storage_theme-switch';
 import './components/movie-modal';
 import { showLoader } from './components/notifications';
 import './components/pagination';
+import { ifAdult } from './components/button-filter';
 
 export const app = {
   init: () => {

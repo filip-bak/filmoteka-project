@@ -35,18 +35,17 @@ body.dark-theme {
 .switch {
     display: flex;
     justify-content: flex-end;
-    background-color: #121313;
     align-items: center;
     padding: 16px 24px;
     position: absolute;
     right: 0;
-    top: 60px;
+    top: 154px;
 
     &-icon__sun {
         fill: $icon-color-light;
         height: 25px;
         width: 25px;
-        margin-right: 10px;
+        margin-right: 3px;
         margin-left: 10px;
     }
 
@@ -55,7 +54,7 @@ body.dark-theme {
         height: 35px;
         width: 35px;
         margin-right: 3px;
-        margin-left: 3px;
+        margin-left: -4px;
     }
 
 
