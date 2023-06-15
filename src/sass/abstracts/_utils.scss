@@ -1,4 +1,4 @@
-@use '../abstracts/mixins' as *;
+@use "../abstracts/mixins" as *;
 
 .container {
   --column-count: 1;
@@ -21,6 +21,7 @@
   }
 
   @include mq(tablet) {
+    place-items: start;
     padding: 60px 32px;
   }
   @include mq(desktop) {
@@ -28,6 +29,9 @@
     max-width: 1280px;
     gap: 32px 16px;
   }
+}
+.footer-container {
+  @extend .container;
 }
 .is-hidden {
   visibility: hidden;
@@ -39,6 +43,6 @@
 .uppercase {
   text-transform: uppercase;
 }
-[aria-current='page'] {
+[aria-current="page"] {
   border-bottom: 3px solid red;
 }
