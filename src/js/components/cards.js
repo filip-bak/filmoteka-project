@@ -43,15 +43,57 @@ function getGenraByID(ID) {
     return movieGenras.join(', ')
 }
 
+
+async function createCards(moviesDataFromAPI) {
+  const movies = await moviesDataFromAPI.results
+  const moviesData = await movies.map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
+      return `<div class="card" data-id-"${id}"><button class="btn-trailer" data-movieID="${id}">
+  <a href="#" class="playTrail">
+    <svg
+      x="0px"
+      y="0px"
+      width="50.7px"
+      height="50.7px"
+      viewBox="0 0 213.7 213.7"
+      enable-background="new 0 0 213.7 213.7"
+      xml:space="preserve"
+    >
+      <polygon
+        class="playTrail--triangle"
+        id="XMLID_18_"
+        fill="none"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        points="
+          73.5,62.5 148.5,105.8 73.5,149.1 "
+      />
+      <circle
+        class="playTrail--circle"
+        id="XMLID_17_"
+        fill="none"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        cx="106.8"
+        cy="106.8"
+        r="103.3"
+      />
+    </svg>
+  </a>
+</button><img src="${getImageURL(poster_path)}" class="card__poster"/><h2 class="card__title">${String(title).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(genre_ids)}</span><span class="card__year">${String(release_date).slice(0, 4)}</span><span class="card__rating">${vote_average.toFixed(2)}</span></p></div>`
+    }).join('')
+    cardSpace.insertAdjacentHTML('beforeend', moviesData)
+}
+
 export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies()
-    const movies = await data.results
-    const moviesData = await movies.map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
-      return `<div class="card" data-id-"${id}"><img src="${getImageURL(poster_path)}" class="card__poster"/><h2 class="card__title">${String(title).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(genre_ids)}</span><span class="card__year">${String(release_date).slice(0, 4)}</span><span class="card__rating">${vote_average.toFixed(2)}</span></p></div>`
-    }).join('')
-    cardSpace.insertAdjacentHTML('beforeend', moviesData)
+    createCards(data)
+
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`)
   }

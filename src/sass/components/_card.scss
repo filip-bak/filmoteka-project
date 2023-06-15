@@ -6,6 +6,18 @@
     font-size: var(--fs-card-info);
     line-height: var(--lh-card-info);
     font-weight: var(--fw-500);
+    position: relative;
+    cursor: pointer;
+    transition: transform 200ms ease-in 100ms;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &:hover .btn-trailer {
+        display: flex;
+        transform: translateX(0%);
+        opacity: 100%;
+    }
+
 
     @include mq(tablet) {
         --lh-card: 1.2;
@@ -19,6 +31,7 @@
         height: 574px;
         margin-bottom: 12px;
         border-radius: 5px;
+        object-fit: cover;
     }
 
     &__title {
