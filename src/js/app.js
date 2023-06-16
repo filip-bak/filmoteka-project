@@ -9,6 +9,7 @@ import './components/local-storage';
 import './components/movie-modal';
 import { showLoader } from './components/notifications';
 import './components/pagination';
+import './components/up-arrow';
 
 export const app = {
   init: () => {

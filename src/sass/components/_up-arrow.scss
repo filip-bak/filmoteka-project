@@ -1,0 +1,47 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.arrow {
+  position: fixed;
+  right: 20px;
+  border-radius: 50%;
+  bottom: 20px;
+  width: 45px;
+  height: 45px;
+  line-height: 0;
+  color: $font-color-copyright;
+  opacity: 0.75;
+  cursor: pointer;
+  border: 3 solid #bababa;
+  border-radius: 50%;
+  &:hover {
+    fill: $bg-color-accent;
+    border: 3px solid $bg-color-accent;
+    animation: arrowFloat 1s infinite;
+    .arrow__icon {
+      fill: $bg-color-accent;
+    }
+  }
+  &:before {
+    content: '';
+  }
+}
+
+@keyframes arrowFloat {
+  0% {
+    bottom: 20px;
+  }
+  50% {
+    bottom: 30px;
+  }
+  100% {
+    bottom: 20px;
+  }
+}
+
+.arrow__icon {
+  fill: #bababa;
+  opacity: 0.75;
+  padding-right: 2px;
+}
