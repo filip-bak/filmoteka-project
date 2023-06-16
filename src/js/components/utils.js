@@ -1,6 +1,6 @@
 import { withoutTrailer } from './notifications';
 
-export function getKeyOfLatestThriller(data) {
+export async function getKeyOfLatestThriller(data) {
   let newData = [];
   let thrillerKey = '';
 
