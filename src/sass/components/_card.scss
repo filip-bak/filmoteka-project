@@ -8,7 +8,7 @@
     font-weight: var(--fw-500);
     position: relative;
     cursor: pointer;
-    transition: transform 200ms ease-in 100ms;
+    transition: transform 200ms ease-in;
     &:hover {
         transform: scale(1.05);
     }
@@ -32,6 +32,7 @@
         margin-bottom: 12px;
         border-radius: 5px;
         object-fit: cover;
+        background-image: url('/src/images/cards/no-poster-image.png');
     }
 
     &__title {
@@ -62,4 +63,11 @@
         border-radius: 5px;
     }
 
+}
+
+
+@include screen-density(2) {
+    .card__poster{
+        background-image: url('/src/images/cards/no-poster-imagex2.png')
+    }
 }
