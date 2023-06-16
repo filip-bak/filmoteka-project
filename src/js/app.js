@@ -14,6 +14,7 @@ import { ifAdult } from './components/button-filter.js';
 import showTrailerById, { TrailersHandle } from './components/trailer.js';
 import { modalButtonChange } from './components/movie-modal-library-buttons';
 import './components/search-query';
+import './components/up-arrow';
 
 const app = {
   init: () => {
