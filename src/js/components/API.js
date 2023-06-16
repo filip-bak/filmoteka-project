@@ -46,7 +46,7 @@ const Api = {
     });
 
     const thrillerBaseUrl = 'https://www.youtube.com/embed/';
-    const thrillerKey = getKeyOfLatestThriller(data);
+    const thrillerKey = await getKeyOfLatestThriller(data);
 
     const thrillerUrl = `${thrillerBaseUrl}${thrillerKey}`;
 

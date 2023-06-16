@@ -5,11 +5,13 @@
 .btn-trailer {
   outline: none;
   position: absolute;
-  right: 0px;
+  right: 5px;
+  top: 5px;
   display: flex;
   width: 60px;
   height: 60px;
-  background-color: $button-bg-color-light-white;
+  background-color: #ff001b90;
+  border-radius: 50%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -17,11 +19,11 @@
   text-align: center;
   opacity: 0%;
   transform: translateX(-300%);
-  transition: transform 250ms ease-in 200ms, opacity 250ms ease-in 200ms;
+  transition: transform 250ms ease-in, opacity 250ms ease-in;
 }
 
 .playTrail {
-  display: inline-block;
+  display: flex;
   transition: all 0.5s ease;
   &--circle {
       stroke: #f8aa28;
