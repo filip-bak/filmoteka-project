@@ -1,4 +1,3 @@
-'use strict';
 import { TrailersHandle } from './trailer.js';
 import { searchRenderCards, renderCards } from './cards.js';
 import { showLoader, hideLoader, failure } from './notifications.js';
@@ -31,5 +30,7 @@ async function imputHandler(e) {
     return;
   }
 }
-
+if (searchInput === null) {
+  return;
+}
 searchInput.addEventListener('keyup', imputHandler);
