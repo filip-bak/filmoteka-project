@@ -11,6 +11,11 @@ import './components/movie-modal';
 import { showLoader, hideLoader } from './components/notifications';
 import './components/pagination';
 import { ifAdult } from './components/button-filter';
+import { modalButtonChange } from './components/movie-modal-library-buttons';
+
+
+// TO TEST THE MODAL BUTTON CHANGE FUNCTION:
+// modalButtonChange()
 
 export const app = {
   init: () => {
