@@ -2,12 +2,12 @@
 //    || MEDIA QUERIES ||
 //
 $breakpoints: (
-    // small
-    mobile: 320px,
-    // medium
-    tablet: 768px,
-    // large
-    desktop: 1280px
+  // small
+  mobile: 320px,
+  // medium
+  tablet: 768px,
+  // large
+  desktop: 1280px
 );
 
 //
@@ -23,11 +23,17 @@ $font-color-info: #8c8c8c;
 
 $font-color-copyright: #545454;
 
+$font-color-footer-dark: #d3d3d3;
+
 //
 //    || BACKGROUNDS ||
 //
 $bg-color-light: #fff;
 $bg-color-accent: #ff6b08;
+
+$bg-color-dark-mode: #333333;
+$bg-color-switch-mode: #fff;
+$bg-color-footer-dark: #1213132c;
 
 $bg-color-rating-primary: #ff6b01;
 $bg-color-rating-secondary: #f7f7f7;
@@ -49,8 +55,16 @@ $button-bg-color-light-grey: #f7f7f7;
 $button-bg-color-accent-priamry: #ff6b01;
 $button-bg-color-accent-secondary: #ff6b08;
 $button-bg-color-transparent: transparent;
+
+//    || ICONS ||
+$icon-color-light: #fff;
+
+//    || MODE LIGHT/DARK ||
 $button-bg-color-light-white: #fff;
 //
 //    || SVG ||
 //
 $fill-light: #fff;
+$fill-light: #fff;
+$fill-filter: green;
+$fill-filter-adult: red;

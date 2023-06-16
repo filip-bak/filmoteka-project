@@ -1,22 +1,27 @@
 'use strict';
 
-import Api from './components/API';
-import './components/utils';
-import { renderCards } from './components/cards';
-import { elements } from './components/elements';
-import './components/handlers';
-import './components/local-storage';
-import './components/movie-modal';
-import { showLoader } from './components/notifications';
-import './components/pagination';
+import Api from './components/API.js';
+import './components/utils.js';
+import { renderCards } from './components/cards.js';
+import { elements } from './components/elements.js';
+import './components/handlers.js';
+import './components/local-storage.js';
+import { theme } from './components/local-storage_theme-switch.js';
+import './components/movie-modal.js';
+import { showLoader, hideLoader } from './components/notifications.js';
+import './components/pagination.js';
+import { ifAdult } from './components/button-filter.js';
+import showTrailerById, { TrailersHandle } from './components/trailer.js';
+import { modalButtonChange } from './components/movie-modal-library-buttons';
+import './components/search-query';
 import './components/up-arrow';
 
-export const app = {
+const app = {
   init: () => {
-    document.addEventListener('DOMContentLoaded', app.load);
+    window.addEventListener('load', app.load);
   },
   load: () => {
-    // showLoader();
+    showLoader();
     app.checkPage();
   },
   checkPage: () => {
@@ -28,7 +33,6 @@ export const app = {
         } catch (e) {
           console.log(`renderCards() Error ${e}`);
         }
-
         // potrzebne event Listener-y
 
         /*    -- TEST --
@@ -36,6 +40,7 @@ export const app = {
           ALE NIE WYSYŁASZ NA GITHUB
         */
 
+        hideLoader();
         break;
       case 'library':
         // renderCardsFromLocalStorage(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
@@ -48,6 +53,7 @@ export const app = {
           ALE NIE WYSYŁASZ NA GITHUB
         */
 
+        hideLoader();
         break;
     }
   },
