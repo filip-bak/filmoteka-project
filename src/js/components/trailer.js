@@ -15,7 +15,7 @@ export async function TrailersHandle() {
         return showTrailerById(movieId);
       });
     });
-  }, 100);
+  }, 150);
 }
 
 export async function showTrailerById(id) {

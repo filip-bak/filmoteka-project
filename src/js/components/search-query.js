@@ -1,6 +1,7 @@
 'use strict';
-
-import { searchRenderCards } from './cards.js';
+import { TrailersHandle } from './trailer.js';
+import { searchRenderCards, renderCards } from './cards.js';
+import { showLoader, hideLoader, failure } from './notifications.js';
 import { ifAdult } from './button-filter.js';
 import _ from 'lodash';
 
@@ -10,12 +11,19 @@ let searchQuery = '';
 const debouncedSearch = _.debounce(debouncedSearchValue, 1000);
 
 async function debouncedSearchValue() {
+  showLoader();
   searchQuery = searchInput.value;
+  if (searchQuery === '') {
+    renderCards();
+    hideLoader();
+    return;
+  }
   searchRenderCards(searchQuery, ifAdult);
+  hideLoader();
 }
 
-async function textAreaHandler(e) {
-  debouncedSearch(e);
+async function imputHandler(e) {
+  debouncedSearch();
   if (e.code === 'Enter') {
     searchQuery = e.currentTarget.value;
     debouncedSearch.cancel();
@@ -24,4 +32,4 @@ async function textAreaHandler(e) {
   }
 }
 
-searchInput.addEventListener('keyup', textAreaHandler);
+searchInput.addEventListener('keyup', imputHandler);

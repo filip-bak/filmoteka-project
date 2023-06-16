@@ -11,15 +11,16 @@
   </head>
   <body id="home">
     <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
-    <include src="./partials/header.html"></include>
+    <div class="wrapper">
+      <include src="./partials/header.html"></include>
 
-    <main>
-      <div class="container"></div>
-    </main>
+      <main>
+        <div class="container"></div>
+      </main>
 
+      <include src="./partials/footer.html"></include>
+    </div>
     <include src="./partials/theme-switch.html"></include>
-
-    <include src="./partials/footer.html"></include>
 
     <include src="./partials/loader.html"></include>
     <include src="./partials/trailer.html"></include>

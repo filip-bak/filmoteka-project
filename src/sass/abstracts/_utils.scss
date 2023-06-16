@@ -30,7 +30,27 @@
     gap: 32px 16px;
   }
 }
-.footer-container {
+.wrapper {
+  height: 100vh;
+  height: 100dvh;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+.wrapper:nth-child(1) {
+  grid-area: header;
+}
+.wrapper:nth-child(2) {
+  grid-area: main;
+}
+.wrapper:nth-child(3) {
+  grid-area: footer;
+}
+.library-container {
   @extend .container;
 }
 .is-hidden {
