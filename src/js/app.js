@@ -13,10 +13,11 @@ import './components/pagination.js';
 import { ifAdult } from './components/button-filter.js';
 import showTrailerById, { TrailersHandle } from './components/trailer.js';
 import { modalButtonChange } from './components/movie-modal-library-buttons';
+import './components/search-query';
 
 const app = {
   init: () => {
-    document.addEventListener('DOMContentLoaded', app.load);
+    window.addEventListener('load', app.load);
   },
   load: () => {
     showLoader();
@@ -32,7 +33,6 @@ const app = {
           console.log(`renderCards() Error ${e}`);
         }
         // potrzebne event Listener-y
-        TrailersHandle();
 
         /*    -- TEST --
           Gdy potrzebujesz zobaczyć jak coś wygląda to pod tym piszesz i patrzysz czy działa,
