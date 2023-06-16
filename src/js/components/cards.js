@@ -34,7 +34,7 @@ function getGenraByID(ID) {
     for (const genra of genreIdName) {
         genraIDs.push(genra.id)
     }
-    ID.forEach(el => { 
+    ID.forEach(el => {
         if (genraIDs.includes(el)) {
             const genraName = genreIdName.find(genra => genra.id === el)
             movieGenras.push(genraName.name)
@@ -44,7 +44,7 @@ function getGenraByID(ID) {
 }
 
 
-async function createCards(moviesDataFromAPI) {
+export async function createCards(moviesDataFromAPI) {
   const movies = await moviesDataFromAPI.results
   const moviesData = await movies.map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
       return `<div class="card" data-id-"${id}"><button class="btn-trailer" data-movieID="${id}">
@@ -92,6 +92,16 @@ export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies()
+    createCards(data)
+
+  } catch (e) {
+    console.log(`ERROR NOTIFICATION : ${e}`)
+  }
+}
+export async function searchRenderCards(searchQuery, ifAdult) {
+  try {
+    cardSpace.innerHTML = '';
+    const data = await Api.getMoviesBySearchQuery(searchQuery, ifAdult);
     createCards(data)
 
   } catch (e) {

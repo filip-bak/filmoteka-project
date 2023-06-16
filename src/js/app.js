@@ -11,6 +11,7 @@ import './components/movie-modal';
 import { showLoader, hideLoader } from './components/notifications';
 import './components/pagination';
 import { ifAdult } from './components/button-filter';
+import './components/search-query';
 
 export const app = {
   init: () => {
