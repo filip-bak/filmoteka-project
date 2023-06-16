@@ -1,7 +1,19 @@
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  showOnlyTheLastOne: true,
+  pauseOnHover: false,
+  cssAnimationStyle: 'from-top',
+  closeButton: true,
+});
+Notiflix.Loading.init({ backgroundColor: 'rgba(0,0,0,0.2)', svgColor: '#ff6b08' });
+
 export function showLoader() {
-  console.log('show loader');
+  Notiflix.Loading.dots();
+}
+
+export function hideLoader() {
+  Notiflix.Loading.remove();
 }
 
 export function success(totalMovies, query) {

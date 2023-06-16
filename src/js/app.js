@@ -8,7 +8,7 @@ import './components/handlers';
 import './components/local-storage';
 import { theme } from './components/local-storage_theme-switch';
 import './components/movie-modal';
-import { showLoader } from './components/notifications';
+import { showLoader, hideLoader } from './components/notifications';
 import './components/pagination';
 import { ifAdult } from './components/button-filter';
 
@@ -17,7 +17,7 @@ export const app = {
     document.addEventListener('DOMContentLoaded', app.load);
   },
   load: () => {
-    // showLoader();
+    showLoader();
     app.checkPage();
   },
   checkPage: () => {
@@ -37,6 +37,7 @@ export const app = {
           ALE NIE WYSYŁASZ NA GITHUB
         */
 
+        hideLoader();
         break;
       case 'library':
         // renderCardsFromLocalStorage(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
@@ -49,6 +50,7 @@ export const app = {
           ALE NIE WYSYŁASZ NA GITHUB
         */
 
+        hideLoader();
         break;
     }
   },
