@@ -44,7 +44,7 @@ function getGenraByID(ID) {
 }
 
 
-async function createCards(moviesDataFromAPI) {
+export async function createCards(moviesDataFromAPI) {
   const movies = await moviesDataFromAPI.results
   const moviesData = await movies.map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
       return `<div class="card" data-id-"${id}"><button class="btn-trailer" data-movieID="${id}">
