@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
 
 .close-button {
   position: relative;
@@ -38,7 +38,7 @@
   transition: opacity 250ms linear;
   z-index: 20;
 }
-.is-hidden {
+.trailer-is-hidden {
   opacity: 0;
   pointer-events: none;
   transition: opacity 250ms linear;
