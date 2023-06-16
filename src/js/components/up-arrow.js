@@ -1,4 +1,4 @@
-import throttle from 'lodash.throttle';
+import _ from 'lodash';
 
 const scrollButton = document.querySelector('.arrow__up');
 const headerEl = document.querySelector('.header');
@@ -25,7 +25,7 @@ function handleScroll() {
   scrollY > headerEl.offsetTop ? show() : hide();
 }
 
-window.addEventListener('scroll', throttle(handleScroll, 500));
+window.addEventListener('scroll', _.throttle(handleScroll, 500));
 
 function scrollUp() {
   window.scrollTo({
