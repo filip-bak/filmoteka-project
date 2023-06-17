@@ -28,6 +28,12 @@ async function imputHandler(e) {
   if (e.code === 'Enter') {
     searchQuery = e.currentTarget.value;
     debouncedSearch.cancel();
+    if (searchQuery === '') {
+      renderCards();
+      hideLoader();
+      deleteSearchQueryError();
+      return;
+    }
     searchRenderCards(searchQuery, ifAdult);
     return;
   }
