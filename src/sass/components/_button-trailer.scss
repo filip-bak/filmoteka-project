@@ -10,17 +10,24 @@
   display: flex;
   width: 60px;
   height: 60px;
-  background-color: #ff001b90;
+  background-color: #6699ccc5;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   border: none;
   text-align: center;
+  transition: background-color 500ms;
+  
+  &:is(:hover, :focus, :focus-within){
+    background-color: transparent;
+    background-color:#800020e0;
+  }
 }
 
 .playTrail {
   display: flex;
+  border-radius: 50%;
   transition: all 0.5s ease;
   &--circle {
       stroke: #f8aa28;
