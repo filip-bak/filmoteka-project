@@ -1,8 +1,9 @@
-import _ from 'lodash';
+import throttle from 'lodash.throttle';
 
 const scrollButton = document.querySelector('.arrow__up');
 const headerEl = document.querySelector('.header');
-let scrolled = false; // Zmienna flagowa
+
+hide();
 
 scrollButton.addEventListener('click', scrollUp);
 
@@ -15,17 +16,12 @@ function hide() {
 }
 
 function handleScroll() {
-  if (!scrolled) {
-    scrolled = true;
-    return;
-  }
-
   const scrollY = window.scrollY || document.documentElement.scrollTop;
 
   scrollY > headerEl.offsetTop ? show() : hide();
 }
 
-window.addEventListener('scroll', _.throttle(handleScroll, 500));
+window.addEventListener('scroll', throttle(handleScroll, 500));
 
 function scrollUp() {
   window.scrollTo({
