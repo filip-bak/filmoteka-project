@@ -113,6 +113,26 @@
   &__link:hover &__icon {
     color: $bg-color-accent;
     stroke: $bg-color-accent;
+    animation: heartBeat 1.5s infinite;
+  }
+  @keyframes heartBeat {
+    from {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.3);
+      color: red;
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.3);
+      color: red;
+    }
+    70% {
+      transform: scale(1);
+    }
   }
 
   &__div-input {
