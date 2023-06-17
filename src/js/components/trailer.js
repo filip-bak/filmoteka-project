@@ -41,23 +41,26 @@ function renderPlayer(link = '') {
   </div>`;
     showBackdrop();
     backdropTrailer.insertAdjacentHTML('beforeend', trailerMarkup);
-    closeBtn.addEventListener('click', removeTrailer);
+
+    backdropTrailer.addEventListener('click', removeTrailer);
+    document.addEventListener('keydown', onEscBtnClick);
   } else {
     withoutTrailer();
   }
 }
 function showBackdrop() {
   backdropTrailer.classList.remove('trailer-is-hidden');
-  document.addEventListener('keydown', onEscBtnClick);
 }
 function removeTrailer(e) {
-  backdropTrailer.classList.add('trailer-is-hidden');
-  e.currentTarget.nextElementSibling.remove();
+  if (e.target.nodeName === 'svg' || e.target.nodeName === 'use' || e.target.nodeName === 'DIV') {
+    if (backdropTrailer.lastChild === null) return;
+    backdropTrailer.classList.add('trailer-is-hidden');
+    backdropTrailer.lastChild.remove();
+  }
 }
 function onEscBtnClick(e) {
   if (e.code === 'Escape') {
     removeTrailer();
   }
 }
-backdropTrailer.addEventListener('click', removeTrailer);
 export default { showTrailerById };
