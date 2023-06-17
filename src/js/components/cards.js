@@ -6,6 +6,9 @@ import { failure } from './notifications.js'
 const cardSpace = document.querySelector('.container')
 
 function getImageURL(PATH) {
+  if (PATH === null) {
+    return `/no-poster-image.e52ebcf1.png`
+  }
     return `https://image.tmdb.org/t/p/w500/${PATH}`
 }
 
