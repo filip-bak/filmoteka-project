@@ -166,6 +166,17 @@
     line-height: var(--lh-300);
     padding-top: 10px;
   }
+  &__search-error {
+    width: 280px;
+    height: 16px;
+    padding-top: 20px;
+    display: flex;
+    align-self: center;
+    flex-wrap: wrap;
+    font-weight: 400;
+    line-height: 16px;
+    color: $font-color-dark-red;
+  }
 }
 
 @include mq(tablet, and, desktop) {
@@ -190,6 +201,10 @@
 
     &__search-input {
       width: 336px;
+    }
+    &__search-error {
+      width: 393px;
+      padding-top: 20px;
     }
   }
 }
@@ -216,6 +231,10 @@
 
     &__main-content {
       margin-bottom: 41px;
+    }
+    &__search-error {
+      width: 393px;
+      padding-top: 20px;
     }
   }
 }
