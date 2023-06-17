@@ -46,13 +46,18 @@ function renderPlayer(link = '') {
     withoutTrailer();
   }
 }
-
 function showBackdrop() {
   backdropTrailer.classList.remove('trailer-is-hidden');
+  document.addEventListener('keydown', onEscBtnClick);
 }
 function removeTrailer(e) {
   backdropTrailer.classList.add('trailer-is-hidden');
   e.currentTarget.nextElementSibling.remove();
 }
-
+function onEscBtnClick(e) {
+  if (e.code === 'Escape') {
+    removeTrailer();
+  }
+}
+backdropTrailer.addEventListener('click', removeTrailer);
 export default { showTrailerById };
