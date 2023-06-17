@@ -6,6 +6,8 @@
     font-size: var(--fs-card-info);
     line-height: var(--lh-card-info);
     font-weight: var(--fw-500);
+    width: 280px;
+    height: auto;
     position: relative;
     cursor: pointer;
     transition: transform 200ms ease-in;
@@ -14,26 +16,42 @@
     }
     &:hover .btn-trailer {
         display: flex;
-        transform: translateX(0%);
-        opacity: 100%;
     }
 
 
     @include mq(tablet) {
         --lh-card: 1.2;
+        width:336px;
     }
-    
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    @include mq(desktop) {
+        --lh-card: 1.2;
+        width:395px;
+    }
 
-    &__poster {
-        width: 395px;
-        height: 574px;
-        margin-bottom: 12px;
-        border-radius: 5px;
-        object-fit: cover;
-        background-image: url('/src/images/cards/no-poster-image.png');
+
+    &__poster{
+      width: 280px;
+      height: 407px;
+      margin-bottom: 12px;
+      border-radius: 5px;
+      z-index: 2;
+      background-image: url('/src/images/cards/no-poster-image.png');
+      background-position: top;
+      background-size: 100%, 100%;
+      background-repeat: no-repeat;
+
+      @include mq(tablet) {
+        --lh-card: 1.2;
+        width:336px;
+        height: 495px;
     }
+    @include mq(desktop) {
+        --lh-card: 1.2;
+        width:395px;
+        height: 574px;
+      }
+    }
+
 
     &__title {
         font-size: inherit;
