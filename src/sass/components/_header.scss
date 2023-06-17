@@ -188,13 +188,13 @@
   }
   &__search-error {
     width: 280px;
-    height: 16px;
+    height: var(--fs-600);
     padding-top: 20px;
     display: flex;
     align-self: center;
     flex-wrap: wrap;
-    font-weight: 400;
-    line-height: 16px;
+    font-weight: var(--fw-400);
+    line-height: var(lh-error);
     color: $font-color-dark-red;
   }
 }
