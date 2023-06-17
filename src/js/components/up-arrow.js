@@ -2,7 +2,8 @@ import _ from 'lodash';
 
 const scrollButton = document.querySelector('.arrow__up');
 const headerEl = document.querySelector('.header');
-let scrolled = false; // Zmienna flagowa
+
+hide();
 
 scrollButton.addEventListener('click', scrollUp);
 
@@ -15,11 +16,6 @@ function hide() {
 }
 
 function handleScroll() {
-  if (!scrolled) {
-    scrolled = true;
-    return;
-  }
-
   const scrollY = window.scrollY || document.documentElement.scrollTop;
 
   scrollY > headerEl.offsetTop ? show() : hide();
