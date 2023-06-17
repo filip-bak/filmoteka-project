@@ -15,6 +15,7 @@ import showTrailerById, { TrailersHandle } from './components/trailer.js';
 import { modalButtonChange } from './components/movie-modal-library-buttons';
 import './components/search-query';
 import './components/up-arrow';
+import './components/trailer.js';
 
 const app = {
   init: () => {

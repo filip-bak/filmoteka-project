@@ -42,7 +42,7 @@ function renderPlayer(link = '') {
     showBackdrop();
     backdropTrailer.insertAdjacentHTML('beforeend', trailerMarkup);
 
-    backdropTrailer.addEventListener('click', removeTrailer);
+    backdropTrailer.addEventListener('click', removeTrailerHandle);
     document.addEventListener('keydown', onEscBtnClick);
   } else {
     withoutTrailer();
@@ -51,16 +51,19 @@ function renderPlayer(link = '') {
 function showBackdrop() {
   backdropTrailer.classList.remove('trailer-is-hidden');
 }
-function removeTrailer(e) {
+function removeTrailerElement() {
+  if (backdropTrailer.lastChild === null) return;
+  backdropTrailer.classList.add('trailer-is-hidden');
+  backdropTrailer.lastChild.remove();
+}
+function removeTrailerHandle(e) {
   if (e.target.nodeName === 'svg' || e.target.nodeName === 'use' || e.target.nodeName === 'DIV') {
-    if (backdropTrailer.lastChild === null) return;
-    backdropTrailer.classList.add('trailer-is-hidden');
-    backdropTrailer.lastChild.remove();
+    removeTrailerElement();
   }
 }
 function onEscBtnClick(e) {
   if (e.code === 'Escape') {
-    removeTrailer();
+    removeTrailerElement();
   }
 }
 export default { showTrailerById };
