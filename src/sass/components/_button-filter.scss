@@ -3,13 +3,14 @@
 @use "../abstracts/mixins" as *;
 
 .filter-box {
-  display: inline-flex;
-  flex-direction: row-reverse;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr auto auto;
+  gap: 20px;
 
   @include mq(tablet) {
   }
   @include mq(desktop) {
-    margin-right: 60px;
   }
 }
 .filter-svg {
