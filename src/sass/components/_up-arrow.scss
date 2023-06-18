@@ -1,21 +1,17 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
-.arrow {
+.container-arrow-up {
   position: fixed;
-  right: 20px;
-  border-radius: 50%;
-  bottom: 20px;
-  width: 45px;
-  height: 45px;
   line-height: 0;
-  color: $font-color-copyright;
-  opacity: 0.75;
-  cursor: pointer;
-  border: 3 solid #bababa;
+  bottom: 49px;
+  right: 19px;
   border-radius: 50%;
-  &:hover {
+  width: 47px;
+  height: 47px;
+
+  &:hover .arrow {
     fill: $bg-color-accent;
     border: 3px solid $bg-color-accent;
     animation: arrowFloat 1s infinite;
@@ -23,25 +19,43 @@
       fill: $bg-color-accent;
     }
   }
-  &:before {
-    content: '';
+
+  @include mq(tablet) {
+    bottom: 19px;
+  }
+}
+.arrow {
+  position: fixed;
+  right: 20px;
+  border-radius: 50%;
+  bottom: 50px;
+  width: 45px;
+  height: 45px;
+  line-height: 0;
+  color: $font-color-copyright;
+  opacity: 0.75;
+  cursor: pointer;
+  border: 3 solid #bababa;
+
+  @include mq(tablet) {
+    bottom: 20px;
   }
 }
 
 @keyframes arrowFloat {
   0% {
-    bottom: 20px;
+    transform: translateY(0px);
   }
   50% {
-    bottom: 30px;
+    transform: translateY(4px);
   }
   100% {
-    bottom: 20px;
+    transform: translateY(0px);
   }
 }
 
 .arrow__icon {
   fill: #bababa;
   opacity: 0.75;
-  padding-right: 2px;
+  transform: translateX(-1px);
 }

@@ -3,6 +3,7 @@ import { searchRenderCards, renderCards } from './cards.js';
 import { showLoader, hideLoader, failure } from './notifications.js';
 import { ifAdult } from './button-filter.js';
 import _ from 'lodash';
+import { deleteSearchQueryError } from './search-error.js';
 
 let searchInput = document.querySelector('.header__search-input');
 
@@ -15,6 +16,7 @@ async function debouncedSearchValue() {
   if (searchQuery === '') {
     renderCards();
     hideLoader();
+    deleteSearchQueryError();
     return;
   }
   searchRenderCards(searchQuery, ifAdult);
@@ -26,6 +28,12 @@ async function imputHandler(e) {
   if (e.code === 'Enter') {
     searchQuery = e.currentTarget.value;
     debouncedSearch.cancel();
+    if (searchQuery === '') {
+      renderCards();
+      hideLoader();
+      deleteSearchQueryError();
+      return;
+    }
     searchRenderCards(searchQuery, ifAdult);
     return;
   }

@@ -16,6 +16,7 @@ import { modalButtonChange } from './components/movie-modal-library-buttons';
 import './components/search-query';
 import './components/up-arrow';
 import './components/contributors-modal.js';
+import './components/trailer.js';
 
 const app = {
   init: () => {
