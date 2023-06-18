@@ -1,10 +1,10 @@
 import { withoutTrailer } from './notifications';
 
-export function getKeyOfLatestThriller(data) {
+export async function getKeyOfLatestThriller(data) {
   let newData = [];
   let thrillerKey = '';
 
-  if (data.results.length === 0) {
+  if (typeof data === 'undefined') {
     withoutTrailer();
     return thrillerKey;
   }

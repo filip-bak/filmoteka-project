@@ -1,10 +1,16 @@
 'use strict';
 
 import Api from './API.js';
-export const cardSpace = document.querySelector('.container');
+import { TrailersHandle } from './trailer.js';
+import { failure } from './notifications.js';
+import { searchQueryError, deleteSearchQueryError } from './search-error.js';
+const cardSpace = document.querySelector('.container');
 
-export function getImageURL(PATH) {
-  return `https://image.tmdb.org/t/p/w500/${PATH}`;
+function getImg(posterPath) {
+  if (posterPath === null) {
+    return `<div class="card__poster"></div>`;
+  }
+  return `<div><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="card__poster"/></div>`;
 }
 
 function getGenraByID(ID) {
@@ -31,8 +37,12 @@ function getGenraByID(ID) {
   ];
   const movieGenras = [];
   const genraIDs = [];
-  for (genra of genreIdName) {
+
+  for (const genra of genreIdName) {
     genraIDs.push(genra.id);
+  }
+  if (ID === undefined) {
+    return;
   }
   ID.forEach(el => {
     if (genraIDs.includes(el)) {
@@ -43,7 +53,7 @@ function getGenraByID(ID) {
   return movieGenras.join(', ');
 }
 
-async function createCards(moviesDataFromAPI) {
+export async function createCards(moviesDataFromAPI) {
   const movies = await moviesDataFromAPI.results;
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
@@ -83,25 +93,31 @@ async function createCards(moviesDataFromAPI) {
       />
     </svg>
   </a>
-</button><img src="${getImageURL(
-        poster_path,
-      )}" class="card__poster"/><h2 class="card__title">${String(
-        title,
-      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
-        genre_ids,
-      )}</span><span class="card__year">${String(release_date).slice(
-        0,
-        4,
-      )}</span><span class="card__rating">${vote_average.toFixed(2)}</span></p></div>`;
+</button>${getImg(poster_path)}<h2 class="card__title">${String(title,).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(genre_ids,)}</span><span class="card__year">${String(release_date).slice(0,4)}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
     })
     .join('');
   cardSpace.insertAdjacentHTML('beforeend', moviesData);
+  TrailersHandle();
 }
 
 export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies();
+    createCards(data);
+  } catch (e) {
+    console.log(`ERROR NOTIFICATION : ${e}`);
+  }
+}
+export async function searchRenderCards(searchQuery, ifAdult) {
+  try {
+    cardSpace.innerHTML = '';
+    const data = await Api.getMoviesBySearchQuery(searchQuery, ifAdult);
+    if (data.results.length === 0) {
+      searchQueryError();
+      return;
+    }
+    deleteSearchQueryError();
     createCards(data);
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);

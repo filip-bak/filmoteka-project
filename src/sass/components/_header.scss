@@ -113,6 +113,26 @@
   &__link:hover &__icon {
     color: $bg-color-accent;
     stroke: $bg-color-accent;
+    animation: heartBeat 1.5s infinite;
+  }
+  @keyframes heartBeat {
+    from {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.1);
+      color: red;
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.1);
+      color: red;
+    }
+    70% {
+      transform: scale(1);
+    }
   }
 
   &__div-input {
@@ -151,7 +171,6 @@
     border-bottom: 0.5px solid #ffffff;
     outline: none;
     color: $font-color-light;
-    font-family: $font-color-light;
     font-size: var(--fs-500);
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
@@ -165,6 +184,15 @@
     font-weight: var(--fs-400);
     line-height: var(--lh-300);
     padding-top: 10px;
+  }
+  &__search-error {
+    margin-top: 20px;
+    display: flex;
+    align-self: center;
+    flex-wrap: wrap;
+    font-weight: var(--fw-400);
+    line-height: var(--lh-300);
+    color: $font-color-dark-red;
   }
 }
 
