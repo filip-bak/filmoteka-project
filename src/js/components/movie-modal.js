@@ -1,19 +1,22 @@
 // function renderModal(data) {} render on element
 import Api from './API';
-import { getImageURL } from './cards';
 import { cardSpace } from './cards';
 
 const body = document.querySelector('#home');
+let backdrop;
+
+function getImage(posterPath) {
+  return `https://image.tmdb.org/t/p/w500/${posterPath}`;
+}
 
 async function infoModal(ID) {
   try {
     const data = await Api.getMovieById(ID);
-    console.log(data);
+    console.log(`data -`, data);
     let genresArray = [];
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
     });
-
     let htmlString = `<div class="backdrop">
       <div class="modal">
         <div class="movie-form">
@@ -26,7 +29,7 @@ async function infoModal(ID) {
           <div class="movie">
             <div class="movie-image__delay">
               <div class="movie-image">
-                <img src="${getImageURL(data.poster_path)}"
+                <img class="movie-image__img" src="${getImage(data.poster_path)}"
               </div>
             </div>
             <div class="movie__description">
@@ -37,23 +40,27 @@ async function infoModal(ID) {
                     <td class="table__row-item">
                       <p class="table__title--votes">Vote / Votes</p>
                     </td>
-                    <td class="table__row-item">
-                      <p class="table__row-data">${data.vote_average} / ${data.vote_count}</p>
+                    <td class="table__row-item-info">
+                      <p class="table__row-data"><span class="table__row-span-orange">${
+                        Math.round(data.vote_average * 10) / 10
+                      }</span>&ensp;/&ensp;<span class="table__row-span-gray">${
+      Math.round(data.vote_count * 10) / 10
+    }</span></p>
                     </td>
                   </tr>
                   <tr class="table__row">
                     <td class="table__row-item">
                       <p class="table__title--popularity">Popularity</p>
                     </td>
-                    <td class="table__row-item">
-                      <p class="table__row-data">${data.popularity}</p>
+                    <td class="table__row-item-info">
+                      <p class="table__row-data">${Math.round(data.popularity * 10) / 10}</p>
                     </td>
                   </tr>
                   <tr class="table__row">
                     <td class="table__row-item">
                       <p class="table__title--original-title">Original Title</p>
                     </td>
-                    <td class="table__row-item">
+                    <td class="table__row-item-info">
                       <p>${data.original_title}</p>
                     </td>
                   </tr>
@@ -61,7 +68,7 @@ async function infoModal(ID) {
                     <td class="table__row-item">
                       <p class="table__title--genre">Genre</p>
                     </td>
-                    <td class="table__row-item">
+                    <td class="table__row-item-info">
                       <p>${genresArray.join(', ')}</p>
                     </td>
                   </tr>
@@ -73,7 +80,7 @@ async function infoModal(ID) {
                   ${data.overview}
                 </p>
                 <div class="grouped-buttons__delay">
-                  <button type="button" class="grouped-buttons grouped-buttons__wached">
+                  <button type="button" class="grouped-buttons grouped-buttons__watched">
                     add to Watched
                   </button>
                   <button type="button" class="grouped-buttons grouped-buttons__queue">
@@ -89,6 +96,13 @@ async function infoModal(ID) {
   `;
 
     body.insertAdjacentHTML('beforeend', htmlString);
+    backdrop = document.querySelector('.backdrop');
+    const closeBtn = document.querySelector('.close-btn');
+    console.log(closeBtn);
+
+    closeBtn.addEventListener('click', () => {
+      backdrop.remove();
+    });
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
@@ -99,4 +113,5 @@ export function showModal(event) {
   console.log(clickedMovieID);
   infoModal(clickedMovieID);
 }
+
 cardSpace.addEventListener('click', showModal);
