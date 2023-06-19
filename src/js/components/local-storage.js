@@ -1,25 +1,46 @@
 // adding movie id to localstorage (add to watched, add to queue)
+import Api from "./API";
 const watchedBttn = document.querySelector('.grouped-buttons__watched')
 const queueBttn = document.querySelector('.grouped-buttons__queue')
 import { watchedHandler, queueHandler } from "./movie-modal-library-buttons"
 
-const watchedList = ["TEST", "TEST2", "TEST3"];
-const queueList = ["TEST", "TEST2", "TEST3"];
+const watchedList = ["697843", "385687", "603692"];
+const queueList = ["697843", "385687", "603692"];
 
 localStorage.setItem("watched", JSON.stringify(watchedList))
 localStorage.setItem("queue", JSON.stringify(queueList))
 
-async function createCardsFromLS() {
+async function createCardsFromLS(movieIDs) {
+    let moviesList = [];
+
+    // movieIDs.forEach(movieId => {
+    //     const result = Api.getMovieById(movieId)
+    //     console.log(result)
+    //     // moviesList.push(result)
+    // });
+    // console.log(moviesList)
+
+
+
+    const result = await Api.getMovieById(movieIDs)
+    console.log(result)
+}
+
+export function renderCardsWatched() {
+    console.log(`WATCHED BUTTON`)
+    // createCardsFromLS(JSON.parse(localStorage.getItem("watched")))
+    createCardsFromLS("697843")
+}
+
+export function renderCardsQueue() {
     
 }
 
-function renderCardsWatched() {
-    
-}
+const modalwindow = document.querySelector('.backdrop')
 
-function renderCardsQueue() {
-    
-}
+console.log(modalwindow)
+
+
 
 function addToWatched(movieID) {
     console.log(`ADDING TO WATCHED`)
@@ -65,21 +86,25 @@ function removeFromQueue(movieID) {
 
 function watchedBttnHandler() {
     if (watchedBttn.classList.contains('grouped-buttons__watched--added')) {
-        removeFromWatched("TEST4")
+        removeFromWatched("502356")
     } else {
-        addToWatched("TEST4")
+        addToWatched("502356")
     }
     watchedHandler()
 }
 
 function queueBttnHandler() {
         if (queueBttn.classList.contains('grouped-buttons__queue--added')) {
-        removeFromQueue("TEST4")
+        removeFromQueue("502356")
     } else {
-        addToQueue("TEST4")
+        addToQueue("502356")
     }
     queueHandler()
 }
 
-watchedBttn.addEventListener("click", watchedBttnHandler)
-queueBttn.addEventListener("click", queueBttnHandler)
+if (window.getComputedStyle(modalwindow).display !== "none") {
+    watchedBttn.addEventListener("click", watchedBttnHandler)
+    queueBttn.addEventListener("click", queueBttnHandler)
+} 
+
+
