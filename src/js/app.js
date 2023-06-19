@@ -12,10 +12,11 @@ import { showLoader, hideLoader } from './components/notifications.js';
 import './components/pagination.js';
 import { ifAdult } from './components/button-filter.js';
 import showTrailerById, { TrailersHandle } from './components/trailer.js';
-import { modalButtonChange } from './components/movie-modal-library-buttons.js';
-import './components/search-query.js';
-import './components/up-arrow.js';
+import { modalButtonChange } from './components/movie-modal-library-buttons';
 import { pagination } from './components/pagination.js';
+import './components/search-query';
+import './components/up-arrow';
+import './components/trailer.js';
 
 const app = {
   init: () => {

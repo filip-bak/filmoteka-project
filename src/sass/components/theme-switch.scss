@@ -36,10 +36,7 @@ body.dark-theme {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 16px 24px;
-    position: absolute;
-    right: 0;
-    top: 197px;
+    grid-column: -3;
 
     &-icon__sun {
         fill: $icon-color-light;

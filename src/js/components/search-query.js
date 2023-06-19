@@ -5,6 +5,7 @@ import { ifAdult } from './button-filter.js';
 import Api from './API.js';
 import { pagination } from './pagination.js';
 import _ from 'lodash';
+import { deleteSearchQueryError } from './search-error.js';
 
 let searchInput = document.querySelector('.header__search-input');
 
@@ -20,6 +21,7 @@ async function debouncedSearchValue() {
     Api.resetPage();
     renderCards();
     hideLoader();
+    deleteSearchQueryError();
     return;
   }
   if (searchQuery !== '') {
@@ -43,6 +45,12 @@ async function imputHandler(e) {
 
     Api.resetPage();
     debouncedSearch.cancel();
+    if (searchQuery === '') {
+      renderCards();
+      hideLoader();
+      deleteSearchQueryError();
+      return;
+    }
     searchRenderCards(searchQuery, ifAdult);
     return;
   }

@@ -22,9 +22,14 @@
       placeholder="Movie search"
       class="header__search-input"
     />
+
     <svg class="header__icon-search">
       <use href="/src/images/icons.svg#icon-search_header"></use>
     </svg>
   </div>
-  <include src="./partials/button-filter.html"></include>
+  <p id="hdr-err" class="header__search-error"></p>
+  <div class="button-box">
+    <include src="./partials/theme-switch.html"></include>
+    <include src="./partials/button-filter.html"></include>
+  </div>
 </header>
