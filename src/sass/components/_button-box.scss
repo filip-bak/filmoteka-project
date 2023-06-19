@@ -1,0 +1,13 @@
+@use "../abstracts/mixins" as *;
+
+.button-box {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr auto auto;
+  gap: 20px;
+
+  @include mq(tablet) {
+  }
+  @include mq(desktop) {
+  }
+}
