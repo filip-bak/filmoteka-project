@@ -54,7 +54,19 @@ const Api = {
 
     return thrillerUrl;
   },
-
+  getMoviesByGenre: async genresID => {
+    const data = await getData({
+      request: '/discover/movie',
+      params: {
+        page: Api.page,
+        without_genres: genresID,
+        sort_by: 'popularity.desc',
+        language: 'en',
+      },
+    });
+    console.log(data);
+    return data;
+  },
   resetPage: () => {
     Api.page = 1;
   },
