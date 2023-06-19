@@ -1,13 +1,21 @@
 import axios from 'axios';
 
-import { getKeyOfLatestThriller } from './utils';
+import { getKeyOfLatestThriller } from './utils.js';
+
+// import { pagination } from './pagination.js'
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const api_key = '8ffc049be01c9ac683da541d3958668c';
-
+console.log(pagination);
+// (1000/2) / 20000 * 1000; -> 25
+//14 265
+// 14/2 / 265 * 14 ->
+// 20* 13 = 260
 const Api = {
   page: 1,
+  results: 10000,
+  resultsCount: 20,
 
   getTrendingMovies: async () => {
     const data = await getData({
@@ -15,18 +23,43 @@ const Api = {
       params: { page: Api.page },
     });
 
+    // if (totalPages % 2 !== 0) {
+    //   console.log('test:', totalPages, Math.round(totalPages / 2));
+    //   // totalPages = console.log('nieparzusta');
+    // }
+
+    Api.resultsCount = Number(data.results.length);
+    Api.results = data.total_results;
+    console.log(Api.results);
+
     console.log('TrendingMovies: ', data);
+    console.log('results:', Api.resultsCount);
 
     return data;
   },
-  getMoviesBySearchQuery: async (searchQuery = '', include_adult = false) => {
+  getMoviesBySearchQuery: async (
+    searchQuery = '',
+    include_adult = false,
+  ) => {
     const data = await getData({
       request: '/search/movie',
       params: { page: Api.page, query: searchQuery, include_adult },
     });
 
-    console.log('MoviesBySearchQuery: ', data);
+    Api.resultsCount = Number(data.results.length);
 
+    Api.results = data.total_results;
+    console.log(Api.results);
+    // setTimeout(() => {
+    // totalPages = Math.min(data.total_pages, 10);
+    // });
+    // totalPages = Math.min(data.total_pages, 10);
+
+    // pagination.reset(totalPages);
+
+    console.log('MoviesBySearchQuery: ', data);
+    // console.log('total:', Api.results);
+    console.log('results:', Api.resultsCount);
     return data;
   },
   getMovieById: async movieId => {
@@ -60,6 +93,7 @@ const Api = {
   },
 };
 export default Api;
+
 async function getData({ request, params } = {}) {
   try {
     const apiParams = new URLSearchParams(params);
