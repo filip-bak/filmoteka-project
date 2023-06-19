@@ -3,6 +3,7 @@
 import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { failure } from './notifications.js';
+import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
 export const cardSpace = document.querySelector('.container');
 
@@ -111,12 +112,13 @@ export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies();
+
     createCards(data);
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
-export async function searchRenderCards(searchQuery, ifAdult) {
+export async function searchRenderCards(searchQuery, ifAdult, render = Api.results) {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getMoviesBySearchQuery(searchQuery, ifAdult);
