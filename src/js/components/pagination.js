@@ -1,13 +1,15 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+
 import Api from './API.js';
-import { renderCards, searchRenderCards } from './cards.js';
+import { renderCards, renderCardsFromLocalStorage, searchRenderCards } from './cards.js';
 import { searchQuery } from './search-query.js';
 import { ifAdult } from './button-filter.js';
+import { before } from 'lodash';
 
 const paginationItem = document.getElementById('pagination');
+if (paginationItem === null) return;
 const options = {
-  totalItems: Api.results,
+  totalItems: 10000,
   itemsPerPage: Api.resultsCount,
   visiblePages: 5,
   centerAlign: true,
@@ -15,74 +17,214 @@ const options = {
 };
 export const pagination = new Pagination(paginationItem, options);
 
-pagination.on('beforeMove', event => {
-  if (Api.results === 20000) {
-    Api.results = Api.results - 10000;
+// ---------------------------
+pagination.on('afterMove', event => {
+  let currentPage = event.page;
+  if (currentPage > Api.page) {
+    pagination.setTotalItems(10000);
+    pagination.movePageTo(Api.page);
+    currentPage = Api.page;
+    return false;
   }
-  Api.page = event.page;
-  // pagination.reset(Api.results);
-  pagination.setTotalItems(Api.results);
-  if (Api.results === 20000) {
-    Api.results = 10000;
+  if (Api.totalPages < currentPage) {
+    Api.page = currentPage;
+  } else if (Api.totalPages > currentPage) {
+    Api.page = currentPage;
+  }
+  if (Api.page >= 500) Api.page = 500;
+  if (Api.page >= Api.totalPages) Api.page = Api.totalPages;
+  console.log('API: ', Api.page, 'e: ', currentPage);
+
+  if (currentPage < Api.page) {
+    pagination.reset(Api.results);
+    currentPage = 500;
+    return false;
   }
   if (searchQuery === '') {
-    console.log('before:', Api.results);
-
-    // pagination.setTotalItems(Api.results);
-
-    console.log(Api.resultsCount);
-
-    console.log(pagination);
-    console.log('--------------------------');
-
+    Api.page = Api.page;
+    currentPage = Api.page;
     renderCards();
-
-    return true;
-  }
-  if (searchQuery !== '') {
-    console.log('Ebefore:', event);
-    console.log('after Api.Results:', Api.results);
-    console.log('after Page:', Api.page);
-
-    console.log('resultsCount', Api.resultsCount);
-
-    console.log(pagination);
-    console.log('--------------------------');
+  } else if (searchQuery !== '') {
+    // pagination.setTotalItems(Api.results);
+    Api.page = Api.page;
+    currentPage = Api.page;
     searchRenderCards(searchQuery, ifAdult);
+  }
+});
+pagination.on('beforeMove', event => {
+  let currentPage = event.page;
+
+  Api.page = currentPage;
+  if (Api.totalPages > currentPage) {
+    pagination.reset(Api.results);
+    Api.page = Api.totalPages;
+    currentPage = Api.totalPages - 500;
+    console.log('ASD');
+    // currentPage + 100;
     return true;
+  }
+  if (Api.totalPages >= 500) {
+    Api.page = 499;
+    currentPage = 499;
+  }
+  if (Api.page >= 1000 || currentPage >= Api.page) {
+    pagination.setTotalItems(Api.results);
+    Api.page = 500;
+    currentPage = 500;
+  }
+  if (currentPage === Api.page) {
+    console.log('er', Api.results);
+    pagination.setTotalItems(Api.results);
+    console.log('true');
+    return true;
+  } else {
+    console.log('avbc');
+    Api.page = Api.totalPages;
+    console.log(Api.page, currentPage);
+    return false;
+    return confirm('Go to page ' + currentPage + '?');
   }
 });
 
-pagination.on('afterMove', event => {
-  // if (searchQuery !== '') {
-  console.log('after', Api.results);
-  const a = event.page;
-  // if (a > 10) {
-  //   return true;
-  //   // return true;
-  // }
-  //   Api.page = event.page;
-  //   console.log('after:', Api.results);
-  //   console.log(Api.resultsCount);
-  //   console.log(pagination);
-  //   console.log('--------------------------');
-  //   searchRenderCards(searchQuery, ifAdult);
-  //   return false;
-  // }
-});
+// -----------------------
 
-// Juz powinno działać znalazłem problem :D
+// pagination.reset(10000);
+
+// pagination.on('beforeMove', event => {
+//   const a = pagination.getCurrentPage();
+//   console.log(a);
+//   Api.page = event.page;
+//   if (Api.totalPages < event.page) {
+//     Api.page = Api.totalPages;
+//     event.page = Api.totalPages;
+//     Api.page = event.page;
+//     console.log('1');
+//     return true;
+//   }
+//   if (a < Api.page) {
+//     Api.page = 500;
+//     event.page = 500;
+
+//     console.log('2');
+//     return true;
+//   }
+// if (event.page > Api.page || Api.page > event.page) {
+//   event.page = 500;
+//   Api.page = 500;
+//   pagination.reset(10000);
+//   pagination.movePageTo(Api.totalPages);
+//   return false;
+// }
+
+// if (event.page > Api.totalPages) {
+//   Api.page = Api.totalPages;
+//   event.page = Api.totalPages;
+//   // event.page = Api.totalPages;
+//   // event.page = Api.page;
+// }
+// if (event.page > Api.totalPages) {
+//   Api.page = Api.totalPages;
+//   event.page = Api.totalPages;
+//   // event.page = Api.totalPages;
+//   // event.page = Api.page;
+// }
+
+// alert(`Go to page ${Api.page}? event: ${event.page}`);
+// pagination.reset();
+// pagination.setTotalItems(Api.results);
+// pagination.setItemsPerPage(Api.resultsCount);
+// if (Api.totalPages > 1000) {
+//   Api.totalPages - 500;
+// }
+
+// if (searchQuery === '') {
+//   console.log('before:', Api.results);
+//   console.log('event', event);
+//   // pagination.reset();
+//   // pagination.setTotalItems(Api.results);
+
+//   // renderCards();
+
+//   return true;
+// }
+// if (searchQuery !== '') {
+//   console.log('before Api.Results:', Api.results);
+//   console.log('before Page:', Api.page);
+
+//   console.log(pagination);
+
+//   // searchRenderCards(searchQuery, ifAdult);
+//   return true;
+// }
+// });
+
+// pagination.on('afterMove', event => {
+//   if (searchQuery === '') {
+//     //   if (event.page > Api.page && event.page > 500) {
+//     //     event.page = Api.totalPages;
+//     //     pagination.reset(Api.results);
+//     //     pagination.movePageTo(Api.totalPages);
+//     //     event.page = Api.page;
+//     //     return false;
+//     //   }
+//     //   renderCards();
+//     // }
+//     if (searchQuery !== '') {
+//       //   if (event.page > Api.page) {
+//       //     pagination.reset(Api.results);
+//       //     pagination.movePageTo(Api.totalPages);
+//       //     event.page = Api.page;
+//       //     return false;
+//       //     searchRenderCards(searchQuery, ifAdult);
+//     }
+
+//     // pagination.movePageTo(Api.totalPages);
+//     searchRenderCards(searchQuery, ifAdult);
+//   }
+//   // if (searchQuery !== '') {
+//   // Api.page = event.page;
+//   console.log('after Api.results', Api.results);
+//   alert(`The current page is ${Api.page}! event: ${event.page}`);
+// });
+
+// THIS
 // export function paginationRender(toRenderCards, toRenderQuery) {
 //   pagination.on('afterMove', event => {
+//     if (searchQuery === '') {
+//       if (event.page > Api.page && event.page > 500) {
+//         event.page = Api.totalPages;
+//         pagination.reset(Api.results);
+//         pagination.movePageTo(Api.totalPages);
+//         event.page = Api.page;
+//         return false;
+//       }
+//       renderCards();
+//     }
+//     if (searchQuery !== '') {
+//       if (event.page > Api.page) {
+//         pagination.reset(Api.results);
+//         pagination.movePageTo(Api.totalPages);
+//         event.page = Api.page;
+//         return false;
+//         searchRenderCards(searchQuery, ifAdult);
+//       }
+
+//       // pagination.movePageTo(Api.totalPages);
+//       searchRenderCards(searchQuery, ifAdult);
+//     }
+//     // if (searchQuery !== '') {
+//     // Api.page = event.page;
+//     console.log('after Api.results', Api.results);
+//     alert(`The current page is ${Api.page}! event: ${event.page}`);
+
 //     if (searchQuery === '') {
 //       Api.page = event.page;
 
 //       console.log('event: ', event);
 //       console.log('page: ', Api.page);
+//       return true;
 
 //       toRenderCards();
-
-//       return;
 //     }
 
 //     Api.page = event.page;
