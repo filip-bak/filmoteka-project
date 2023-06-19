@@ -2,16 +2,13 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-.filter-box {
+.btn-filter {
   display: grid;
-  place-items: center;
-  grid-template-columns: 1fr auto auto;
-  gap: 20px;
-
-  @include mq(tablet) {
-  }
-  @include mq(desktop) {
-  }
+  align-self: end;
+  width: min-content;
+  padding: 0;
+  background: none;
+  border: none;
 }
 .filter-svg {
   animation-name: heartScale;
@@ -26,14 +23,6 @@
     width: 50px;
     height: 50px;
   }
-}
-.btn-filter {
-  display: grid;
-  align-self: end;
-  width: min-content;
-  padding: 0;
-  background: none;
-  border: none;
 }
 .filter-color-adult {
   fill: $fill-filter-adult;
