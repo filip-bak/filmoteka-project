@@ -2,12 +2,12 @@
 
 import Api from './components/API.js';
 import './components/utils.js';
-import { renderCards, searchRenderCards } from './components/cards.js';
+import { renderCards, searchRenderCards, cardSpace } from './components/cards.js';
 import { elements } from './components/elements.js';
 import './components/handlers.js';
 import './components/local-storage.js';
 import { theme } from './components/local-storage_theme-switch.js';
-import './components/movie-modal.js';
+import { showModal } from './components/movie-modal.js';
 import { showLoader, hideLoader } from './components/notifications.js';
 import { ifAdult } from './components/button-filter.js';
 import showTrailerById, { TrailersHandle } from './components/trailer.js';
@@ -29,11 +29,10 @@ const app = {
     let page = document.body.id;
     switch (page) {
       case 'home':
-        try {
-          renderCards();
-        } catch (e) {
-          console.log(`renderCards() Error ${e}`);
-        }
+        renderCards();
+
+        cardSpace.addEventListener('click', showModal);
+
         // setTimeout(() => {
         //   pagination.reset(Api.results);
         //   // pagination.movePageTo(1);
@@ -59,7 +58,6 @@ const app = {
           to pod tym piszesz i patrzysz czy działa,
           ALE NIE WYSYŁASZ NA GITHUB
         */
-
         hideLoader();
         break;
     }

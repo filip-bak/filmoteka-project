@@ -1,5 +1,4 @@
 import Pagination from 'tui-pagination';
-
 import Api from './API.js';
 import { renderCards, renderCardsFromLocalStorage, searchRenderCards } from './cards.js';
 import { searchQuery } from './search-query.js';
