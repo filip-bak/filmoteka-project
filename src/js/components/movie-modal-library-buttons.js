@@ -1,8 +1,8 @@
-const watchedBttn = document.querySelector('.grouped-buttons__wached')
+const watchedBttn = document.querySelector('.grouped-buttons__watched')
 const queueBttn = document.querySelector('.grouped-buttons__queue')
 
 
-function watchedHandler() {
+export function watchedHandler() {
     if (!watchedBttn.classList.contains("grouped-buttons__watched--added")) {
         watchedBttn.textContent = "REMOVE FROM WATCHED"
         watchedBttn.classList.add("grouped-buttons__watched--added")
@@ -12,7 +12,7 @@ function watchedHandler() {
     }
 }
 
-function queueHandler() {
+export function queueHandler() {
     if (!queueBttn.classList.contains("grouped-buttons__queue--added")) {
         queueBttn.textContent = "REMOVE FROM QUEUE"
         queueBttn.classList.add("grouped-buttons__queue--added")
@@ -23,9 +23,9 @@ function queueHandler() {
 }
 
 
-export function modalButtonChange() {  
-    watchedBttn.addEventListener("click", watchedHandler)
-    queueBttn.addEventListener("click", queueHandler)
-}
+// export function modalButtonChange() {  
+//     watchedBttn.addEventListener("click", watchedHandler)
+//     queueBttn.addEventListener("click", queueHandler)
+// }
 
 
