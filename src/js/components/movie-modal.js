@@ -78,10 +78,10 @@ async function infoModal(ID) {
                   ${data.overview}
                 </p>
                 <div class="grouped-buttons__delay">
-                  <button type="button" class="grouped-buttons grouped-buttons__watched">
+                  <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${data.id}">
                     add to Watched
                   </button>
-                  <button type="button" class="grouped-buttons grouped-buttons__queue">
+                  <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${data.id}">
                     add to queue
                   </button>
                 </div>
@@ -109,5 +109,3 @@ export function showModal(event) {
   let clickedMovieID = event.target.parentNode.previousElementSibling.dataset.movieid;
   infoModal(clickedMovieID);
 }
-
-cardSpace.addEventListener('click', showModal);

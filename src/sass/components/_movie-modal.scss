@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
 
 .modal__title {
   font-size: var(--fs-lightbox-title);
@@ -8,6 +8,7 @@
 }
 .backdrop {
   position: fixed;
+  z-index: 2;
   width: 100%;
   height: 100%;
   left: 0px;
@@ -23,16 +24,15 @@
 }
 .movie-form {
   position: fixed;
+  max-height: 840px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: $bg-color-light;
-  overflow-y: hidden;
+  overflow-y: auto;
   width: 280px;
-  // height: 85%;
   margin-top: 20px;
   margin-bottom: 38px;
-  overflow-y: scroll;
 
   @include mq(tablet) {
     width: 704px;
@@ -75,6 +75,7 @@
   &__description {
     box-sizing: content-box;
     display: flex;
+    overflow-y: auto;
     // justify-content: center;
     flex-direction: column;
     margin: 0;
@@ -101,7 +102,6 @@
 .movie-image {
   width: 240px;
   height: 357px;
-  margin-bottom: 20px;
 
   @include mq(tablet) {
     width: 264px;
@@ -115,6 +115,7 @@
 
   &__img {
     border-radius: 5px;
+    object-fit: contain;
     width: inherit;
     height: inherit;
   }
