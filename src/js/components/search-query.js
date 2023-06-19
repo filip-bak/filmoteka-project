@@ -16,11 +16,8 @@ async function debouncedSearchValue() {
   searchQuery = searchInput.value;
 
   if (searchQuery === '') {
-    console.log('tik1');
-    console.log('tik1:', Api.results);
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
-    console.log(pagination);
 
     // pagination.reset();
 
@@ -32,9 +29,6 @@ async function debouncedSearchValue() {
     return;
   }
   if (searchQuery !== '') {
-    console.log('tik3');
-    console.log('tik3:', Api.results);
-
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
 
@@ -56,8 +50,6 @@ async function imputHandler(e) {
   pagination.reset(Api.results);
 
   if (e.code === 'Enter') {
-    console.log('tik5');
-    console.log('5', Api.results);
     Api.resetPage();
     debouncedSearch.cancel();
     pagination.reset(Api.results);
@@ -67,7 +59,6 @@ async function imputHandler(e) {
       pagination.reset(Api.results);
       pagination.setTotalItems(Api.results);
       Api.resetPage();
-      console.log('tik6');
       deleteSearchQueryError();
       renderCards();
       hideLoader();
@@ -76,7 +67,6 @@ async function imputHandler(e) {
     searchRenderCards(searchQuery, ifAdult);
     return;
   }
-  console.log('tik4', Api.results);
   // pagination.reset(Api.results);
   // if (Api.results >= 10000) {
   //   console.log(Api.totalPages * Api.resultsCount);
@@ -84,8 +74,6 @@ async function imputHandler(e) {
   // }
 
   pagination.reset(Api.results);
-
-  console.log(pagination);
 }
 if (searchInput === null) {
   return;

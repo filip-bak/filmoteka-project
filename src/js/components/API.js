@@ -27,10 +27,8 @@ const Api = {
     Api.results = data.total_results;
     if (Api.results >= 20000) {
       Api.results = 10000;
-    } else if (Api.results < 500) {
-      console.log('v:', validResults());
-      // Api.results = validResults();
     }
+
     Api.totalPages = data.total_pages;
     Api.resultsCount = Number(data.results.length);
     console.log(Api.results);
@@ -96,7 +94,7 @@ const Api = {
         language: 'en',
       },
     });
-    console.log(data);
+    console.log('getMoviesByGenre: ', data);
     return data;
   },
   resetPage: () => {
@@ -108,7 +106,6 @@ export default Api;
 export function validResults(page, totalPages, results) {
   const notNeeded = (totalPages * page) / results;
   const validResult = totalPages * page - notNeeded;
-  console.log('omg: ', Math.ceil(validResult));
   return Math.ceil(validResult);
 }
 

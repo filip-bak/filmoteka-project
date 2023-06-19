@@ -33,7 +33,6 @@ pagination.on('afterMove', event => {
   }
   if (Api.page >= 500) Api.page = 500;
   if (Api.page >= Api.totalPages) Api.page = Api.totalPages;
-  console.log('API: ', Api.page, 'e: ', currentPage);
 
   if (currentPage < Api.page) {
     pagination.reset(Api.results);
@@ -59,7 +58,7 @@ pagination.on('beforeMove', event => {
     pagination.reset(Api.results);
     Api.page = Api.totalPages;
     currentPage = Api.totalPages - 500;
-    console.log('ASD');
+
     // currentPage + 100;
     return true;
   }
@@ -73,14 +72,12 @@ pagination.on('beforeMove', event => {
     currentPage = 500;
   }
   if (currentPage === Api.page) {
-    console.log('er', Api.results);
     pagination.setTotalItems(Api.results);
-    console.log('true');
+
     return true;
   } else {
-    console.log('avbc');
     Api.page = Api.totalPages;
-    console.log(Api.page, currentPage);
+
     return false;
     return confirm('Go to page ' + currentPage + '?');
   }
