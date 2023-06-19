@@ -8,6 +8,7 @@ const body = document.querySelector('#home');
 async function infoModal(ID) {
   try {
     const data = await Api.getMovieById(ID);
+    console.log(data);
     let genresArray = [];
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
@@ -94,8 +95,8 @@ async function infoModal(ID) {
 }
 
 export function showModal(event) {
-  let clickedMovieID = event.target.previousElementSibling.dataset.movieid;
-
+  let clickedMovieID = event.target.parentNode.previousElementSibling.dataset.movieid;
+  console.log(clickedMovieID);
   infoModal(clickedMovieID);
 }
 cardSpace.addEventListener('click', showModal);

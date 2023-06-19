@@ -4,7 +4,7 @@ import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { failure } from './notifications.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
-const cardSpace = document.querySelector('.container');
+export const cardSpace = document.querySelector('.container');
 
 function getImg(posterPath) {
   if (posterPath === null) {
@@ -93,7 +93,14 @@ export async function createCards(moviesDataFromAPI) {
       />
     </svg>
   </a>
-</button>${getImg(poster_path)}<h2 class="card__title">${String(title,).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(genre_ids,)}</span><span class="card__year">${String(release_date).slice(0,4)}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
+</button>${getImg(poster_path)}<h2 class="card__title">${String(
+        title,
+      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
+        genre_ids,
+      )}</span><span class="card__year">${String(release_date).slice(
+        0,
+        4,
+      )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
     })
     .join('');
   cardSpace.insertAdjacentHTML('beforeend', moviesData);
