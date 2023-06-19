@@ -1,6 +1,5 @@
 // function renderModal(data) {} render on element
 import Api from './API';
-import { cardSpace } from './cards';
 
 const body = document.querySelector('#home');
 
@@ -78,10 +77,14 @@ async function infoModal(ID) {
                   ${data.overview}
                 </p>
                 <div class="grouped-buttons__delay">
-                  <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${data.id}">
+                  <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
+                    data.id
+                  }">
                     add to Watched
                   </button>
-                  <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${data.id}">
+                  <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
+                    data.id
+                  }">
                     add to queue
                   </button>
                 </div>
@@ -106,6 +109,11 @@ async function infoModal(ID) {
 }
 
 export function showModal(event) {
-  let clickedMovieID = event.target.parentNode.previousElementSibling.dataset.movieid;
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  let clickedMovieID = event.target.offsetParent.dataset.id;
+
   infoModal(clickedMovieID);
 }
