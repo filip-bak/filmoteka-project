@@ -81,7 +81,7 @@
 
     @include mq(tablet) {
       width: 264px;
-      padding: 0px 72px 40px 68px;
+      padding: 0px 72px 0px 68px;
     }
     @include mq(desktop) {
       width: 391px;
@@ -130,9 +130,11 @@
 
     @include mq(tablet) {
       flex-direction: row;
+      box-sizing: content-box;
+      height: 472px;
       padding-top: 40px;
       padding-left: 36px;
-      padding-bottom: 0px;
+      padding-bottom: 40px;
     }
     @include mq(desktop) {
       padding-top: 40px;
