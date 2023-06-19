@@ -3,7 +3,6 @@ import Api from './API';
 import { cardSpace } from './cards';
 
 const body = document.querySelector('#home');
-let backdrop;
 
 function getImage(posterPath) {
   return `https://image.tmdb.org/t/p/w500/${posterPath}`;
@@ -12,7 +11,6 @@ function getImage(posterPath) {
 async function infoModal(ID) {
   try {
     const data = await Api.getMovieById(ID);
-    console.log(`data -`, data);
     let genresArray = [];
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
@@ -96,9 +94,8 @@ async function infoModal(ID) {
   `;
 
     body.insertAdjacentHTML('beforeend', htmlString);
-    backdrop = document.querySelector('.backdrop');
+    const backdrop = document.querySelector('.backdrop');
     const closeBtn = document.querySelector('.close-btn');
-    console.log(closeBtn);
 
     closeBtn.addEventListener('click', () => {
       backdrop.remove();
@@ -110,7 +107,6 @@ async function infoModal(ID) {
 
 export function showModal(event) {
   let clickedMovieID = event.target.parentNode.previousElementSibling.dataset.movieid;
-  console.log(clickedMovieID);
   infoModal(clickedMovieID);
 }
 
