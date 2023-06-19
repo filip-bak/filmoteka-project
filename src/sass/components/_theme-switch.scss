@@ -31,6 +31,23 @@ body.dark-theme {
     color: $font-color-light;
 }
 
+#pagination.dark-theme {
+  
+    & .tui-page-btn {
+        color: $font-color-light;
+    }
+
+    & .tui-is-selected {
+        color: black;
+    }
+
+    & .tui-first,
+    & .tui-last {
+
+        background-color: gray;
+    }
+   
+}
 
 .switch {
     display: flex;
