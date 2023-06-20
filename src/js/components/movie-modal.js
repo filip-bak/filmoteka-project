@@ -1,15 +1,17 @@
 // function renderModal(data) {} render on element
 import Api from './API';
 import { localStorageHandler } from './local-storage';
-
-const body = document.querySelector('#home');
+import { showLoader, hideLoader } from './notifications';
 
 function getImage(posterPath) {
   return `https://image.tmdb.org/t/p/w500/${posterPath}`;
 }
 
-async function infoModal(ID) {
+const wrapper = document.querySelector('.wrapper');
+
+async function infoModal(ID, renderOn) {
   try {
+    showLoader();
     const data = await Api.getMovieById(ID);
     let genresArray = [];
     data.genres.forEach(genre => {
@@ -77,19 +79,19 @@ async function infoModal(ID) {
                 <p class="details__description">
                   ${data.overview}
                 </p>
-                <div class="grouped-buttons__delay">
-                  <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
-                    data.id
-                  }">
-                    add to Watched
-                  </button>
-                  <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
-                    data.id
-                  }">
-                    add to queue
-                  </button>
-                </div>
               </div>
+              <div class="grouped-buttons__delay">
+                <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
+                  data.id
+                }">
+                  add to Watched
+                </button>
+                <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
+                  data.id
+                }">
+                  add to queue
+                </button>
+            </div>
             </div>
           </div>
         </div>
@@ -97,14 +99,16 @@ async function infoModal(ID) {
     </div>
   `;
 
-    body.insertAdjacentHTML('beforeend', htmlString);
+    renderOn.insertAdjacentHTML('afterend', htmlString);
     const backdrop = document.querySelector('.backdrop');
     const closeBtn = document.querySelector('.close-btn');
 
     closeBtn.addEventListener('click', () => {
       backdrop.remove();
     });
-    localStorageHandler(data.id)
+    localStorageHandler(data.id);
+
+    hideLoader();
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
@@ -117,7 +121,5 @@ export function showModal(event) {
 
   let clickedMovieID = event.target.offsetParent.dataset.id;
 
-  infoModal(clickedMovieID);
-  
-  
+  infoModal(clickedMovieID, wrapper);
 }

@@ -6,7 +6,11 @@ import { failure } from './notifications.js';
 import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
 import { getDataQueue, getDataWatched } from './local-storage.js';
+import { showLoader, hideLoader } from './notifications.js';
+
 export const cardSpace = document.querySelector('.container');
+const watchedBttn = document.querySelector('.btn-header--watched');
+const queueBttn = document.querySelector('.btn-header--queue');
 
 export function getImg(posterPath) {
   if (posterPath === null) {
@@ -55,8 +59,11 @@ export function getGenraByID(ID) {
   return movieGenras.join(', ');
 }
 
-export async function createCards(moviesDataFromAPI) {
-  const movies = await moviesDataFromAPI.results;
+export async function createCards(moviesDataFromAPI, onElementToRender, FromID = false) {
+  let movies = await moviesDataFromAPI.results;
+  if (FromID === true) {
+    movies = [await moviesDataFromAPI];
+  }
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
       return `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
@@ -105,8 +112,7 @@ export async function createCards(moviesDataFromAPI) {
       )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
     })
     .join('');
-  cardSpace.insertAdjacentHTML('beforeend', moviesData);
-  TrailersHandle();
+  onElementToRender.insertAdjacentHTML('beforeend', moviesData);
 }
 
 export async function renderCards() {
@@ -114,7 +120,8 @@ export async function renderCards() {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies();
 
-    createCards(data);
+    createCards(data, cardSpace);
+    TrailersHandle();
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
@@ -128,34 +135,28 @@ export async function searchRenderCards(searchQuery, ifAdult, render = Api.resul
       return;
     }
     deleteSearchQueryError();
-    createCards(data);
+    createCards(data, cardSpace);
+    TrailersHandle();
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
-function renderCardsWatched(){
-  const watchedBttn = document.querySelector('.btn-header--watched')
-  const queueBttn = document.querySelector('.btn-header--queue')
-  watchedBttn.classList.add('btn-header--watched--active')
-  queueBttn.classList.remove('btn-header--queue--active')
-  getDataWatched()
+function renderCardsWatched() {
+  watchedBttn.classList.add('btn-header--watched--active');
+  queueBttn.classList.remove('btn-header--queue--active');
+  getDataWatched();
 }
 
-function renderCardsQueue(){
-  const watchedBttn = document.querySelector('.btn-header--watched')
-  const queueBttn = document.querySelector('.btn-header--queue')
-  watchedBttn.classList.remove('btn-header--watched--active')
-  queueBttn.classList.add('btn-header--queue--active')
-  getDataQueue()
+function renderCardsQueue() {
+  watchedBttn.classList.remove('btn-header--watched--active');
+  queueBttn.classList.add('btn-header--queue--active');
+  getDataQueue();
   // createCards()
 }
 
 export function renderCardsFromLocalStorage() {
-  renderCardsWatched()
-  const watchedBttn = document.querySelector('.btn-header--watched')
-  const queueBttn = document.querySelector('.btn-header--queue')
-  watchedBttn.addEventListener("click", renderCardsWatched)
-  queueBttn.addEventListener("click", renderCardsQueue)
-
+  renderCardsWatched();
+  watchedBttn.addEventListener('click', renderCardsWatched);
+  queueBttn.addEventListener('click', renderCardsQueue);
 }
