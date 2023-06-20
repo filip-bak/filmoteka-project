@@ -17,11 +17,11 @@
   }
 
   &__main-image {
-    background-image: url('/src/images/home-banner/home-banner.png');
+    background-image: url('/src/images/home-banner/home-banner1.png');
   }
 
   &__library-image {
-    background-image: url('/src/images/library-banner/library-banner.jpg');
+    background-image: url('/src/images/library-banner/library-banner1.png');
     background-size: cover;
     background-position: 50% 100%;
   }
@@ -251,11 +251,11 @@
 @include screen-density(2) {
   .header {
     &__main-image {
-      background-image: url('/src/images/home-banner/home-banner@2x.png');
+      background-image: url('/src/images/home-banner/home-banner1@2x.png');
     }
 
     &__library-image {
-      background-image: url('/src/images/library-banner/library-banner@2x.jpg');
+      background-image: url('/src/images/library-banner/library-banner1@2x.png');
     }
   }
 }
