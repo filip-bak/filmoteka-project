@@ -36,6 +36,7 @@ function updateThemeFooter() {
 
 function updateThemePagination() {
   if (savedTheme === 'dark-theme') {
+    if(pagiMode === null) return;
     pagiMode.classList.add('dark-theme');
   }
 }
