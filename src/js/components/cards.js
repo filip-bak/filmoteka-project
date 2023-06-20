@@ -3,8 +3,9 @@
 import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { failure } from './notifications.js';
+import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
-const cardSpace = document.querySelector('.container');
+export const cardSpace = document.querySelector('.container');
 
 function getImg(posterPath) {
   if (posterPath === null) {
@@ -37,6 +38,7 @@ function getGenraByID(ID) {
   ];
   const movieGenras = [];
   const genraIDs = [];
+
   for (const genra of genreIdName) {
     genraIDs.push(genra.id);
   }
@@ -56,7 +58,7 @@ export async function createCards(moviesDataFromAPI) {
   const movies = await moviesDataFromAPI.results;
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
-      return `<div class="card" data-id-"${id}"><button class="btn-trailer" data-movieID="${id}">
+      return `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
   <a href="#" class="playTrail">
     <svg
       x="0px"
@@ -110,12 +112,13 @@ export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies();
+
     createCards(data);
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
-export async function searchRenderCards(searchQuery, ifAdult) {
+export async function searchRenderCards(searchQuery, ifAdult, render = Api.results) {
   try {
     cardSpace.innerHTML = '';
     const data = await Api.getMoviesBySearchQuery(searchQuery, ifAdult);

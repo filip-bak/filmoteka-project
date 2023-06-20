@@ -1,13 +1,22 @@
 import axios from 'axios';
 
-import { getKeyOfLatestThriller } from './utils';
+import { getKeyOfLatestThriller } from './utils.js';
+
+// import { pagination } from './pagination.js'
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const api_key = '8ffc049be01c9ac683da541d3958668c';
+// (1000/2) / 20000 * 1000; -> 25
+//14 265
+// 14/2 / 265 * 14 ->
+// 20* 13 = 260
 
 const Api = {
   page: 1,
+  results: 0,
+  totalPages: 0,
+  resultsCount: 20,
 
   getTrendingMovies: async () => {
     const data = await getData({
@@ -15,7 +24,17 @@ const Api = {
       params: { page: Api.page },
     });
 
+    Api.results = data.total_results;
+    if (Api.results >= 20000) {
+      Api.results = 10000;
+    }
+
+    Api.totalPages = data.total_pages;
+    Api.resultsCount = Number(data.results.length);
+
+    // DEV
     console.log('TrendingMovies: ', data);
+    console.log('Trending => Result', Api.results, 'Page:', Api.totalPages);
 
     return data;
   },
@@ -25,7 +44,17 @@ const Api = {
       params: { page: Api.page, query: searchQuery, include_adult },
     });
 
+    Api.results = data.total_results;
+    Api.totalPages = data.total_pages;
+    Api.resultsCount = Number(data.results.length);
+
+    // DEV
     console.log('MoviesBySearchQuery: ', data);
+    console.log('SearchQuery => Result', Api.results, 'Page:', Api.totalPages);
+
+    // setTimeout(() => {
+    // totalPages = Math.min(data.total_pages, 10);
+    // });
 
     return data;
   },
@@ -54,12 +83,31 @@ const Api = {
 
     return thrillerUrl;
   },
-
+  getMoviesByGenre: async genresID => {
+    const data = await getData({
+      request: '/discover/movie',
+      params: {
+        page: Api.page,
+        without_genres: genresID,
+        sort_by: 'popularity.desc',
+        language: 'en',
+      },
+    });
+    console.log('getMoviesByGenre: ', data);
+    return data;
+  },
   resetPage: () => {
     Api.page = 1;
   },
 };
 export default Api;
+
+export function validResults(page, totalPages, results) {
+  const notNeeded = (totalPages * page) / results;
+  const validResult = totalPages * page - notNeeded;
+  return Math.ceil(validResult);
+}
+
 async function getData({ request, params } = {}) {
   try {
     const apiParams = new URLSearchParams(params);
