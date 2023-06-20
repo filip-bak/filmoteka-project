@@ -104,8 +104,7 @@ async function infoModal(ID) {
     closeBtn.addEventListener('click', () => {
       backdrop.remove();
     });
-
-    localStorageHandler()
+    localStorageHandler(data.id)
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }

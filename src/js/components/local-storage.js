@@ -7,11 +7,35 @@ import Api from "./API";
 // const watchedList = ["697843", "385687", "603692"];
 // const queueList = ["697843", "385687", "603692"];
 
-// localStorage.setItem("watched", JSON.stringify(watchedList))
+// localStorage.setItem("watched", "zzz"))
 // localStorage.setItem("queue", JSON.stringify(queueList))
 
-export function localStorageHandler() {
-    console.log(`LOCAL STORAGE FUNCTION`)
+// function addToWatched() {
+//     console.log(`ADDING TO WATCHED ${addToWatchedButton.dataset.id}`)
+
+
+// }
+
+function watchedButtonHandler() {
+    console.log(`WATCHED BUTTON CLICKED`)
+    const addToWatchedButton = document.querySelector('.grouped-buttons__watched')
+    if (addToWatchedButton.classList.contains("movie-added")){
+        addToWatchedButton.addEventListener("click", () => {
+            console.log(`removing from ls`)
+        })
+    } else {
+        addToWatchedButton.addEventListener("click", () => {
+            console.log(`adding to ls`)
+        })
+    }
+}
+
+function queueButtonHandler() {
+    console.log(`QUEUE BUTTON CLICKED`)
+    const addToQueueButton = document.querySelector('.grouped-buttons__queue')
+}
+
+export function localStorageHandler(movieID) {
     if (localStorage.getItem("watched") === null) {
         localStorage.setItem("watched","[]")
     }
@@ -24,9 +48,46 @@ export function localStorageHandler() {
 
     const addToWatchedButton = document.querySelector('.grouped-buttons__watched')
     const addToQueueButton = document.querySelector('.grouped-buttons__queue')
-    console.log(addToWatchedButton)
-    console.log(addToQueueButton)
-    
+
+
+    if (watchedMovies.includes(movieID.toString())) {
+        addToWatchedButton.classList.add('movie-added')
+        addToWatchedButton.textContent="REMOVE FROM WATCHED"
+    }
+
+    addToWatchedButton.addEventListener("click", () => {
+        const watchedList = JSON.parse(localStorage.getItem("watched"))
+        if (addToWatchedButton.classList.contains('movie-added')) {
+            watchedList.splice((watchedList.indexOf(addToWatchedButton.dataset.id)), 1)
+            localStorage.setItem("watched", JSON.stringify(watchedList))
+            addToWatchedButton.textContent = "ADD TO WATCH"
+            addToWatchedButton.classList.remove('movie-added')
+        } else {
+            watchedList.push(addToWatchedButton.dataset.id)
+            localStorage.setItem("watched", JSON.stringify(watchedList))
+            addToWatchedButton.textContent = "REMOVE FROM WATCHED"
+            addToWatchedButton.classList.add('movie-added')
+        }
+    })
+    if (queueMovies.includes(movieID.toString())) {
+        addToQueueButton.classList.add('movie-added')
+        addToQueueButton.textContent="REMOVE FROM QUEUE"
+    }
+
+    addToQueueButton.addEventListener("click", () => {
+        const queueList = JSON.parse(localStorage.getItem("queue"))
+        if (addToQueueButton.classList.contains('movie-added')) {
+            queueList.splice((queueList.indexOf(addToQueueButton.dataset.id)), 1)
+            localStorage.setItem("queue", JSON.stringify(queueList))
+            addToQueueButton.textContent = "ADD TO QUEUE"
+            addToQueueButton.classList.remove('movie-added')
+        } else {
+            queueList.push(addToQueueButton.dataset.id)
+            localStorage.setItem("queue", JSON.stringify(queueList))
+            addToQueueButton.textContent = "REMOVE FROM QUEUE"
+            addToQueueButton.classList.add('movie-added')
+        }
+    })
 }
 
 
@@ -64,16 +125,7 @@ export function localStorageHandler() {
 
 
 
-// function addToWatched(movieID) {
-//     console.log(`ADDING TO WATCHED`)
 
-//     const watchedList = JSON.parse(localStorage.getItem("watched"))
-    
-//     watchedList.push(movieID)
-//     console.log(watchedList)
-
-//     localStorage.setItem("watched", JSON.stringify(watchedList))
-// }
 
 // function addToQueue(movieID) {
 //     console.log(`ADDING TO QUEUE`)
@@ -89,11 +141,7 @@ export function localStorageHandler() {
 
 // function removeFromWatched(movieID) {
 //     console.log(`REMOVING FROM WATCHED`)
-//     const watchedList = JSON.parse(localStorage.getItem("watched"))
 
-//     watchedList.splice((watchedList.indexOf(movieID)), 1)
-//     console.log(watchedList)
-//     localStorage.setItem("watched", JSON.stringify(watchedList))
 
 // }
 
@@ -106,14 +154,7 @@ export function localStorageHandler() {
 //     localStorage.setItem("queue", JSON.stringify(queueList))
 // }
 
-// function watchedBttnHandler() {
-//     if (watchedBttn.classList.contains('grouped-buttons__watched--added')) {
-//         removeFromWatched("502356")
-//     } else {
-//         addToWatched("502356")
-//     }
-//     watchedHandler()
-// }
+
 
 // function queueBttnHandler() {
 //         if (queueBttn.classList.contains('grouped-buttons__queue--added')) {
