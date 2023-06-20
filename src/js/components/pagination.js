@@ -1,9 +1,9 @@
 import Pagination from 'tui-pagination';
 import Api from './API.js';
+import { showLoader, hideLoader } from './notifications.js';
 import { renderCards, renderCardsFromLocalStorage, searchRenderCards } from './cards.js';
 import { searchQuery } from './search-query.js';
 import { ifAdult } from './button-filter.js';
-import { before } from 'lodash';
 
 const paginationItem = document.getElementById('pagination');
 if (paginationItem === null) return;
@@ -18,6 +18,8 @@ export const pagination = new Pagination(paginationItem, options);
 
 // ---------------------------
 pagination.on('afterMove', event => {
+  hideLoader();
+
   let currentPage = event.page;
   if (currentPage > Api.page) {
     pagination.setTotalItems(10000);
@@ -50,6 +52,7 @@ pagination.on('afterMove', event => {
   }
 });
 pagination.on('beforeMove', event => {
+  showLoader();
   let currentPage = event.page;
 
   Api.page = currentPage;
@@ -58,7 +61,6 @@ pagination.on('beforeMove', event => {
     Api.page = Api.totalPages;
     currentPage = Api.totalPages - 500;
 
-    // currentPage + 100;
     return true;
   }
   if (Api.totalPages >= 500) {
