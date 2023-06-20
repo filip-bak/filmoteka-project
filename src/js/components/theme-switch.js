@@ -9,11 +9,13 @@ toggleMode.addEventListener('change', event => {
     bodyMode.classList.remove('dark-theme');
     bodyMode.classList.add('light-theme');
     footerMode.classList.remove('dark-theme');
+    if(pagiMode === null) return;
     pagiMode.classList.remove('dark-theme');
   } else {
     bodyMode.classList.remove('light-theme');
     bodyMode.classList.add('dark-theme');
     footerMode.classList.add('dark-theme');
+    if(pagiMode === null) return;
     pagiMode.classList.add('dark-theme');
   }
 });
