@@ -4,7 +4,6 @@ import Api from './API.js';
 import { renderCards, renderCardsFromLocalStorage, searchRenderCards } from './cards.js';
 import { searchQuery } from './search-query.js';
 import { ifAdult } from './button-filter.js';
-import { before } from 'lodash';
 
 const paginationItem = document.getElementById('pagination');
 if (paginationItem === null) return;

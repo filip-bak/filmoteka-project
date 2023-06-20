@@ -34,9 +34,15 @@ body.dark-theme {
 #pagination.dark-theme {
   
     & .tui-page-btn {
-        color: $font-color-light;
+      color: $font-color-light;
+      &:hover{
+        color: $font-color-dark;
+      }
+      &.tui-is-disabled:hover{
+        background-color: #979797;
+      }
     }
-
+    
     & .tui-is-selected {
         color: black;
     }
