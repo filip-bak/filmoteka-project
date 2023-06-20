@@ -1,5 +1,6 @@
 // function renderModal(data) {} render on element
 import Api from './API';
+import { localStorageHandler } from './local-storage';
 
 const body = document.querySelector('#home');
 
@@ -103,6 +104,8 @@ async function infoModal(ID) {
     closeBtn.addEventListener('click', () => {
       backdrop.remove();
     });
+
+    localStorageHandler()
   } catch (e) {
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
@@ -116,4 +119,6 @@ export function showModal(event) {
   let clickedMovieID = event.target.offsetParent.dataset.id;
 
   infoModal(clickedMovieID);
+  
+  
 }
