@@ -5,7 +5,12 @@ Notiflix.Notify.init({
   pauseOnHover: false,
   cssAnimationStyle: 'from-top',
 });
-Notiflix.Loading.init({ backgroundColor: 'rgba(0,0,0,0.2)', svgColor: '#ff6b08' });
+
+Notiflix.Loading.init({
+  backgroundColor: 'rgba(0,0,0,0.3)',
+  svgColor: '#ff6b08',
+  clickToClose: false,
+});
 
 export function showLoader() {
   Notiflix.Loading.dots();

@@ -17,6 +17,7 @@ function hide() {
 
 function handleScroll() {
   const scrollY = window.scrollY || document.documentElement.scrollTop;
+  if (headerEl === null) return;
 
   scrollY > headerEl.offsetTop ? show() : hide();
 }
