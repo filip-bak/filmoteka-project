@@ -1,0 +1,32 @@
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+.placeholder-box {
+  padding: 0;
+  margin-top: 0px;
+  margin-left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mq(desktop) {
+    
+  margin-left: 200px;
+
+  }
+
+  &__image{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq(tablet) {
+width: 200px;
+  height: 200px;
+  }
+  @include mq(desktop) {
+width: 500px;
+  height: 500px;
+  }
+
+  }
+}
