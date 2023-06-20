@@ -31,7 +31,6 @@ const Api = {
 
     Api.totalPages = data.total_pages;
     Api.resultsCount = Number(data.results.length);
-    console.log(Api.results);
 
     // DEV
     console.log('TrendingMovies: ', data);
