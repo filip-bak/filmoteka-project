@@ -4,14 +4,14 @@ export default [
     photo: '',
     position: 'Team Leader',
     github: 'https://github.com/filip-bak/',
-    linkedin: 'https://pl.linkedin.com/',
+    linkedin: 'https://pl.linkedin.com/in/filip-baczkowski/',
   },
   {
     name: 'Bartosz Drzazga',
     photo: '',
     position: 'Scrum Master',
     github: 'https://github.com/bartoszuq/',
-    linkedin: 'https://pl.linkedin.com/',
+    linkedin: 'https://pl.linkedin.com/in/bartosz-drzazga/',
   },
 
   {
@@ -40,7 +40,7 @@ export default [
     photo: '',
     position: 'Front-end Developer',
     github: 'https://github.com/IzabelaSwiadkowska/',
-    linkedin: 'https://pl.linkedin.com/',
+    linkedin: 'https://pl.linkedin.com/in/izabela%C5%9Bwiadkowska/',
   },
   {
     name: 'Kamil Szymański',
@@ -54,7 +54,7 @@ export default [
     photo: '',
     position: 'Front-end Developer',
     github: 'https://github.com/ArkadiuszMyszka/',
-    linkedin: 'https://pl.linkedin.com/',
+    linkedin: 'https://pl.linkedin.com/in/arkadiusz-myszka-244948245/',
   },
   {
     name: 'Oskar Sadkowski',
