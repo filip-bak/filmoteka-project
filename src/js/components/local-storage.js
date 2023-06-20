@@ -1,20 +1,9 @@
-// adding movie id to localstorage (add to watched, add to queue)
-import Api from "./API";
-// const watchedBttn = document.querySelector('.grouped-buttons__watched')
-// const queueBttn = document.querySelector('.grouped-buttons__queue')
-// import { watchedHandler, queueHandler } from "./movie-modal-library-buttons"
+import Api from "./API"
+import { createCards } from "./cards"
+import { getImg, getGenraByID } from "./cards"
 
-// const watchedList = ["697843", "385687", "603692"];
-// const queueList = ["697843", "385687", "603692"];
-
-// localStorage.setItem("watched", "zzz"))
-// localStorage.setItem("queue", JSON.stringify(queueList))
-
-// function addToWatched() {
-//     console.log(`ADDING TO WATCHED ${addToWatchedButton.dataset.id}`)
-
-
-// }
+export const cardSpace = document.querySelector('.library-container')
+const containerInnerHTML = [];
 
 function watchedButtonHandler() {
     console.log(`WATCHED BUTTON CLICKED`)
@@ -90,84 +79,87 @@ export function localStorageHandler(movieID) {
     })
 }
 
-
-
-
-// async function createCardsFromLS(movieIDs) {
-//     let moviesList = [];
-
-//     // movieIDs.forEach(movieId => {
-//     //     const result = Api.getMovieById(movieId)
-//     //     console.log(result)
-//     //     // moviesList.push(result)
-//     // });
-//     // console.log(moviesList)
-
-
-
-//     const result = await Api.getMovieById(movieIDs)
-//     console.log(result)
-// }
-
-// export function renderCardsWatched() {
-//     console.log(`WATCHED BUTTON`)
-//     // createCardsFromLS(JSON.parse(localStorage.getItem("watched")))
-//     createCardsFromLS("697843")
-// }
-
-// export function renderCardsQueue() {
-    
-// }
-
-// const modalwindow = document.querySelector('.backdrop')
-
-// console.log(modalwindow)
-
-
-
-
-
-// function addToQueue(movieID) {
-//     console.log(`ADDING TO QUEUE`)
-
-//     const queueList = JSON.parse(localStorage.getItem("queue"))
-    
-//     queueList.push(movieID)
-//     console.log(queueList)
-
-//     localStorage.setItem("queue", JSON.stringify(queueList))
-    
-// }
-
-// function removeFromWatched(movieID) {
-//     console.log(`REMOVING FROM WATCHED`)
-
-
-// }
-
-// function removeFromQueue(movieID) {
-//     console.log(`REMOVING FROM QUEUE`)
-//     const queueList = JSON.parse(localStorage.getItem("queue"))
-
-//     queueList.splice((queueList.indexOf(movieID)), 1)
-//     console.log(queueList)
-//     localStorage.setItem("queue", JSON.stringify(queueList))
-// }
-
-
-
-// function queueBttnHandler() {
-//         if (queueBttn.classList.contains('grouped-buttons__queue--added')) {
-//         removeFromQueue("502356")
-//     } else {
-//         addToQueue("502356")
-//     }
-//     queueHandler()
-// }
-
-// // if (window.getComputedStyle(modalwindow).display !== "none") {
-// //     watchedBttn.addEventListener("click", watchedBttnHandler)
-// //     queueBttn.addEventListener("click", queueBttnHandler)
-// // } 
-
-
+async function getMovieData(ID) {
+    const data = await Api.getMovieById(ID)
+    console.log(data)
+    console.log(data.genres)
+    const newIDs = data.genres.map(genre => genre.id)
+    console.log(newIDs)
+    const { id, title, poster_path, release_date, vote_average } = data
+    const movieCard = `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
+  <a href="#" class="playTrail">
+    <svg
+      x="0px"
+      y="0px"
+      width="50.7px"
+      height="50.7px"
+      viewBox="0 0 213.7 213.7"
+      enable-background="new 0 0 213.7 213.7"
+      xml:space="preserve"
+    >
+      <polygon
+        class="playTrail--triangle"
+        id="XMLID_18_"
+        fill="none"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        points="
+          73.5,62.5 148.5,105.8 73.5,149.1 "
+      />
+      <circle
+        class="playTrail--circle"
+        id="XMLID_17_"
+        fill="none"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        cx="106.8"
+        cy="106.8"
+        r="103.3"
+      />
+    </svg>
+  </a>
+</button>${getImg(poster_path)}<h2 class="card__title">${String(
+        title,
+    ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
+        newIDs
+    )}</span><span class="card__year">${String(release_date).slice(
+        0,
+        4,
+        )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
+    // console.log(movieCard)
+    cardSpace.insertAdjacentHTML('beforeend', movieCard)
+}
+export function getDataWatched(){
+    console.log(`watched data`)
+    cardSpace.innerHTML=''
+    if (localStorage.getItem("watched") === null) {
+        console.log(`BRAK FILMÓW W WATCHED`)
+        return
+    } else {
+        const moviesIDs = JSON.parse(localStorage.getItem("watched"))
+        console.log(`MOVIED IDS: ${moviesIDs}`)
+        const movieCards = [];
+        for (const movieID of moviesIDs) {
+            getMovieData(movieID)
+        }
+    }
+}
+export function getDataQueue(){
+    console.log(`queue data`)
+    cardSpace.innerHTML=''
+    if (localStorage.getItem("queue") === null) {
+        console.log(`BRAK FILMÓW W QUEUE`)
+        return
+    } else {
+        const moviesIDs = JSON.parse(localStorage.getItem("queue"))
+        console.log(`MOVIED IDS: ${moviesIDs}`)
+        const movieCards = [];
+        for (const movieID of moviesIDs) {
+            getMovieData(movieID)
+        }
+    }
+}

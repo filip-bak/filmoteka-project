@@ -5,16 +5,17 @@ import { TrailersHandle } from './trailer.js';
 import { failure } from './notifications.js';
 import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
+import { getDataQueue, getDataWatched } from './local-storage.js';
 export const cardSpace = document.querySelector('.container');
 
-function getImg(posterPath) {
+export function getImg(posterPath) {
   if (posterPath === null) {
     return `<div class="card__poster"></div>`;
   }
   return `<div><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="card__poster"/></div>`;
 }
 
-function getGenraByID(ID) {
+export function getGenraByID(ID) {
   const genreIdName = [
     { id: 28, name: 'Action' },
     { id: 12, name: 'Adventure' },
@@ -133,6 +134,27 @@ export async function searchRenderCards(searchQuery, ifAdult, render = Api.resul
   }
 }
 
-export function renderCardsFromLocalStorage(data) {
+function renderCardsWatched(){
+  
+  getDataWatched()
+  console.log(`render cards watched`)
+  // createCards()
+}
+
+function renderCardsQueue(){
+  
+  getDataQueue()
+  console.log(`render cards queue`)
+  // createCards()
+}
+
+export function renderCardsFromLocalStorage() {
   //renderuje karty na podstawie danych z local storage
+  console.log(`TEST LS RENDER`)
+  renderCardsWatched()
+  const watchedBttn = document.querySelector('.btn-header--watched')
+  const queueBttn = document.querySelector('.btn-header--queue')
+  watchedBttn.addEventListener("click", renderCardsWatched)
+  queueBttn.addEventListener("click", renderCardsQueue)
+
 }

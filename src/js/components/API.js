@@ -64,7 +64,7 @@ const Api = {
       params: { page: Api.page },
     });
 
-    console.log('MovieById: ', data);
+    // console.log('MovieById: ', data);
 
     return data;
   },
