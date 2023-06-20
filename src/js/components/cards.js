@@ -135,22 +135,23 @@ export async function searchRenderCards(searchQuery, ifAdult, render = Api.resul
 }
 
 function renderCardsWatched(){
-  
+  const watchedBttn = document.querySelector('.btn-header--watched')
+  const queueBttn = document.querySelector('.btn-header--queue')
+  watchedBttn.classList.add('btn-header--watched--active')
+  queueBttn.classList.remove('btn-header--queue--active')
   getDataWatched()
-  console.log(`render cards watched`)
-  // createCards()
 }
 
 function renderCardsQueue(){
-  
+  const watchedBttn = document.querySelector('.btn-header--watched')
+  const queueBttn = document.querySelector('.btn-header--queue')
+  watchedBttn.classList.remove('btn-header--watched--active')
+  queueBttn.classList.add('btn-header--queue--active')
   getDataQueue()
-  console.log(`render cards queue`)
   // createCards()
 }
 
 export function renderCardsFromLocalStorage() {
-  //renderuje karty na podstawie danych z local storage
-  console.log(`TEST LS RENDER`)
   renderCardsWatched()
   const watchedBttn = document.querySelector('.btn-header--watched')
   const queueBttn = document.querySelector('.btn-header--queue')

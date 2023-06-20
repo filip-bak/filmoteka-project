@@ -1,28 +1,10 @@
+import Notiflix from "notiflix";
 import Api from "./API"
 import { createCards } from "./cards"
 import { getImg, getGenraByID } from "./cards"
 
 export const cardSpace = document.querySelector('.library-container')
 const containerInnerHTML = [];
-
-function watchedButtonHandler() {
-    console.log(`WATCHED BUTTON CLICKED`)
-    const addToWatchedButton = document.querySelector('.grouped-buttons__watched')
-    if (addToWatchedButton.classList.contains("movie-added")){
-        addToWatchedButton.addEventListener("click", () => {
-            console.log(`removing from ls`)
-        })
-    } else {
-        addToWatchedButton.addEventListener("click", () => {
-            console.log(`adding to ls`)
-        })
-    }
-}
-
-function queueButtonHandler() {
-    console.log(`QUEUE BUTTON CLICKED`)
-    const addToQueueButton = document.querySelector('.grouped-buttons__queue')
-}
 
 export function localStorageHandler(movieID) {
     if (localStorage.getItem("watched") === null) {
@@ -80,13 +62,11 @@ export function localStorageHandler(movieID) {
 }
 
 async function getMovieData(ID) {
-    const data = await Api.getMovieById(ID)
-    console.log(data)
-    console.log(data.genres)
-    const newIDs = data.genres.map(genre => genre.id)
-    console.log(newIDs)
-    const { id, title, poster_path, release_date, vote_average } = data
-    const movieCard = `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
+    try {
+        const data = await Api.getMovieById(ID)
+        const newIDs = data.genres.map(genre => genre.id)
+        const { id, title, poster_path, release_date, vote_average } = data
+        const movieCard = `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
   <a href="#" class="playTrail">
     <svg
       x="0px"
@@ -123,43 +103,50 @@ async function getMovieData(ID) {
     </svg>
   </a>
 </button>${getImg(poster_path)}<h2 class="card__title">${String(
-        title,
-    ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
-        newIDs
-    )}</span><span class="card__year">${String(release_date).slice(
-        0,
-        4,
+            title,
+        ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
+            newIDs
+        )}</span><span class="card__year">${String(release_date).slice(
+            0,
+            4,
         )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
-    // console.log(movieCard)
-    cardSpace.insertAdjacentHTML('beforeend', movieCard)
-}
-export function getDataWatched(){
-    console.log(`watched data`)
-    cardSpace.innerHTML=''
-    if (localStorage.getItem("watched") === null) {
-        console.log(`BRAK FILMÓW W WATCHED`)
-        return
-    } else {
-        const moviesIDs = JSON.parse(localStorage.getItem("watched"))
-        console.log(`MOVIED IDS: ${moviesIDs}`)
-        const movieCards = [];
-        for (const movieID of moviesIDs) {
-            getMovieData(movieID)
-        }
+        // console.log(movieCard)
+        cardSpace.insertAdjacentHTML('beforeend', movieCard)
+    } catch (e) {
+        Notiflix.Notify.failure(`We're sorry, but we were not able to get the details of your requested movies.`)
     }
 }
-export function getDataQueue(){
-    console.log(`queue data`)
-    cardSpace.innerHTML=''
-    if (localStorage.getItem("queue") === null) {
-        console.log(`BRAK FILMÓW W QUEUE`)
-        return
-    } else {
-        const moviesIDs = JSON.parse(localStorage.getItem("queue"))
-        console.log(`MOVIED IDS: ${moviesIDs}`)
-        const movieCards = [];
-        for (const movieID of moviesIDs) {
-            getMovieData(movieID)
+export function getDataWatched() {
+    try {
+        cardSpace.innerHTML = ''
+        if (localStorage.getItem("watched") === null) {
+            console.log(`BRAK FILMÓW W WATCHED`)
+            return
+        } else {
+            const moviesIDs = JSON.parse(localStorage.getItem("watched"))
+            const movieCards = [];
+            for (const movieID of moviesIDs) {
+                getMovieData(movieID)
+            }
         }
+    } catch(error) {
+        Notiflix.Notify.warning(`Please, clear your local storage and review your library!`)
+    }
+}
+export function getDataQueue() {
+    try {
+        cardSpace.innerHTML = ''
+        if (localStorage.getItem("queue") === null) {
+            console.log(`BRAK FILMÓW W QUEUE`)
+            return
+        } else {
+            const moviesIDs = JSON.parse(localStorage.getItem("queue"))
+            const movieCards = [];
+            for (const movieID of moviesIDs) {
+                getMovieData(movieID)
+            }
+        }
+    } catch (error) {
+        Notiflix.Notify.warning(`Please, clear your local storage and review your library!`)
     }
 }
