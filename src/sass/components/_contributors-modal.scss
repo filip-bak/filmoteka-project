@@ -202,9 +202,8 @@
     .modal-content__item:nth-child(4) .modal-content__photo {
       background-image: url('../images/contributors-modal/tomasz.jpg');
     }
-    // !!!!! ZDJECIE DO WSTAWIENIA !!!!! <------<-----<--------<-------<-------------<-------------<-------<------
     .modal-content__item:nth-child(5) .modal-content__photo {
-      background-image: url('../images/contributors-modal/default-avatar.jpg');
+      background-image: url('../images/contributors-modal/artur.jpg');
     }
     .modal-content__item:nth-child(6) .modal-content__photo {
       background-image: url('../images/contributors-modal/izabela.jpg');
@@ -212,23 +211,17 @@
     .modal-content__item:nth-child(7) .modal-content__photo {
       background-image: url('../images/contributors-modal/kamil.jpg');
     }
-    // !!!!! ZDJECIE DO WSTAWIENIA !!!!! <------<-----<--------<-------<-------------<-------------<-------<------
     .modal-content__item:nth-child(8) .modal-content__photo {
-      background-image: url('../images/contributors-modal/default-avatar.jpg');
+      background-image: url('../images/contributors-modal/arkadiusz.jpg');
     }
-    // !!!!! ZDJECIE DO WSTAWIENIA !!!!! <------<-----<--------<-------<-------------<-------------<-------<------
     .modal-content__item:nth-child(9) .modal-content__photo {
-      background-image: url('../images/contributors-modal/default-avatar.jpg');
+      background-image: url('../images/contributors-modal/oskar.jpg');
     }
   }
 }
 
 .main {
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
   z-index: 10;
-  // position: absolute;
   padding: 5px;
   width: 260px;
   height: 250px;
@@ -463,11 +456,12 @@
 }
 .contributors-close-btn:hover {
   scale: 1.05;
+  scale: 1.05;
   box-shadow: inset 2px 2px 3px #fff3, 2px 2px 3px #000;
 }
 .contributors-close-btn:active {
   background-color: rgba(65, 0, 0, 0.466);
-  scale: 1.05;
+  scale: 1;
   box-shadow: inset 2px 2px 3px #000, 2px 2px 3px #fff3;
 }
 

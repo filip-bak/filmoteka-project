@@ -37,6 +37,7 @@ const contributorElements = contributorsInfo.map(({ name, position, github, link
 
   // card
   const cardElement = createElement({ type: 'div', classes: ['main'], append: contributorLi });
+
   // name
   createElement({
     type: 'h2',
