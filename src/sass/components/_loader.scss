@@ -1,32 +1,39 @@
-@use "../base/typography" as *;
-@use "../abstracts/mixins" as *;
-@use "../abstracts/variables" as *;
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
 .placeholder-box {
+  position: absolute;
   padding: 0;
-  margin-top: 0px;
-  margin-left: 70px;
+
+  margin-top: 50px;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  left: 50%;
+  margin-left: -100px;
 
-  @include mq(desktop) {
-    
-  margin-left: 200px;
-
-  }
-
-  &__image{
-    display: flex;
-  justify-content: center;
-  align-items: center;
+  visibility: hidden;
   @include mq(tablet) {
-width: 200px;
-  height: 200px;
+    margin-left: -60px;
   }
   @include mq(desktop) {
-width: 500px;
-  height: 500px;
+    margin-left: -80px;
   }
 
+  &__image {
+    display: flex;
+
+    @include mq(tablet) {
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+    }
+    @include mq(desktop) {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  &--visiblity {
+    visibility: visible;
   }
 }
