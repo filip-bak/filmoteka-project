@@ -51,20 +51,21 @@
     align-items: center;
   }
 }
+
 .movie-form {
   position: relative;
   max-height: 90vh;
   background-color: $bg-color-light;
   overflow-y: auto;
-  width: 280px;
+  max-width: 400px;
 
   @include mq(tablet) {
     overflow-y: visible;
-    width: 704px;
+    max-width: 704px;
     height: 552px;
   }
   @include mq(desktop) {
-    width: 806px;
+    max-width: 806px;
     height: 558px;
   }
 }
@@ -134,13 +135,17 @@
 .movie-image {
   width: 240px;
   height: 357px;
+  align-self: center;
 
   @include mq(tablet) {
+    margin-left: 0px;
     width: 264px;
     height: 374px;
+    align-self: start;
   }
 
   @include mq(desktop) {
+    margin-left: 0px;
     width: 375px;
     height: 478px;
   }
