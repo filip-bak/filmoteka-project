@@ -3,7 +3,14 @@ import Api from './API';
 import { createCards, renderCards } from './cards';
 import { getImg, getGenraByID } from './cards';
 import { TrailersHandle } from './trailer';
-import { showLoader, hide, hideLoader } from './notifications';
+import {
+  showLoader,
+  hideLoader,
+  addToQueue,
+  addToWatched,
+  removeFromQueue,
+  removeFromWatched,
+} from './notifications';
 
 export const cardLibrarySpace = document.querySelector('.library-container');
 const placeholderBox = document.querySelector('#placeholder');
@@ -36,12 +43,14 @@ export function localStorageHandler(movieID) {
       addToWatchedButton.textContent = 'ADD TO WATCH';
       addToWatchedButton.classList.remove('movie-added');
       addToWatchedButton.classList.remove('button-active');
+      removeFromWatched();
     } else {
       watchedList.push(addToWatchedButton.dataset.id);
       localStorage.setItem('watched', JSON.stringify(watchedList));
       addToWatchedButton.textContent = 'REMOVE FROM WATCHED';
       addToWatchedButton.classList.add('movie-added');
       addToWatchedButton.classList.add('button-active');
+      addToWatched();
     }
   });
   if (queueMovies.includes(movieID.toString())) {
@@ -58,6 +67,7 @@ export function localStorageHandler(movieID) {
       addToQueueButton.textContent = 'ADD TO QUEUE';
       addToQueueButton.classList.remove('movie-added');
       addToQueueButton.classList.remove('button-active');
+      removeFromQueue();
     } else {
       queueList.push(addToQueueButton.dataset.id);
       localStorage.setItem('queue', JSON.stringify(queueList));
@@ -65,6 +75,7 @@ export function localStorageHandler(movieID) {
       addToQueueButton.textContent = 'REMOVE FROM QUEUE';
       addToQueueButton.classList.add('movie-added');
       addToQueueButton.classList.add('button-active');
+      addToQueue();
     }
   });
 }

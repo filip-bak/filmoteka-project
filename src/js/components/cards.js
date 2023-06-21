@@ -4,7 +4,7 @@ import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
 import { getDataQueue, getDataWatched } from './local-storage.js';
-import { showLoader, hideLoader, withoutDetails } from './notifications.js';
+import { showLoader, hideLoader, withoutDetailsm, error } from './notifications.js';
 
 export const cardSpace = document.querySelector('.container');
 const watchedBttn = document.querySelector('.btn-header--watched');
@@ -130,7 +130,8 @@ export async function renderCards() {
     TrailersHandle();
   } catch (e) {
     withoutDetails();
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    // error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 export async function searchRenderCards(searchQuery, ifAdult, render = Api.results) {
@@ -145,7 +146,8 @@ export async function searchRenderCards(searchQuery, ifAdult, render = Api.resul
     createCards(data, cardSpace);
     TrailersHandle();
   } catch (e) {
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 

@@ -122,7 +122,8 @@ async function infoModal(ID, renderOn) {
     hideLoader();
 
     withoutDetails();
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    // error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
