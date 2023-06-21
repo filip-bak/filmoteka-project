@@ -25,7 +25,7 @@ export default [
     name: 'Tomasz Nejman',
     photo: '',
     position: 'Front-end Developer',
-    github: 'https://github.com/kamilszymanski93/',
+    github: 'https://github.com/tonejman/',
     linkedin: 'https://pl.linkedin.com/',
   },
   {
@@ -60,7 +60,7 @@ export default [
     name: 'Oskar Sadkowski',
     photo: '',
     position: 'Front-end Developer',
-    github: 'https://github.com/ArkadiuszMyszka/',
+    github: 'https://github.com/sadkooski/',
     linkedin: 'https://pl.linkedin.com/',
   },
 ];
