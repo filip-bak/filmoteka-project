@@ -7,6 +7,8 @@
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 58px 12px #ffffffb3, 1px 2px 4px #ffffffb3, 2px 4px 8px #ffffffb3,
+    2px 4px 16px #ffffffb3;
 
   &-library {
     padding: 40px 20px 0px;
