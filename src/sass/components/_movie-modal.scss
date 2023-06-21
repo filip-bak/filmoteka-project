@@ -1,11 +1,33 @@
-@use "../base/typography" as *;
-@use "../abstracts/mixins" as *;
-@use "../abstracts/variables" as *;
-@use "../components/card";
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+@use '../components/card';
 .modal__title {
   font-size: var(--fs-movie-modal-title);
   line-height: var(--lh-400);
 }
+
+.backdrop {
+  z-index: 1;
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  .modal {
+    .movie-form {
+      transform: scale(0);
+      animation: zoomIn 0.3s 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+  }
+  &.out {
+    transform: scale(1);
+    animation: unfoldOut 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    .modal {
+      .movie-form {
+        animation: zoomOut 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      }
+    }
+  }
+}
+
 .backdrop {
   position: fixed;
   z-index: 2;

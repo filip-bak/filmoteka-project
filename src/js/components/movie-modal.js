@@ -9,11 +9,13 @@ const wrapper = document.querySelector('.wrapper');
 async function infoModal(ID, renderOn) {
   try {
     showLoader();
+
     const data = await Api.getMovieById(ID);
     let genresArray = [];
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
     });
+
     let htmlString = `<div class="backdrop">
       <div class="modal">
         <div class="movie-form">
@@ -96,9 +98,25 @@ async function infoModal(ID, renderOn) {
     const backdrop = document.querySelector('.backdrop');
     const closeBtn = document.querySelector('.close-btn');
 
-    closeBtn.addEventListener('click', () => {
-      backdrop.remove();
+    document.addEventListener('click', event => {
+      console.log(event.target.classList.contains('backdrop'));
+      if (event.target.classList.contains('backdrop') === true) {
+        closeAndRemoveModal(backdrop);
+      }
     });
+
+    document.addEventListener('keyup', event => {
+      console.log(typeof event.code);
+      if (event.code === 'Escape') {
+        closeAndRemoveModal(backdrop);
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      backdrop.classList.add('out');
+      closeAndRemoveModal(backdrop);
+    });
+
     localStorageHandler(data.id);
 
     hideLoader();
@@ -107,6 +125,13 @@ async function infoModal(ID, renderOn) {
     withoutDetails();
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
+}
+
+function closeAndRemoveModal(backdrop) {
+  backdrop.classList.add('out');
+  setTimeout(() => {
+    backdrop.remove();
+  }, 2500);
 }
 
 export function showModal(event) {
