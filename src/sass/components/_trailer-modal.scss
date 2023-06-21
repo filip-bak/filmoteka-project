@@ -19,10 +19,10 @@
     stroke: #aaa;
   }
   @include mq(tablet) {
-    right: 80px;
+    right: 30px;
   }
   @include mq(desktop) {
-    right: 120px;
+    right: 40px;
   }
 }
 .js-backdrop-trailer {
