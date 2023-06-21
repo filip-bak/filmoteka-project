@@ -99,14 +99,12 @@ async function infoModal(ID, renderOn) {
     const closeBtn = document.querySelector('.close-btn');
 
     document.addEventListener('click', event => {
-      console.log(event.target.classList.contains('backdrop'));
       if (event.target.classList.contains('backdrop') === true) {
         closeAndRemoveModal(backdrop);
       }
     });
 
     document.addEventListener('keyup', event => {
-      console.log(typeof event.code);
       if (event.code === 'Escape') {
         closeAndRemoveModal(backdrop);
       }
