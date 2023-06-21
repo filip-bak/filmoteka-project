@@ -32,6 +32,7 @@ $bg-color-light: #fff;
 $bg-color-accent: #ff6b08;
 
 $bg-color-dark-mode: #333333;
+$bg-color-switch-dark-mode: #707070;
 $bg-color-switch-mode: #fff;
 $bg-color-footer-dark: #1213132c;
 
@@ -90,7 +91,7 @@ $color-text-placeholder: #505050;
 $color-text-invalid: #ff705d;
 
 // Util variables
-$font-basic: 'Roboto', sans-serif;
+$font-basic: "Roboto", sans-serif;
 
 $duration: 250ms;
 $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
