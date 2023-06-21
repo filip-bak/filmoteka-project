@@ -38,6 +38,11 @@ export function warning() {
   });
 }
 
+export function withoutDetails() {
+  Notiflix.Notify.failure('Details of this movie are not available', {
+    timeout: 4000,
+  });
+}
 export function withoutTrailer() {
   Notiflix.Notify.failure('Trailer is not available');
 }
