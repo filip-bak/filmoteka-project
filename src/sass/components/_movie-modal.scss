@@ -1,7 +1,7 @@
 @use "../base/typography" as *;
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
-
+@use "../components/card";
 .modal__title {
   font-size: var(--fs-movie-modal-title);
   line-height: var(--lh-400);
@@ -73,6 +73,10 @@
   @include mq(tablet) {
     // flex-direction: row;
   }
+  &__poster {
+    @extend .card__poster;
+    background-size: contain;
+  }
   &__description {
     box-sizing: content-box;
     display: flex;
@@ -104,6 +108,7 @@
     }
   }
 }
+
 .movie-image {
   width: 240px;
   height: 357px;

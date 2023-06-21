@@ -1,11 +1,8 @@
 // function renderModal(data) {} render on element
 import Api from './API';
 import { localStorageHandler } from './local-storage';
-import { showLoader, hideLoader } from './notifications';
-
-function getImage(posterPath) {
-  return `https://image.tmdb.org/t/p/w500/${posterPath}`;
-}
+import { showLoader, hideLoader, withoutDetails } from './notifications';
+import { getImg, getGenraByID } from './cards';
 
 const wrapper = document.querySelector('.wrapper');
 
@@ -27,11 +24,7 @@ async function infoModal(ID, renderOn) {
             </svg>
           </button>
           <div class="movie">
-            <div class="movie-image__delay">
-              <div class="movie-image">
-                <img class="movie-image__img" src="${getImage(data.poster_path)}"
-              </div>
-            </div>
+            <div class="movie-image__delay">${getImg(data.poster_path, true)}
             <div class="movie__description">
               <h2 class="movie__title">${data.title}</h2>
               <table class="table">
@@ -110,16 +103,16 @@ async function infoModal(ID, renderOn) {
 
     hideLoader();
   } catch (e) {
+    hideLoader();
+    withoutDetails();
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
 export function showModal(event) {
-  if (event.target.nodeName !== 'IMG') {
-    return;
+  if (event.target.nodeName === 'IMG' || event.target.nodeName === 'DIV') {
+    let clickedMovieID = event.target.offsetParent.dataset.id;
+
+    infoModal(clickedMovieID, wrapper);
   }
-
-  let clickedMovieID = event.target.offsetParent.dataset.id;
-
-  infoModal(clickedMovieID, wrapper);
 }

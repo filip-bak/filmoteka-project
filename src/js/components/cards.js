@@ -2,17 +2,21 @@
 
 import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
-import { failure } from './notifications.js';
-import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
 import { getDataQueue, getDataWatched } from './local-storage.js';
-import { showLoader, hideLoader } from './notifications.js';
+import { showLoader, hideLoader, withoutDetails } from './notifications.js';
 
 export const cardSpace = document.querySelector('.container');
 const watchedBttn = document.querySelector('.btn-header--watched');
 const queueBttn = document.querySelector('.btn-header--queue');
 
-export function getImg(posterPath) {
+export function getImg(posterPath, isMovieModal = false) {
+  if (isMovieModal) {
+    if (posterPath === null) {
+      return `<div class="movie-image movie__poster"></div>`;
+    }
+    return `<div class="movie-image"><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="movie-image__img"/></div>`;
+  }
   if (posterPath === null) {
     return `<div class="card__poster"></div>`;
   }
@@ -64,6 +68,9 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
   if (FromID === true) {
     movies = [await moviesDataFromAPI];
   }
+  if (typeof movies.genre_ids === 'undefined') {
+    movies.genre_ids = '';
+  }
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
       return `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
@@ -104,12 +111,11 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
   </a>
 </button>${getImg(poster_path)}<h2 class="card__title">${String(
         title,
-      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
-        genre_ids,
-      )}</span><span class="card__year">${String(release_date).slice(
-        0,
-        4,
-      )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
+      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${
+        getGenraByID(genre_ids) || ''
+      }</span><span class="card__year">${
+        String(release_date).slice(0, 4) === 'unde' ? '' : String(release_date).slice(0, 4)
+      }</span><span class="card__rating">${vote_average?.toFixed(2) || '0.00'}</span></p></div>`;
     })
     .join('');
   onElementToRender.insertAdjacentHTML('beforeend', moviesData);
@@ -123,6 +129,7 @@ export async function renderCards() {
     createCards(data, cardSpace);
     TrailersHandle();
   } catch (e) {
+    withoutDetails();
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
