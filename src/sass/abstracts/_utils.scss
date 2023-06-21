@@ -35,24 +35,43 @@
   height: 100dvh;
 
   display: grid;
+  grid-template-rows: auto 1fr 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "pagination"
+    "footer";
+}
+.library-container {
+  @extend .container;
+}
+.wrapper .header {
+  grid-area: header;
+}
+.wrapper .header-library {
+  grid-area: header;
+}
+.wrapper main {
+  grid-area: main;
+}
+.wrapper .pagination {
+  grid-area: pagination;
+}
+.wrapper footer {
+  grid-area: footer;
+}
+.wrapper:nth-child(5) {
+  grid-area: footer;
+}
+.wrapper.library {
+  @extend .wrapper;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header"
     "main"
     "footer";
 }
-.wrapper:nth-child(1) {
-  grid-area: header;
-}
-.wrapper:nth-child(2) {
-  grid-area: main;
-}
-.wrapper:nth-child(3) {
-  grid-area: footer;
-}
-.library-container {
-  @extend .container;
-}
+
 .is-hidden {
   visibility: hidden;
   pointer-events: none;

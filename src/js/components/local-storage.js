@@ -6,6 +6,7 @@ import { TrailersHandle } from './trailer';
 import { showLoader, hide, hideLoader } from './notifications';
 
 export const cardLibrarySpace = document.querySelector('.library-container');
+const placeholderBox = document.querySelector('#placeholder');
 
 export function localStorageHandler(movieID) {
   if (localStorage.getItem('watched') === null) {
@@ -80,13 +81,15 @@ async function getMovieData(ID) {
 }
 export function getDataWatched() {
   try {
+    placeholderBox.classList.add('placeholder-box--visiblity', 'placeholder-box--margin-top');
     showLoader();
 
     cardLibrarySpace.innerHTML = '';
-    if (localStorage.getItem('watched') === null) {
+    if (localStorage.getItem('watched') === null || localStorage.getItem('watched') === '[]') {
       hideLoader();
       return;
     } else {
+      placeholderBox.classList.remove('placeholder-box--visiblity');
       const moviesIDs = JSON.parse(localStorage.getItem('watched'));
       const movieCards = [];
       for (const movieID of moviesIDs) {
@@ -101,14 +104,16 @@ export function getDataWatched() {
 }
 export function getDataQueue() {
   showLoader();
+  placeholderBox.classList.add('placeholder-box--visiblity', 'placeholder-box--margin-top');
   try {
     cardLibrarySpace.innerHTML = '';
-    if (localStorage.getItem('queue') === null) {
+    if (localStorage.getItem('queue') === null || localStorage.getItem('queue') === '[]') {
       hideLoader();
       return;
     } else {
       const moviesIDs = JSON.parse(localStorage.getItem('queue'));
       const movieCards = [];
+      placeholderBox.classList.remove('placeholder-box--visiblity');
       for (const movieID of moviesIDs) {
         getMovieData(movieID);
       }
