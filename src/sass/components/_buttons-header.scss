@@ -7,7 +7,6 @@
   justify-content: center;
   list-style: none;
   padding: 0px;
-  margin-left: 20px;
 }
 
 .btn-header {
@@ -41,12 +40,18 @@
   }
   &--watched {
     margin-right: 20px;
-    background-color: $button-bg-color-accent-priamry;
-    border: none;
+    background-color: $button-bg-color-transparent;
+    &:is(:hover, :focus, :focus-within) {
+      border: 1px solid $button-bg-color-accent-priamry;
+      outline: none;
+      color: $button-bg-color-accent-priamry;
+    }
+    &--active {
+      background-color: $button-bg-color-accent-priamry;
+    }
     @include mq(tablet) {
       margin-right: 32px;
     }
-
     @include mq(desktop) {
       margin-right: 16px;
     }
@@ -57,6 +62,9 @@
       border: 1px solid $button-bg-color-accent-priamry;
       outline: none;
       color: $button-bg-color-accent-priamry;
+    }
+    &--active {
+      background-color: $button-bg-color-accent-priamry;
     }
   }
   &--queue-queue {

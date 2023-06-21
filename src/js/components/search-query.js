@@ -33,12 +33,6 @@ async function debouncedSearchValue() {
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
 
-    // if (Api.results === 20000) {
-    // work
-    // pagination.reset(Api.results);
-    // pagination.setTotalItems(Api.results);
-    // }
-    // pagination.reset();
     Api.resetPage();
     if (Api.page === 1) {
       pagination.reset(10000);
@@ -71,11 +65,6 @@ async function imputHandler(e) {
     searchRenderCards(searchQuery, ifAdult);
     return;
   }
-  // pagination.reset(Api.results);
-  // if (Api.results >= 10000) {
-  //   console.log(Api.totalPages * Api.resultsCount);
-  //   return Api.totalPages * Api.resultsCount;
-  // }
 
   pagination.reset(Api.results);
 }

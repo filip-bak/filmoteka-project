@@ -1,10 +1,11 @@
-@use "../abstracts/mixins" as *;
+@use '../abstracts/mixins' as *;
 
 .button-box {
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: flex-end;
+  // place-items: center;
   grid-template-columns: 1fr auto auto;
-  gap: 20px;
+  // gap: 20px;
 
   @include mq(tablet) {
   }

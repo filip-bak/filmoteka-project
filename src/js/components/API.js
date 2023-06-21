@@ -1,16 +1,11 @@
 import axios from 'axios';
 
 import { getKeyOfLatestThriller } from './utils.js';
-
-// import { pagination } from './pagination.js'
+import { error } from './notifications.js';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const api_key = '8ffc049be01c9ac683da541d3958668c';
-// (1000/2) / 20000 * 1000; -> 25
-//14 265
-// 14/2 / 265 * 14 ->
-// 20* 13 = 260
 
 const Api = {
   page: 1,
@@ -33,8 +28,8 @@ const Api = {
     Api.resultsCount = Number(data.results.length);
 
     // DEV
-    console.log('TrendingMovies: ', data);
-    console.log('Trending => Result', Api.results, 'Page:', Api.totalPages);
+    // console.log('TrendingMovies: ', data);
+    // console.log('Trending => Result', Api.results, 'Page:', Api.totalPages);
 
     return data;
   },
@@ -49,12 +44,8 @@ const Api = {
     Api.resultsCount = Number(data.results.length);
 
     // DEV
-    console.log('MoviesBySearchQuery: ', data);
-    console.log('SearchQuery => Result', Api.results, 'Page:', Api.totalPages);
-
-    // setTimeout(() => {
-    // totalPages = Math.min(data.total_pages, 10);
-    // });
+    // console.log('MoviesBySearchQuery: ', data);
+    // console.log('SearchQuery => Result', Api.results, 'Page:', Api.totalPages);
 
     return data;
   },
@@ -64,7 +55,7 @@ const Api = {
       params: { page: Api.page },
     });
 
-    console.log('MovieById: ', data);
+    // console.log('MovieById: ', data);
 
     return data;
   },
@@ -79,7 +70,7 @@ const Api = {
 
     const thrillerUrl = `${thrillerBaseUrl}${thrillerKey}`;
 
-    console.log('thrillerUrl: ', thrillerUrl);
+    // console.log('thrillerUrl: ', thrillerUrl);
 
     return thrillerUrl;
   },
@@ -93,7 +84,7 @@ const Api = {
         language: 'en',
       },
     });
-    console.log('getMoviesByGenre: ', data);
+    // console.log('getMoviesByGenre: ', data);
     return data;
   },
   resetPage: () => {
@@ -115,6 +106,7 @@ async function getData({ request, params } = {}) {
     const response = await axios.get(`${request}?api_key=${api_key}&${apiParams}`);
     return response.data;
   } catch (err) {
-    console.log(`ERROR getData(): `, err);
+    error(err.request.status);
+    // console.log(`ERROR getData(): `, err);
   }
 }

@@ -1,19 +1,21 @@
 // function renderModal(data) {} render on element
 import Api from './API';
+import { localStorageHandler } from './local-storage';
+import { showLoader, hideLoader, withoutDetails } from './notifications';
+import { getImg, getGenraByID } from './cards';
 
-const body = document.querySelector('#home');
+const wrapper = document.querySelector('.wrapper');
 
-function getImage(posterPath) {
-  return `https://image.tmdb.org/t/p/w500/${posterPath}`;
-}
-
-async function infoModal(ID) {
+async function infoModal(ID, renderOn) {
   try {
+    showLoader();
+
     const data = await Api.getMovieById(ID);
     let genresArray = [];
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
     });
+
     let htmlString = `<div class="backdrop">
       <div class="modal">
         <div class="movie-form">
@@ -24,11 +26,7 @@ async function infoModal(ID) {
             </svg>
           </button>
           <div class="movie">
-            <div class="movie-image__delay">
-              <div class="movie-image">
-                <img class="movie-image__img" src="${getImage(data.poster_path)}"
-              </div>
-            </div>
+            <div class="movie-image__delay">${getImg(data.poster_path, true)}
             <div class="movie__description">
               <h2 class="movie__title">${data.title}</h2>
               <table class="table">
@@ -76,19 +74,19 @@ async function infoModal(ID) {
                 <p class="details__description">
                   ${data.overview}
                 </p>
-                <div class="grouped-buttons__delay">
-                  <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
-                    data.id
-                  }">
-                    add to Watched
-                  </button>
-                  <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
-                    data.id
-                  }">
-                    add to queue
-                  </button>
-                </div>
               </div>
+              <div class="grouped-buttons__delay">
+                <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
+                  data.id
+                }">
+                  add to Watched
+                </button>
+                <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
+                  data.id
+                }">
+                  add to queue
+                </button>
+            </div>
             </div>
           </div>
         </div>
@@ -96,24 +94,50 @@ async function infoModal(ID) {
     </div>
   `;
 
-    body.insertAdjacentHTML('beforeend', htmlString);
+    renderOn.insertAdjacentHTML('afterend', htmlString);
     const backdrop = document.querySelector('.backdrop');
     const closeBtn = document.querySelector('.close-btn');
 
-    closeBtn.addEventListener('click', () => {
-      backdrop.remove();
+    document.addEventListener('click', event => {
+      if (event.target.classList.contains('backdrop') === true) {
+        closeAndRemoveModal(backdrop);
+      }
     });
+
+    document.addEventListener('keyup', event => {
+      if (event.code === 'Escape') {
+        closeAndRemoveModal(backdrop);
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      backdrop.classList.add('out');
+      closeAndRemoveModal(backdrop);
+    });
+
+    localStorageHandler(data.id);
+
+    hideLoader();
   } catch (e) {
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    hideLoader();
+
+    withoutDetails();
+    // error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
+function closeAndRemoveModal(backdrop) {
+  backdrop.classList.add('out');
+  setTimeout(() => {
+    backdrop.remove();
+  }, 2500);
+}
+
 export function showModal(event) {
-  if (event.target.nodeName !== 'IMG') {
-    return;
+  if (event.target.classList.contains('card__poster')) {
+    let clickedMovieID = event.target.offsetParent.dataset.id;
+
+    infoModal(clickedMovieID, wrapper);
   }
-
-  let clickedMovieID = event.target.offsetParent.dataset.id;
-
-  infoModal(clickedMovieID);
 }

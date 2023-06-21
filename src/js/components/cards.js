@@ -2,19 +2,28 @@
 
 import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
-import { failure } from './notifications.js';
-import { pagination, paginationRender } from './pagination.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
-export const cardSpace = document.querySelector('.container');
+import { getDataQueue, getDataWatched } from './local-storage.js';
+import { showLoader, hideLoader, withoutDetailsm, error } from './notifications.js';
 
-function getImg(posterPath) {
+export const cardSpace = document.querySelector('.container');
+const watchedBttn = document.querySelector('.btn-header--watched');
+const queueBttn = document.querySelector('.btn-header--queue');
+
+export function getImg(posterPath, isMovieModal = false) {
+  if (isMovieModal) {
+    if (posterPath === null) {
+      return `<div class="movie-image movie__poster"></div>`;
+    }
+    return `<div class="movie-image"><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="movie-image__img"/></div>`;
+  }
   if (posterPath === null) {
     return `<div class="card__poster"></div>`;
   }
   return `<div><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="card__poster"/></div>`;
 }
 
-function getGenraByID(ID) {
+export function getGenraByID(ID) {
   const genreIdName = [
     { id: 28, name: 'Action' },
     { id: 12, name: 'Adventure' },
@@ -54,8 +63,14 @@ function getGenraByID(ID) {
   return movieGenras.join(', ');
 }
 
-export async function createCards(moviesDataFromAPI) {
-  const movies = await moviesDataFromAPI.results;
+export async function createCards(moviesDataFromAPI, onElementToRender, FromID = false) {
+  let movies = await moviesDataFromAPI.results;
+  if (FromID === true) {
+    movies = [await moviesDataFromAPI];
+  }
+  if (typeof movies.genre_ids === 'undefined') {
+    movies.genre_ids = '';
+  }
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
       return `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
@@ -96,16 +111,14 @@ export async function createCards(moviesDataFromAPI) {
   </a>
 </button>${getImg(poster_path)}<h2 class="card__title">${String(
         title,
-      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${getGenraByID(
-        genre_ids,
-      )}</span><span class="card__year">${String(release_date).slice(
-        0,
-        4,
-      )}</span><span class="card__rating">${vote_average?.toFixed(2)}</span></p></div>`;
+      ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${
+        getGenraByID(genre_ids) || ''
+      }</span><span class="card__year">${
+        String(release_date).slice(0, 4) === 'unde' ? '' : String(release_date).slice(0, 4)
+      }</span><span class="card__rating">${vote_average?.toFixed(2) || '0.00'}</span></p></div>`;
     })
     .join('');
-  cardSpace.insertAdjacentHTML('beforeend', moviesData);
-  TrailersHandle();
+  onElementToRender.insertAdjacentHTML('beforeend', moviesData);
 }
 
 export async function renderCards() {
@@ -113,9 +126,12 @@ export async function renderCards() {
     cardSpace.innerHTML = '';
     const data = await Api.getTrendingMovies();
 
-    createCards(data);
+    createCards(data, cardSpace);
+    TrailersHandle();
   } catch (e) {
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    withoutDetails();
+    // error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 export async function searchRenderCards(searchQuery, ifAdult, render = Api.results) {
@@ -127,12 +143,29 @@ export async function searchRenderCards(searchQuery, ifAdult, render = Api.resul
       return;
     }
     deleteSearchQueryError();
-    createCards(data);
+    createCards(data, cardSpace);
+    TrailersHandle();
   } catch (e) {
-    console.log(`ERROR NOTIFICATION : ${e}`);
+    error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
-export function renderCardsFromLocalStorage(data) {
-  //renderuje karty na podstawie danych z local storage
+function renderCardsWatched() {
+  watchedBttn.classList.add('btn-header--watched--active');
+  queueBttn.classList.remove('btn-header--queue--active');
+  getDataWatched();
+}
+
+function renderCardsQueue() {
+  watchedBttn.classList.remove('btn-header--watched--active');
+  queueBttn.classList.add('btn-header--queue--active');
+  getDataQueue();
+  // createCards()
+}
+
+export function renderCardsFromLocalStorage() {
+  renderCardsWatched();
+  watchedBttn.addEventListener('click', renderCardsWatched);
+  queueBttn.addEventListener('click', renderCardsQueue);
 }
