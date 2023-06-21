@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 #modal-container {
   position: fixed;
@@ -54,8 +54,8 @@
       padding-block: 70px;
 
       max-width: 1300px;
-      max-height: 600px;
-
+      // max-height: 600px;
+      max-height: 90vh;
       display: inline-block;
       border-radius: 3px;
       overflow: auto;
@@ -69,7 +69,8 @@
       }
 
       @include mq(desktop) {
-        max-height: 900px;
+        // max-height: 900px;
+        max-height: 98vh;
         padding-block: 50px;
       }
     }
@@ -164,8 +165,7 @@
         // width: 100%;
         // margin: 0;
         box-sizing: border-box;
-        transition: color ease 0.2s, box-shadow ease 0.2s, transform ease 0.8s,
-          background-color ease 0.2s;
+        transition: color ease 0.2s, box-shadow ease 0.2s, transform ease 0.8s, background-color ease 0.2s;
 
         border: 1px solid rgba(255, 255, 255, 0.479);
 
@@ -191,31 +191,31 @@
       }
     }
     .modal-content__item:nth-child(1) .modal-content__photo {
-      background-image: url('../images/contributors-modal/filip.jpg');
+      background-image: url("../images/contributors-modal/filip.jpg");
     }
     .modal-content__item:nth-child(2) .modal-content__photo {
-      background-image: url('../images/contributors-modal/bartosz.jpg');
+      background-image: url("../images/contributors-modal/bartosz.jpg");
     }
     .modal-content__item:nth-child(3) .modal-content__photo {
-      background-image: url('../images/contributors-modal/anna.jpg');
+      background-image: url("../images/contributors-modal/anna.jpg");
     }
     .modal-content__item:nth-child(4) .modal-content__photo {
-      background-image: url('../images/contributors-modal/tomasz.jpg');
+      background-image: url("../images/contributors-modal/tomasz.jpg");
     }
     .modal-content__item:nth-child(5) .modal-content__photo {
-      background-image: url('../images/contributors-modal/artur.jpg');
+      background-image: url("../images/contributors-modal/artur.jpg");
     }
     .modal-content__item:nth-child(6) .modal-content__photo {
-      background-image: url('../images/contributors-modal/izabela.jpg');
+      background-image: url("../images/contributors-modal/izabela.jpg");
     }
     .modal-content__item:nth-child(7) .modal-content__photo {
-      background-image: url('../images/contributors-modal/kamil.jpg');
+      background-image: url("../images/contributors-modal/kamil.jpg");
     }
     .modal-content__item:nth-child(8) .modal-content__photo {
-      background-image: url('../images/contributors-modal/arkadiusz.jpg');
+      background-image: url("../images/contributors-modal/arkadiusz.jpg");
     }
     .modal-content__item:nth-child(9) .modal-content__photo {
-      background-image: url('../images/contributors-modal/oskar.jpg');
+      background-image: url("../images/contributors-modal/oskar.jpg");
     }
   }
 }
