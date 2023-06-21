@@ -51,9 +51,10 @@
     align-items: center;
   }
 }
+
 .movie-form {
   position: relative;
-  max-height: 100vh;
+  max-height: 90vh;
   background-color: $bg-color-light;
   overflow-y: auto;
   max-width: 400px;
