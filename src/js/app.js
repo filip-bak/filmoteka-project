@@ -16,7 +16,6 @@ import './components/search-query.js';
 import './components/up-arrow.js';
 import './components/contributors-modal.js';
 import './components/trailer.js';
-import './components/library.js';
 
 const app = {
   init: () => {
