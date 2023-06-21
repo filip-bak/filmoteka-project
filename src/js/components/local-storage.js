@@ -84,6 +84,7 @@ export function getDataWatched() {
 
     cardLibrarySpace.innerHTML = '';
     if (localStorage.getItem('watched') === null) {
+      hideLoader();
       return;
     } else {
       const moviesIDs = JSON.parse(localStorage.getItem('watched'));
@@ -103,6 +104,7 @@ export function getDataQueue() {
   try {
     cardLibrarySpace.innerHTML = '';
     if (localStorage.getItem('queue') === null) {
+      hideLoader();
       return;
     } else {
       const moviesIDs = JSON.parse(localStorage.getItem('queue'));
