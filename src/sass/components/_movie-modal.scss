@@ -53,7 +53,7 @@
 }
 .movie-form {
   position: relative;
-  max-height: 90vh;
+  max-height: 100vh;
   background-color: $bg-color-light;
   overflow-y: auto;
   max-width: 400px;
@@ -134,7 +134,7 @@
 .movie-image {
   width: 240px;
   height: 357px;
-  margin-left: calc(50% - 120px);
+  margin-left: calc(50% - 125px);
 
   @include mq(tablet) {
     margin-left: 0px;
@@ -292,6 +292,7 @@
     width: 136px;
   }
   &__delay {
+    margin-right: 10px;
     margin-top: 20px;
     display: flex;
     gap: 20px;
