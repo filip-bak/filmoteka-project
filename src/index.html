@@ -5,27 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
+      href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css"
     />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <title>Filmoteka</title>
   </head>
   <body id="home">
-    <!-- W taki sposbu dodajemy fragmenty w główny HTML-plik strony. -->
-    <include src="./partials/header.html"></include>
+    <div class="wrapper">
+      <include src="./partials/header.html"></include>
 
-    <main>
-      <div class="container"></div>
-    </main>
+      <main>
+        <div class="container"></div>
+      </main>
 
-    <include src="./partials/footer.html"></include>
+      <include src="./partials/pagination.html"></include>
 
-    <include src="./partials/loader.html"></include>
+      <include src="./partials/footer.html"></include>
+    </div>
 
-    <!-- This HTML is for for js so its commetned for now -->
-    <!-- <include src="./partials/movie-modal.html"></include> -->
+    <include src="./partials/trailer.html"></include>
     <include src="./partials/contributors-modal.html"></include>
 
-    <!-- Skrypt jest na samym dole kodu. On juz ma w sobie podłączony SAAS plik. -->
+    <include src="./partials/up-arrow.html"></include>
+
     <script src="./index.js" type="module"></script>
     <script src="./js/app.js" type="module"></script>
   </body>

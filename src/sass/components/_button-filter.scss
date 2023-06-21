@@ -2,21 +2,15 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-.filter-box {
-  display: inline-flex;
-  flex-direction: row-reverse;
-
-  @include mq(tablet) {
-  }
-  @include mq(desktop) {
-    margin-right: 60px;
-  }
+.btn-filter {
+  display: grid;
+  align-self: end;
+  width: min-content;
+  padding: 0;
+  background: none;
+  border-width: 1px;
 }
 .filter-svg {
-  animation-name: heartScale;
-  animation-duration: 2500ms;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
   fill: $fill-filter;
   width: 40px;
   height: 40px;
@@ -25,14 +19,6 @@
     width: 50px;
     height: 50px;
   }
-}
-.btn-filter {
-  display: grid;
-  align-self: end;
-  width: min-content;
-  padding: 0;
-  background: none;
-  border: none;
 }
 .filter-color-adult {
   fill: $fill-filter-adult;

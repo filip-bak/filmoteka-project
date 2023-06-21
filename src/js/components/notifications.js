@@ -1,7 +1,23 @@
 import Notiflix from 'notiflix';
 
+Notiflix.Notify.init({
+  showOnlyTheLastOne: true,
+  pauseOnHover: false,
+  cssAnimationStyle: 'from-top',
+});
+
+Notiflix.Loading.init({
+  backgroundColor: 'rgba(0,0,0,0.3)',
+  svgColor: '#ff6b08',
+  clickToClose: false,
+});
+
 export function showLoader() {
-  console.log('show loader');
+  Notiflix.Loading.dots();
+}
+
+export function hideLoader() {
+  Notiflix.Loading.remove();
 }
 
 export function success(totalMovies, query) {
@@ -22,6 +38,11 @@ export function warning() {
   });
 }
 
+export function withoutDetails() {
+  Notiflix.Notify.failure('Details of this movie are not available', {
+    timeout: 4000,
+  });
+}
 export function withoutTrailer() {
   Notiflix.Notify.failure('Trailer is not available');
 }

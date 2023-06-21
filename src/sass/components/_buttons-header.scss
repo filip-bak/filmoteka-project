@@ -1,13 +1,12 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .buttons-box-header {
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0px;
-  margin-left: 20px;
 }
 
 .btn-header {
@@ -39,24 +38,33 @@
     font-style: normal;
     color: $button-font-color-light;
   }
-  &--watched-watched {
+  &--watched {
     margin-right: 20px;
-    background-color: $button-bg-color-accent-priamry;
-    border: none;
-    @include mq(tablet) {
-      margin-right: 32px;
-    }
-
-    @include mq(desktop) {
-      margin-right: 16px;
-    }
-  }
-  &--watched-queue {
     background-color: $button-bg-color-transparent;
     &:is(:hover, :focus, :focus-within) {
       border: 1px solid $button-bg-color-accent-priamry;
       outline: none;
       color: $button-bg-color-accent-priamry;
+    }
+    &--active {
+      background-color: $button-bg-color-accent-priamry;
+    }
+    @include mq(tablet) {
+      margin-right: 32px;
+    }
+    @include mq(desktop) {
+      margin-right: 16px;
+    }
+  }
+  &--queue {
+    background-color: $button-bg-color-transparent;
+    &:is(:hover, :focus, :focus-within) {
+      border: 1px solid $button-bg-color-accent-priamry;
+      outline: none;
+      color: $button-bg-color-accent-priamry;
+    }
+    &--active {
+      background-color: $button-bg-color-accent-priamry;
     }
   }
   &--queue-queue {

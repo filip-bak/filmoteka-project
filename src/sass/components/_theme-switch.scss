@@ -1,0 +1,147 @@
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+
+
+body.light-theme {
+    background-color: $bg-color-light;
+    color: $font-color-dark;
+
+}
+
+body.dark-theme {
+    background-color: $bg-color-dark-mode;
+    color: $font-color-light;
+
+
+    & .footer__text {
+        color: $font-color-footer-dark;
+
+    }
+
+    & .team-btn.about-team-btn {
+        color: $font-color-footer-dark;
+    }
+
+    & .details__description {
+        color: $font-color-dark;
+
+    }
+
+}
+
+.footer.dark-theme {
+    background-color: $bg-color-footer-dark;
+    color: $font-color-light;
+}
+
+#pagination.dark-theme {
+
+    & .tui-page-btn {
+        color: $font-color-light;
+
+        &:hover {
+            color: $font-color-dark;
+        }
+
+        &.tui-is-disabled:hover {
+            background-color: #979797;
+        }
+    }
+
+    & .tui-is-selected {
+        color: black;
+    }
+
+    & .tui-first,
+    & .tui-last {
+
+        background-color: gray;
+    }
+
+}
+
+.switch {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    grid-column: -3;
+
+    &-icon__sun {
+        fill: $icon-color-light;
+        height: 25px;
+        width: 25px;
+        margin-right: 3px;
+        margin-left: 10px;
+    }
+
+    &-icon__moon {
+        fill: $icon-color-light;
+        height: 35px;
+        width: 35px;
+        margin-right: 3px;
+        margin-left: -4px;
+    }
+
+
+    &-control {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        position: relative;
+        width: 32px;
+        height: 16px;
+        border-radius: 50em;
+        padding: 3px 0;
+
+        &__track {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: transparent;
+            user-select: none;
+            background-color: $bg-color-dark-mode;
+            border-radius: inherit;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        &__marker {
+            position: relative;
+            background-color: $bg-color-switch-mode;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            z-index: 2;
+            pointer-events: none;
+            transform: translateX(3px);
+            transition-duration: 500ms;
+
+        }
+
+        &__toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            height: 0;
+            width: 0;
+            pointer-events: none;
+        }
+
+    }
+
+}
+
+.switch-control__toggle:checked+.switch-control__track {
+    background-color: $bg-color-accent;
+}
+
+.switch-control__toggle:checked~.switch-control__marker {
+    transform: translateX(17px);
+}

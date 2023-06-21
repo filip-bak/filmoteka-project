@@ -1,53 +1,45 @@
 'use strict';
 
-import Api from './components/API';
-import './components/utils';
-import { renderCards } from './components/cards';
-import { elements } from './components/elements';
-import './components/handlers';
-import './components/local-storage';
-import './components/movie-modal';
-import { showLoader } from './components/notifications';
-import './components/pagination';
-import { ifAdult } from './components/button-filter';
+import Api from './components/API.js';
+import './components/utils.js';
+import { renderCards, searchRenderCards, cardSpace } from './components/cards.js';
+import { cardLibrarySpace } from './components/local-storage.js';
+import { theme } from './components/local-storage_theme-switch.js';
+import { showModal, showModalLibrary } from './components/movie-modal.js';
+import { showLoader, hideLoader } from './components/notifications.js';
+import { ifAdult } from './components/button-filter.js';
+import showTrailerById, { TrailersHandle } from './components/trailer.js';
+import { pagination, paginationRender } from './components/pagination.js';
+import { renderCardsFromLocalStorage } from './components/cards.js';
+import './components/search-query.js';
+import './components/up-arrow.js';
+import './components/contributors-modal.js';
+import './components/trailer.js';
 
-export const app = {
+const app = {
   init: () => {
     document.addEventListener('DOMContentLoaded', app.load);
   },
   load: () => {
-    // showLoader();
+    showLoader();
     app.checkPage();
   },
   checkPage: () => {
     let page = document.body.id;
     switch (page) {
       case 'home':
-        try {
-          renderCards();
-        } catch (e) {
-          console.log(`renderCards() Error ${e}`);
-        }
+        renderCards();
 
-        // potrzebne event Listener-y
+        cardSpace.addEventListener('click', showModal);
 
-        /*    -- TEST --
-          Gdy potrzebujesz zobaczyć jak coś wygląda to pod tym piszesz i patrzysz czy działa,
-          ALE NIE WYSYŁASZ NA GITHUB
-        */
-
+        hideLoader();
         break;
       case 'library':
-        // renderCardsFromLocalStorage(); // z pliku cards.js w środku funkcji dostaje dane od API przez import
+        renderCardsFromLocalStorage();
 
-        // potrzebne event Listener-y
+        cardLibrarySpace.addEventListener('click', showModal);
 
-        /*    -- TEST --
-          Gdy potrzebujesz zobaczyć jak coś wygląda
-          to pod tym piszesz i patrzysz czy działa,
-          ALE NIE WYSYŁASZ NA GITHUB
-        */
-
+        hideLoader();
         break;
     }
   },
