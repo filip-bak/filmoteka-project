@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 const scrollButton = document.querySelector('.arrow__up');
 const headerEl = document.querySelector('.header');
+const headerLibraryEl = document.querySelector('.header-library');
 
 hide();
 
@@ -14,11 +15,15 @@ function show() {
 function hide() {
   scrollButton.style.display = 'none';
 }
-
 function handleScroll() {
   const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-  scrollY > headerEl.offsetTop ? show() : hide();
+  if (headerEl === null) {
+    scrollY > headerLibraryEl.offsetTop ? show() : hide();
+  }
+  if (headerLibraryEl === null) {
+    scrollY > headerEl.offsetTop ? show() : hide();
+  }
 }
 
 window.addEventListener('scroll', _.throttle(handleScroll, 500));

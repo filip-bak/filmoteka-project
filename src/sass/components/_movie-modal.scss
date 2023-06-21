@@ -1,10 +1,10 @@
 @use "../base/typography" as *;
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
-
+@use "../components/card";
 .modal__title {
-  font-size: var(--fs-lightbox-title);
-  line-height: var(--lh-lightbox-title);
+  font-size: var(--fs-movie-modal-title);
+  line-height: var(--lh-400);
 }
 .backdrop {
   position: fixed;
@@ -16,33 +16,34 @@
   opacity: 1;
   background: rgba(0, 0, 0, 0.25);
   transition: opacity 250ms linear;
+  display: grid;
+  justify-content: center;
+
+  padding: 20px;
   &.is-hidden {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
   }
+  @include mq(tablet) {
+    align-items: center;
+  }
 }
 .movie-form {
-  position: fixed;
-  max-height: 840px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  max-height: 90vh;
   background-color: $bg-color-light;
   overflow-y: auto;
   width: 280px;
-  margin-top: 20px;
-  margin-bottom: 38px;
 
   @include mq(tablet) {
+    overflow-y: visible;
     width: 704px;
     height: 552px;
-    overflow: hidden;
   }
   @include mq(desktop) {
     width: 806px;
     height: 558px;
-    overflow: hidden;
   }
 }
 
@@ -72,11 +73,15 @@
   @include mq(tablet) {
     // flex-direction: row;
   }
+  &__poster {
+    @extend .card__poster;
+    background-size: contain;
+  }
   &__description {
     box-sizing: content-box;
     display: flex;
-    overflow-y: auto;
     // justify-content: center;
+
     flex-direction: column;
     margin: 0;
 
@@ -94,11 +99,16 @@
     font-weight: var(--fw-500);
     font-size: var(--fs-movie-modal-title);
     line-height: var(--lh-300);
+    padding-top: 20px;
     color: $font-color-dark;
     text-transform: uppercase;
     margin-right: 20px;
+    @include mq(tablet) {
+      padding-top: 0;
+    }
   }
 }
+
 .movie-image {
   width: 240px;
   height: 357px;
@@ -125,6 +135,7 @@
     flex-direction: column;
     // align-items: center;
     // justify-content: center;
+    padding-right: 10px;
     padding-left: 20px;
     padding-bottom: 40px;
     padding-top: 48px;
@@ -200,6 +211,9 @@
     }
     &-data {
       line-height: var(--lh-400);
+      &:first-child {
+        white-space: nowrap;
+      }
     }
   }
 }
@@ -222,12 +236,13 @@
 
     @include mq(tablet) {
       margin-right: 0px;
+      overflow-y: auto;
     }
   }
 }
 .grouped-buttons {
   width: 110px;
-  height: 44px;
+  height: 53px;
   font-weight: var(--fw-500);
   font-size: var(--fs-400);
   line-height: var(--lh-500);
@@ -237,14 +252,15 @@
   background-color: $bg-color-light;
   border: 1px solid #000000;
   cursor: pointer;
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $bg-color-rating-primary;
     color: $button-font-color-light;
-    border: none;
+    border: 1px solid transparent;
   }
+
   @include mq(tablet) {
     width: 125px;
+    height: 44px;
   }
 
   @include mq(desktop) {
@@ -266,4 +282,9 @@
       margin-left: 8px;
     }
   }
+}
+.button-active {
+  background-color: $bg-color-rating-primary;
+  color: $button-font-color-light;
+  border: 1px solid transparent;
 }

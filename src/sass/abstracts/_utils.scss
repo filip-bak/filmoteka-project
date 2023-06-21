@@ -22,7 +22,7 @@
 
   @include mq(tablet) {
     place-items: start;
-    padding: 60px 32px;
+    padding: 60px 23px;
   }
   @include mq(desktop) {
     --column-count: 3;

@@ -24,6 +24,11 @@ body.dark-theme {
         color: $font-color-footer-dark;
     }
 
+    & .details__description {
+        color: $font-color-dark;
+
+    }
+
 }
 
 .footer.dark-theme {
@@ -32,17 +37,19 @@ body.dark-theme {
 }
 
 #pagination.dark-theme {
-  
+
     & .tui-page-btn {
-      color: $font-color-light;
-      &:hover{
-        color: $font-color-dark;
-      }
-      &.tui-is-disabled:hover{
-        background-color: #979797;
-      }
+        color: $font-color-light;
+
+        &:hover {
+            color: $font-color-dark;
+        }
+
+        &.tui-is-disabled:hover {
+            background-color: #979797;
+        }
     }
-    
+
     & .tui-is-selected {
         color: black;
     }
@@ -52,7 +59,7 @@ body.dark-theme {
 
         background-color: gray;
     }
-   
+
 }
 
 .switch {
