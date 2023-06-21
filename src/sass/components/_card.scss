@@ -1,6 +1,6 @@
-@use "../base/typography" as *;
-@use "../abstracts/variables" as *;
-@use "../abstracts/mixins" as *;
+@use '../base/typography' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .card {
   font-size: var(--fs-card-info);
@@ -34,10 +34,11 @@
     margin-bottom: 12px;
     border-radius: 5px;
     z-index: 2;
-    background-image: url("/src/images/cards/no-poster-image.png");
+    background-image: url('/src/images/cards/no-poster-image.png');
     background-position: top;
     background-size: 100%, 100%;
     background-repeat: no-repeat;
+    box-shadow: 0 -30px 58px -25px #ffffffb3, 1px -3px 4px #ffffffb3;
 
     @include mq(tablet) {
       --lh-card: 1.2;
@@ -81,6 +82,6 @@
 
 @include screen-density(2) {
   .card__poster {
-    background-image: url("/src/images/cards/no-poster-imagex2.png");
+    background-image: url('/src/images/cards/no-poster-imagex2.png');
   }
 }
