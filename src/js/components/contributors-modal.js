@@ -108,6 +108,9 @@ modalContainer.addEventListener('click', function (event) {
 // withdraw classes on esc button press to close
 document.addEventListener('keyup', function (event) {
   if (event.code === 'Escape') {
+    if (modalContainer.classList.value === '') {
+      return;
+    }
     if (modalContainer.classList.contains('visible')) {
       modalContainer.classList.remove('visible');
     }
