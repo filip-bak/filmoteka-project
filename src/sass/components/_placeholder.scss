@@ -1,0 +1,39 @@
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+.placeholder-box {
+  position: absolute;
+  padding: 0;
+
+  margin-top: 50px;
+
+  display: flex;
+  text-align: center;
+  left: 50%;
+  margin-left: -115px;
+
+  visibility: hidden;
+  @include mq(tablet) {
+    margin-left: -60px;
+  }
+  @include mq(desktop) {
+    margin-left: -90px;
+  }
+
+  &__image {
+    display: flex;
+
+    @include mq(tablet) {
+      width: 200px;
+      height: 200px;
+      margin: 50px auto;
+    }
+    @include mq(desktop) {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  &--visiblity {
+    visibility: visible;
+  }
+}
