@@ -24,6 +24,11 @@ body.dark-theme {
         color: $font-color-footer-dark;
     }
 
+    & .details__description {
+        color: $font-color-dark;
+
+    }
+
 }
 
 .footer.dark-theme {
@@ -31,6 +36,31 @@ body.dark-theme {
     color: $font-color-light;
 }
 
+#pagination.dark-theme {
+
+    & .tui-page-btn {
+        color: $font-color-light;
+
+        &:hover {
+            color: $font-color-dark;
+        }
+
+        &.tui-is-disabled:hover {
+            background-color: #979797;
+        }
+    }
+
+    & .tui-is-selected {
+        color: black;
+    }
+
+    & .tui-first,
+    & .tui-last {
+
+        background-color: gray;
+    }
+
+}
 
 .switch {
     display: flex;

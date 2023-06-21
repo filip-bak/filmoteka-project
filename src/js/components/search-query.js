@@ -4,7 +4,7 @@ import { showLoader, hideLoader, failure } from './notifications.js';
 import { ifAdult } from './button-filter.js';
 import Api, { validResults } from './API.js';
 import { pagination } from './pagination.js';
-import _, { compact } from 'lodash';
+import _, { compact, conforms } from 'lodash';
 import { deleteSearchQueryError } from './search-error.js';
 
 let searchInput = document.querySelector('.header__search-input');
@@ -18,14 +18,15 @@ async function debouncedSearchValue() {
   if (searchQuery === '') {
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
-
-    // pagination.reset();
-
+    deleteSearchQueryError();
     Api.resetPage();
 
     renderCards();
+    if (Api.page === 1) {
+      pagination.reset(10000);
+      pagination.setTotalItems(10000);
+    }
     hideLoader();
-    deleteSearchQueryError();
     return;
   }
   if (searchQuery !== '') {
@@ -39,6 +40,10 @@ async function debouncedSearchValue() {
     // }
     // pagination.reset();
     Api.resetPage();
+    if (Api.page === 1) {
+      pagination.reset(10000);
+      pagination.setTotalItems(10000);
+    }
     searchRenderCards(searchQuery, ifAdult);
   }
   hideLoader();
@@ -47,8 +52,6 @@ async function debouncedSearchValue() {
 async function imputHandler(e) {
   searchQuery = searchInput.value;
   debouncedSearch();
-  pagination.reset(Api.results);
-
   if (e.code === 'Enter') {
     Api.resetPage();
     debouncedSearch.cancel();
@@ -58,6 +61,7 @@ async function imputHandler(e) {
     if (searchQuery === '') {
       pagination.reset(Api.results);
       pagination.setTotalItems(Api.results);
+      pagination.setItemsPerPage(Api.resultsCount);
       Api.resetPage();
       deleteSearchQueryError();
       renderCards();

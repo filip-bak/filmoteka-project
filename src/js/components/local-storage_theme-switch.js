@@ -1,4 +1,4 @@
-import { bodyMode, toggleMode, footerMode } from '../components/theme-switch';
+import { bodyMode, toggleMode, footerMode, pagiMode } from '../components/theme-switch';
 
 export const Theme = {
   LIGHT: 'light-theme',
@@ -14,6 +14,7 @@ toggleMode.addEventListener('change', event => {
 updateTheme();
 checkboxChecked();
 updateThemeFooter();
+updateThemePagination();
 
 function updateTheme() {
   if (savedTheme) {
@@ -30,5 +31,12 @@ function checkboxChecked() {
 function updateThemeFooter() {
   if (savedTheme === 'dark-theme') {
     footerMode.classList.add('dark-theme');
+  }
+}
+
+function updateThemePagination() {
+  if (savedTheme === 'dark-theme') {
+    if(pagiMode === null) return;
+    pagiMode.classList.add('dark-theme');
   }
 }
