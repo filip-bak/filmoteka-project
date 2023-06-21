@@ -7,9 +7,8 @@ Notiflix.Notify.init({
 });
 
 Notiflix.Loading.init({
-  backgroundColor: 'rgba(0,0,0,0.3)',
+  backgroundColor: 'transparent',
   svgColor: '#ff6b08',
-  clickToClose: false,
 });
 
 export function showLoader() {
