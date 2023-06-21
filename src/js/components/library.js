@@ -1,3 +1,0 @@
-
-// headerBttnWatched.addEventListener("click", renderCardsWatched)
-

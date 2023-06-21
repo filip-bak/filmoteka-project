@@ -14,8 +14,8 @@ import { pagination, paginationRender } from './components/pagination.js';
 import { renderCardsFromLocalStorage } from './components/cards.js';
 import './components/search-query.js';
 import './components/up-arrow.js';
+import './components/contributors-modal.js';
 import './components/trailer.js';
-import './components/library.js';
 
 const app = {
   init: () => {
