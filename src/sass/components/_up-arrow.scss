@@ -36,7 +36,7 @@
   opacity: 0.75;
   cursor: pointer;
   border: 3 solid #bababa;
-
+  padding: 0;
   @include mq(tablet) {
     bottom: 20px;
   }
@@ -57,5 +57,4 @@
 .arrow__icon {
   fill: #bababa;
   opacity: 0.75;
-  transform: translateX(-1px);
 }
