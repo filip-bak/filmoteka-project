@@ -1,6 +1,6 @@
-@use "../base/typography" as *;
-@use "../abstracts/mixins" as *;
-@use "../abstracts/variables" as *;
+@use '../base/typography' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
 
 .modal__title {
   font-size: var(--fs-lightbox-title);
