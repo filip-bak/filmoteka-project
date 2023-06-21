@@ -1,7 +1,7 @@
-@use '../base/typography' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
-@use '../components/card';
+@use "../base/typography" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+@use "../components/card";
 .modal__title {
   font-size: var(--fs-movie-modal-title);
   line-height: var(--lh-400);
@@ -273,7 +273,9 @@
   border-radius: 5px;
   background-color: $bg-color-light;
   border: 1px solid #000000;
+  color: $font-color-dark;
   cursor: pointer;
+
   &:hover {
     background-color: $bg-color-rating-primary;
     color: $button-font-color-light;
