@@ -104,13 +104,14 @@ async function infoModal(ID, renderOn) {
     hideLoader();
   } catch (e) {
     hideLoader();
+
     withoutDetails();
     console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 
 export function showModal(event) {
-  if (event.target.nodeName === 'IMG' || event.target.nodeName === 'DIV') {
+  if (event.target.classList.contains('card__poster')) {
     let clickedMovieID = event.target.offsetParent.dataset.id;
 
     infoModal(clickedMovieID, wrapper);
