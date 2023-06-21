@@ -3,7 +3,6 @@
 import Api from './components/API.js';
 import './components/utils.js';
 import { renderCards, searchRenderCards, cardSpace } from './components/cards.js';
-import { elements } from './components/elements.js';
 import { cardLibrarySpace } from './components/local-storage.js';
 import { theme } from './components/local-storage_theme-switch.js';
 import { showModal, showModalLibrary } from './components/movie-modal.js';
