@@ -4,7 +4,8 @@ import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
 import { getDataQueue, getDataWatched } from './local-storage.js';
-import { showLoader, hideLoader, withoutDetailsm, error } from './notifications.js';
+import { withoutDetails, error } from './notifications.js';
+import { genreSearch, genresData } from './genre.js';
 
 export const cardSpace = document.querySelector('.container');
 const watchedBttn = document.querySelector('.btn-header--watched');
@@ -125,6 +126,7 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
 export async function renderCards() {
   try {
     cardSpace.innerHTML = '';
+    genreSearch.active = false;
     const data = await Api.getTrendingMovies();
 
     createCards(data, cardSpace);
@@ -135,15 +137,29 @@ export async function renderCards() {
     // console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
-export async function searchRenderCards(searchQuery, ifAdult, render = Api.results) {
+export async function searchRenderCards(searchQuery, ifAdult) {
   try {
     cardSpace.innerHTML = '';
+    genreSearch.active = false;
     const data = await Api.getMoviesBySearchQuery(searchQuery, ifAdult);
+
     if (data.results.length === 0) {
       searchQueryError();
       return;
     }
     deleteSearchQueryError();
+    createCards(data, cardSpace);
+    TrailersHandle();
+  } catch (e) {
+    error(e.request.status);
+    // console.log(`ERROR NOTIFICATION : ${e}`);
+  }
+}
+export async function renderGenre(genreID, ifAdult) {
+  try {
+    cardSpace.innerHTML = '';
+    const data = await Api.getMoviesByGenre(genreID, ifAdult);
+
     createCards(data, cardSpace);
     TrailersHandle();
   } catch (e) {

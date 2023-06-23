@@ -2,6 +2,7 @@
 
 import Api from './components/API.js';
 import './components/utils.js';
+import { handleGenreClick, genresEl } from './components/genre.js';
 import { renderCards, searchRenderCards, cardSpace } from './components/cards.js';
 import { cardLibrarySpace } from './components/local-storage.js';
 import { theme } from './components/local-storage_theme-switch.js';
@@ -31,6 +32,7 @@ const app = {
         renderCards();
 
         cardSpace.addEventListener('click', showModal);
+        genresEl.addEventListener('click', handleGenreClick);
 
         hideLoader();
         break;

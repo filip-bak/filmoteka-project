@@ -12,15 +12,16 @@ const Api = {
   results: 0,
   totalPages: 0,
   resultsCount: 20,
+  language: 'en',
 
   getTrendingMovies: async () => {
     const data = await getData({
       request: '/trending/movie/week',
-      params: { page: Api.page },
+      params: { page: Api.page, language: Api.language },
     });
 
     Api.results = data.total_results;
-    if (Api.results >= 20000) {
+    if (Api.results >= 10000) {
       Api.results = 10000;
     }
 
@@ -36,7 +37,7 @@ const Api = {
   getMoviesBySearchQuery: async (searchQuery = '', include_adult = false) => {
     const data = await getData({
       request: '/search/movie',
-      params: { page: Api.page, query: searchQuery, include_adult },
+      params: { page: Api.page, query: searchQuery, include_adult, language: Api.language },
     });
 
     Api.results = data.total_results;
@@ -52,7 +53,7 @@ const Api = {
   getMovieById: async movieId => {
     const data = await getData({
       request: `/movie/${movieId}`,
-      params: { page: Api.page },
+      params: { page: Api.page, language: Api.language },
     });
 
     // console.log('MovieById: ', data);
@@ -62,7 +63,7 @@ const Api = {
   getMovieThrillerUrlById: async movieId => {
     const data = await getData({
       request: `/movie/${movieId}/videos`,
-      params: { page: Api.page },
+      params: { page: Api.page, language: Api.language },
     });
 
     const thrillerBaseUrl = 'https://www.youtube.com/embed/';
@@ -74,30 +75,42 @@ const Api = {
 
     return thrillerUrl;
   },
-  getMoviesByGenre: async genresID => {
+  getMoviesByGenre: async (genresID, include_adult = false) => {
     const data = await getData({
       request: '/discover/movie',
       params: {
         page: Api.page,
-        without_genres: genresID,
+        include_adult,
+        with_genres: genresID,
         sort_by: 'popularity.desc',
-        language: 'en',
+        language: Api.language,
       },
     });
-    // console.log('getMoviesByGenre: ', data);
+
+    Api.results = data.total_results;
+    if (Api.results >= 10000) {
+      Api.results = 10000;
+    }
+    Api.totalPages = data.total_pages;
+    Api.resultsCount = Number(data.results.length);
+
+    console.log('getMoviesByGenre: ', data);
     return data;
+  },
+  getGenresData: async language => {
+    const data = await getData({
+      request: '/genre/movie/list',
+      params: { language },
+    });
+
+    console.log(data.genres);
+    return data.genres;
   },
   resetPage: () => {
     Api.page = 1;
   },
 };
 export default Api;
-
-export function validResults(page, totalPages, results) {
-  const notNeeded = (totalPages * page) / results;
-  const validResult = totalPages * page - notNeeded;
-  return Math.ceil(validResult);
-}
 
 async function getData({ request, params } = {}) {
   try {

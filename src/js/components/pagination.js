@@ -1,9 +1,10 @@
 import Pagination from 'tui-pagination';
 import Api from './API.js';
 import { showLoader, hideLoader } from './notifications.js';
-import { renderCards, renderCardsFromLocalStorage, searchRenderCards } from './cards.js';
+import { renderCards, searchRenderCards, renderGenre } from './cards.js';
 import { searchQuery } from './search-query.js';
 import { ifAdult } from './button-filter.js';
+import { genreSearch, selectedGenre } from './genre.js';
 
 const paginationItem = document.getElementById('pagination');
 if (paginationItem === null) return;
@@ -40,12 +41,17 @@ pagination.on('afterMove', event => {
     currentPage = 500;
     return false;
   }
+  if (genreSearch.active === true) {
+    Api.page = Api.page;
+    currentPage = Api.page;
+    renderGenre(selectedGenre.id, ifAdult);
+    return;
+  }
   if (searchQuery === '') {
     Api.page = Api.page;
     currentPage = Api.page;
     renderCards();
   } else if (searchQuery !== '') {
-    // pagination.setTotalItems(Api.results);
     Api.page = Api.page;
     currentPage = Api.page;
     searchRenderCards(searchQuery, ifAdult);
@@ -53,11 +59,12 @@ pagination.on('afterMove', event => {
 });
 pagination.on('beforeMove', event => {
   showLoader();
+
   let currentPage = event.page;
 
   Api.page = currentPage;
   if (Api.totalPages > currentPage) {
-    pagination.reset(Api.results);
+    pagination.setTotalItems(Api.results);
     Api.page = Api.totalPages;
     currentPage = Api.totalPages - 500;
 
@@ -80,6 +87,5 @@ pagination.on('beforeMove', event => {
     Api.page = Api.totalPages;
 
     return false;
-    return confirm('Go to page ' + currentPage + '?');
   }
 });

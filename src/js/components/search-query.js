@@ -2,12 +2,12 @@ import { TrailersHandle } from './trailer.js';
 import { searchRenderCards, renderCards } from './cards.js';
 import { showLoader, hideLoader, failure } from './notifications.js';
 import { ifAdult } from './button-filter.js';
-import Api, { validResults } from './API.js';
+import Api from './API.js';
 import { pagination } from './pagination.js';
-import _, { compact, conforms } from 'lodash';
+import _ from 'lodash';
 import { deleteSearchQueryError } from './search-error.js';
 
-let searchInput = document.querySelector('.header__search-input');
+export let searchInput = document.querySelector('.header__search-input');
 
 export let searchQuery = '';
 const debouncedSearch = _.debounce(debouncedSearchValue, 1000);
@@ -18,6 +18,9 @@ async function debouncedSearchValue() {
   if (searchQuery === '') {
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
+
+    document.querySelector('.genres--active')?.classList.remove('genres--active');
+
     deleteSearchQueryError();
     Api.resetPage();
 
@@ -32,6 +35,8 @@ async function debouncedSearchValue() {
   if (searchQuery !== '') {
     pagination.reset(Api.results);
     pagination.setTotalItems(Api.results);
+
+    document.querySelector('.genres--active')?.classList.remove('genres--active');
 
     Api.resetPage();
     if (Api.page === 1) {
