@@ -94,7 +94,7 @@ const Api = {
     Api.totalPages = data.total_pages;
     Api.resultsCount = Number(data.results.length);
 
-    console.log('getMoviesByGenre: ', data);
+    // console.log('getMoviesByGenre: ', data);
     return data;
   },
   getGenresData: async language => {
@@ -103,7 +103,7 @@ const Api = {
       params: { language },
     });
 
-    console.log(data.genres);
+    // console.log(data.genres);
     return data.genres;
   },
   resetPage: () => {

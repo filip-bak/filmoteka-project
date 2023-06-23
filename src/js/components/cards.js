@@ -48,7 +48,7 @@ export function getGenraByID(ID) {
   //   { id: 10752, name: 'War' },
   //   { id: 37, name: 'Western' },
   // ];
-  console.log(genreData);
+  // console.log(genreData);
   if (Api.language === 'pl') {
   }
   const movieGenras = [];
