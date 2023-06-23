@@ -22,33 +22,38 @@ export function getImg(posterPath, isMovieModal = false) {
   }
   return `<div><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="card__poster"/></div>`;
 }
-
+//W tym miejscu musi być Api.language aby zadziałało na cards nwm dla czego :(
+// Api.language = 'pl';
+const genreData = genresData(Api.language);
 export function getGenraByID(ID) {
-  const genreIdName = [
-    { id: 28, name: 'Action' },
-    { id: 12, name: 'Adventure' },
-    { id: 16, name: 'Animation' },
-    { id: 35, name: 'Comedy' },
-    { id: 80, name: 'Crime' },
-    { id: 99, name: 'Documentary' },
-    { id: 18, name: 'Drama' },
-    { id: 10751, name: 'Family' },
-    { id: 14, name: 'Fantasy' },
-    { id: 36, name: 'History' },
-    { id: 27, name: 'Horror' },
-    { id: 10402, name: 'Music' },
-    { id: 9648, name: 'Mystery' },
-    { id: 10749, name: 'Romance' },
-    { id: 878, name: 'Science Fiction' },
-    { id: 10770, name: 'TV Movie' },
-    { id: 53, name: 'Thriller' },
-    { id: 10752, name: 'War' },
-    { id: 37, name: 'Western' },
-  ];
+  // const genreData = [
+  //   { id: 28, name: 'Action' },
+  //   { id: 12, name: 'Adventure' },
+  //   { id: 16, name: 'Animation' },
+  //   { id: 35, name: 'Comedy' },
+  //   { id: 80, name: 'Crime' },
+  //   { id: 99, name: 'Documentary' },
+  //   { id: 18, name: 'Drama' },
+  //   { id: 10751, name: 'Family' },
+  //   { id: 14, name: 'Fantasy' },
+  //   { id: 36, name: 'History' },
+  //   { id: 27, name: 'Horror' },
+  //   { id: 10402, name: 'Music' },
+  //   { id: 9648, name: 'Mystery' },
+  //   { id: 10749, name: 'Romance' },
+  //   { id: 878, name: 'Science Fiction' },
+  //   { id: 10770, name: 'TV Movie' },
+  //   { id: 53, name: 'Thriller' },
+  //   { id: 10752, name: 'War' },
+  //   { id: 37, name: 'Western' },
+  // ];
+  console.log(genreData);
+  if (Api.language === 'pl') {
+  }
   const movieGenras = [];
   const genraIDs = [];
 
-  for (const genra of genreIdName) {
+  for (const genra of genreData) {
     genraIDs.push(genra.id);
   }
   if (ID === undefined) {
@@ -56,7 +61,7 @@ export function getGenraByID(ID) {
   }
   ID.forEach(el => {
     if (genraIDs.includes(el)) {
-      const genraName = genreIdName.find(genra => genra.id === el);
+      const genraName = genreData.find(genra => genra.id === el);
       movieGenras.push(genraName.name);
     }
   });
@@ -105,7 +110,6 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
         r="103.3"
       />
     </svg>
-  </a>
 </button>${getImg(poster_path)}<h2 class="card__title">${String(
         title,
       ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${
