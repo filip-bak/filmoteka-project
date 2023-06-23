@@ -68,13 +68,10 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
   if (FromID === true) {
     movies = [await moviesDataFromAPI];
   }
-  if (typeof movies.genre_ids === 'undefined') {
-    movies.genre_ids = '';
-  }
+
   const moviesData = await movies
     .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
-      return `<div class="card" data-id="${id}"><button class="btn-trailer" data-movieID="${id}">
-  <a href="#" class="playTrail">
+      return `<div class="card" data-id="${id}"><button class="btn-trailer playTrail" data-movieID="${id}">
     <svg
       x="0px"
       y="0px"

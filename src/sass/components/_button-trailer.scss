@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .btn-trailer {
   outline: none;
@@ -18,11 +18,11 @@
   border: none;
   text-align: center;
   transition: background-color 500ms;
-  
-  &:is(:hover, :focus, :focus-within){
-    background-color: transparent;
-    background-color:#800020e0;
-  }
+
+  // &:is(:hover, :focus, :focus-within){
+  //   background-color: transparent;
+  //   background-color:#800020e0;
+  // }
 }
 
 .playTrail {
@@ -30,22 +30,24 @@
   border-radius: 50%;
   transition: all 0.5s ease;
   &--circle {
-      stroke: #f8aa28;
-      stroke-dasharray: 650;
-      stroke-dashoffset: 650;
-      transition: all 0.5s ease-in-out;
-      opacity: 0.3;
-    }
+    stroke: #f8aa28;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 650;
+    transition: all 0.5s ease-in-out;
+    opacity: 0.3;
+  }
 
   &--triangle {
     transition: all 0.7s ease-in-out;
     stroke-dasharray: 240;
     stroke-dashoffset: 480;
     stroke: #000;
-    transform: translateY(0)
+    transform: translateY(0);
   }
 
   &:is(:hover, :focus, :focus-within) {
+    background-color: transparent;
+    background-color: #800020e0;
     outline: none;
     .playTrail--triangle {
       stroke-dashoffset: 0;
@@ -55,23 +57,23 @@
 
       @keyframes nudge {
         0% {
-          transform: translateX(0)
+          transform: translateX(0);
         }
 
         30% {
-          transform: translateX(-5px)
+          transform: translateX(-5px);
         }
 
         50% {
-          transform: translateX(5px)
+          transform: translateX(5px);
         }
 
         70% {
-          transform: translateX(-2px)
+          transform: translateX(-2px);
         }
 
         100% {
-          transform: translateX(0)
+          transform: translateX(0);
         }
       }
     }
