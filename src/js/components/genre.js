@@ -5,6 +5,7 @@ import { deleteSearchQueryError } from './search-error';
 import { ifAdult } from './button-filter';
 import { pagination } from './pagination';
 import { searchInput } from './search-query';
+import { hideLoader, showLoader } from './notifications';
 
 export const genresEl = document.querySelector('.container-genres');
 
@@ -16,7 +17,9 @@ export const handleGenreClick = async event => {
     if (event.target.nodeName !== 'A') {
       return;
     }
+    showLoader();
     searchInput.value = '';
+
     selectedGenre = { id: event.target.dataset.genreId };
 
     document.querySelector('.genres--active')?.classList.remove('genres--active');
@@ -31,6 +34,7 @@ export const handleGenreClick = async event => {
     deleteSearchQueryError();
 
     renderGenre(selectedGenre.id, ifAdult);
+    hideLoader();
   } catch (err) {
     console.error(err);
   }
