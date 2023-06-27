@@ -201,6 +201,7 @@
     }
   }
   &__title--original-title {
+    white-space: nowrap;
     padding-right: 39px;
 
     @include mq(desktop) {

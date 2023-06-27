@@ -1,0 +1,15 @@
+.btn-language {
+  border: none;
+  background: transparent;
+  width: 33px;
+  height: 23px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 250ms, background-position 250ms;
+}
+.btn-language--pl {
+  background-image: url("../images/icons/poland-icon.svg");
+}
+.btn-language--en {
+  background-image: url("../images/icons/uk-icon.svg");
+}

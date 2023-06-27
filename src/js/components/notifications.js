@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import Api from './API';
 
 Notiflix.Notify.init({
   showOnlyTheLastOne: true,
@@ -20,16 +21,44 @@ export function hideLoader() {
 }
 
 export function addToWatched() {
-  Notiflix.Notify.info(`Movie added to watched`);
-}
-export function addToQueue() {
-  Notiflix.Notify.info(`Movie added to queue`);
+  if (Api.language === 'en') {
+    Notiflix.Notify.info(`Movie added to watched`);
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.info(`Film dodany do obejrzanych`);
+    return;
+  }
 }
 export function removeFromWatched() {
-  Notiflix.Notify.info(`Movie removed from watched`);
+  if (Api.language === 'en') {
+    Notiflix.Notify.info(`Movie removed from watched`);
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.info(`Film usunięty z obejrzanych`);
+    return;
+  }
+}
+export function addToQueue() {
+  if (Api.language === 'en') {
+    Notiflix.Notify.info(`Movie added to queue`);
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.info(`Film dodany do obejrzenia`);
+    return;
+  }
 }
 export function removeFromQueue() {
-  Notiflix.Notify.info(`Movie removed from queue`);
+  if (Api.language === 'en') {
+    Notiflix.Notify.info(`Movie removed from queue`);
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.info(`Film usunięty z do obejrzenia`);
+    return;
+  }
 }
 
 export function success(totalMovies, query) {
@@ -53,12 +82,26 @@ export function warning() {
 }
 
 export function withoutDetails() {
-  Notiflix.Notify.failure('Details of this movie are not available', {
-    timeout: 4000,
-  });
+  if (Api.language === 'en') {
+    Notiflix.Notify.failure('Details of this movie are not available', {
+      timeout: 4000,
+    });
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.failure('Szczegóły tego filmu nie są dostępne');
+    return;
+  }
 }
 export function withoutTrailer() {
-  Notiflix.Notify.failure('Trailer is not available');
+  if (Api.language === 'en') {
+    Notiflix.Notify.failure('Trailer is not available');
+    return;
+  }
+  if (Api.language === 'pl') {
+    Notiflix.Notify.failure('Trailer jest niedostępny');
+    return;
+  }
 }
 
 export function withoutMovieDescription() {

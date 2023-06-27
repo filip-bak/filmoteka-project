@@ -1,14 +1,12 @@
-@use '../abstracts/mixins' as *;
+@use "../abstracts/mixins" as *;
 
 .button-box {
   display: flex;
-  justify-content: flex-end;
-  // place-items: center;
-  grid-template-columns: 1fr auto auto;
-  // gap: 20px;
+  justify-content: space-between;
+  align-items: center;
 
-  @include mq(tablet) {
-  }
-  @include mq(desktop) {
-  }
+  grid-template-columns: 1fr auto auto;
+}
+.button-box-container {
+  display: flex;
 }

@@ -97,13 +97,13 @@ const Api = {
     // console.log('getMoviesByGenre: ', data);
     return data;
   },
-  getGenresData: async language => {
+  getGenresData: async () => {
     const data = await getData({
       request: '/genre/movie/list',
-      params: { language },
+      params: { language: Api.language },
     });
 
-    // console.log(data.genres);
+    // console.log('getGenresData', data.genres);
     return data.genres;
   },
   resetPage: () => {

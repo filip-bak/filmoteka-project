@@ -3,6 +3,7 @@ import Api from './API';
 import { localStorageHandler } from './local-storage';
 import { showLoader, hideLoader, withoutDetails } from './notifications';
 import { getImg, getGenraByID } from './cards';
+import { languageMovieModalData } from './button-language';
 
 const wrapper = document.querySelector('.wrapper');
 
@@ -15,7 +16,6 @@ async function infoModal(ID, renderOn) {
     data.genres.forEach(genre => {
       genresArray.push(genre.name);
     });
-
     let htmlString = `<div class="backdrop">
       <div class="modal">
         <div class="movie-form">
@@ -33,7 +33,7 @@ async function infoModal(ID, renderOn) {
                 <tbody>
                   <tr class="table__row">
                     <td class="table__row-item">
-                      <p class="table__title--votes">Vote / Votes</p>
+                      <p class="table__title--votes">${movieModalInfo(Api.language, 'Vote')}</p>
                     </td>
                     <td class="table__row-item-info">
                       <p class="table__row-data"><span class="table__row-span-orange">${
@@ -45,7 +45,10 @@ async function infoModal(ID, renderOn) {
                   </tr>
                   <tr class="table__row">
                     <td class="table__row-item">
-                      <p class="table__title--popularity">Popularity</p>
+                      <p class="table__title--popularity">${movieModalInfo(
+                        Api.language,
+                        'Popularity',
+                      )}</p>
                     </td>
                     <td class="table__row-item-info">
                       <p class="table__row-data">${Math.round(data.popularity * 10) / 10}</p>
@@ -53,7 +56,10 @@ async function infoModal(ID, renderOn) {
                   </tr>
                   <tr class="table__row">
                     <td class="table__row-item">
-                      <p class="table__title--original-title">Original Title</p>
+                      <p class="table__title--original-title">${movieModalInfo(
+                        Api.language,
+                        'Original Title',
+                      )}</p>
                     </td>
                     <td class="table__row-item-info">
                       <p>${data.original_title}</p>
@@ -61,7 +67,7 @@ async function infoModal(ID, renderOn) {
                   </tr>
                   <tr class="table__row">
                     <td class="table__row-item">
-                      <p class="table__title--genre">Genre</p>
+                      <p class="table__title--genre">${movieModalInfo(Api.language, 'Genre')}</p>
                     </td>
                     <td class="table__row-item-info">
                       <p>${genresArray.join(', ')}</p>
@@ -70,7 +76,7 @@ async function infoModal(ID, renderOn) {
                 </tbody>
               </table>
               <div class="details__container">
-                <h3 class="details">About</h3>
+                <h3 class="details">${movieModalInfo(Api.language, 'About')}</h3>
                 <p class="details__description">
                   ${data.overview}
                 </p>
@@ -79,12 +85,12 @@ async function infoModal(ID, renderOn) {
                 <button type="button" class="grouped-buttons grouped-buttons__watched" data-id="${
                   data.id
                 }">
-                  add to Watched
+                ${movieModalInfo(Api.language, 'btnWatchedAdd')}
                 </button>
                 <button type="button" class="grouped-buttons grouped-buttons__queue" data-id="${
                   data.id
                 }">
-                  add to queue
+                ${movieModalInfo(Api.language, 'btnQueueAdd')}
                 </button>
             </div>
             </div>
@@ -124,6 +130,60 @@ async function infoModal(ID, renderOn) {
     withoutDetails();
     // error(e.request.status);
     // console.log(`ERROR NOTIFICATION : ${e}`);
+  }
+}
+
+export function movieModalInfo(language, string) {
+  if (language === 'en') {
+    switch (string) {
+      case 'Vote':
+        return languageMovieModalData.en.info[0];
+      case 'Popularity':
+        return languageMovieModalData.en.info[1];
+      case 'Original Title':
+        return languageMovieModalData.en.info[2];
+      case 'Genre':
+        return languageMovieModalData.en.info[3];
+      case 'About':
+        return languageMovieModalData.en.details;
+      case 'btnWatchedAdd':
+        return languageMovieModalData.en.buttons.watched[0];
+      case 'btnQueueAdd':
+        return languageMovieModalData.en.buttons.queue[0];
+      case 'btnWatchedRemove':
+        return languageMovieModalData.en.buttons.watched[1];
+      case 'btnQueueRemove':
+        return languageMovieModalData.en.buttons.queue[1];
+      default:
+        console.log(`Sorry, not exist: ${string}.`);
+    }
+    return;
+  }
+
+  if (language === 'pl') {
+    switch (string) {
+      case 'Vote':
+        return languageMovieModalData.pl.info[0];
+      case 'Popularity':
+        return languageMovieModalData.pl.info[1];
+      case 'Original Title':
+        return languageMovieModalData.pl.info[2];
+      case 'Genre':
+        return languageMovieModalData.pl.info[3];
+      case 'About':
+        return languageMovieModalData.pl.details;
+      case 'btnWatchedAdd':
+        return languageMovieModalData.pl.buttons.watched[0];
+      case 'btnQueueAdd':
+        return languageMovieModalData.pl.buttons.queue[0];
+      case 'btnWatchedRemove':
+        return languageMovieModalData.pl.buttons.watched[1];
+      case 'btnQueueRemove':
+        return languageMovieModalData.pl.buttons.queue[1];
+      default:
+        console.log(`Sorry, not exist: ${string}.`);
+    }
+    return;
   }
 }
 

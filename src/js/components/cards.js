@@ -3,13 +3,11 @@
 import Api from './API.js';
 import { TrailersHandle } from './trailer.js';
 import { searchQueryError, deleteSearchQueryError } from './search-error.js';
-import { getDataQueue, getDataWatched } from './local-storage.js';
+import { getDataQueue, getDataWatched, watchedBtn, queueBtn } from './local-storage.js';
 import { withoutDetails, error } from './notifications.js';
-import { genreSearch, genresData } from './genre.js';
-
+import { genreSearch } from './genre.js';
+import { genreData } from './button-language.js';
 export const cardSpace = document.querySelector('.container');
-const watchedBttn = document.querySelector('.btn-header--watched');
-const queueBttn = document.querySelector('.btn-header--queue');
 
 export function getImg(posterPath, isMovieModal = false) {
   if (isMovieModal) {
@@ -23,10 +21,8 @@ export function getImg(posterPath, isMovieModal = false) {
   }
   return `<div><img src="https://image.tmdb.org/t/p/w500/${posterPath}" class="card__poster"/></div>`;
 }
-//W tym miejscu musi być Api.language aby zadziałało na cards nwm dla czego :(
-// Api.language = 'pl';
-const genreData = genresData(Api.language);
-export function getGenraByID(ID) {
+
+export function getGenraByID(ID, genres, isFromID = false) {
   // const genreData = [
   //   { id: 28, name: 'Action' },
   //   { id: 12, name: 'Adventure' },
@@ -48,35 +44,38 @@ export function getGenraByID(ID) {
   //   { id: 10752, name: 'War' },
   //   { id: 37, name: 'Western' },
   // ];
-  // console.log(genreData);
-  if (Api.language === 'pl') {
-  }
-  const movieGenras = [];
-  const genraIDs = [];
 
-  for (const genra of genreData) {
-    genraIDs.push(genra.id);
+  if (isFromID) {
+    let genresArray = [];
+    genres.forEach(genre => {
+      genresArray.push(genre.name);
+    });
+    return genresArray.join(', ');
   }
+
+  const movieGenras = [];
+
+  const genraIDs = genreData.map(genre => genre.id);
+
   if (ID === undefined) {
     return;
   }
-  ID.forEach(el => {
-    if (genraIDs.includes(el)) {
-      const genraName = genreData.find(genra => genra.id === el);
+  ID.forEach(id => {
+    if (genraIDs.includes(id)) {
+      const genraName = genreData.find(genra => genra.id === id);
       movieGenras.push(genraName.name);
     }
   });
   return movieGenras.join(', ');
 }
 
-export async function createCards(moviesDataFromAPI, onElementToRender, FromID = false) {
+export async function createCards(moviesDataFromAPI, onElementToRender, fromID = false) {
   let movies = await moviesDataFromAPI.results;
-  if (FromID === true) {
+  if (fromID === true) {
     movies = [await moviesDataFromAPI];
   }
-
   const moviesData = await movies
-    .map(({ id, title, poster_path, genre_ids, release_date, vote_average }) => {
+    .map(({ id, title, poster_path, genre_ids, genres, release_date, vote_average }) => {
       return `<div class="card" data-id="${id}"><button class="btn-trailer playTrail" data-movieID="${id}">
     <svg
       x="0px"
@@ -114,7 +113,7 @@ export async function createCards(moviesDataFromAPI, onElementToRender, FromID =
 </button>${getImg(poster_path)}<h2 class="card__title">${String(
         title,
       ).toUpperCase()}</h2><p class="card__description"><span class="card__tags">${
-        getGenraByID(genre_ids) || ''
+        getGenraByID(genre_ids, genres, fromID) || ''
       }</span><span class="card__year">${
         String(release_date).slice(0, 4) === 'unde' ? '' : String(release_date).slice(0, 4)
       }</span><span class="card__rating">${vote_average?.toFixed(2) || '0.00'}</span></p></div>`;
@@ -132,9 +131,9 @@ export async function renderCards() {
     createCards(data, cardSpace);
     TrailersHandle();
   } catch (e) {
-    withoutDetails();
+    // withoutDetails();
     // error(e.request.status);
-    // console.log(`ERROR NOTIFICATION : ${e}`);
+    console.log(`ERROR NOTIFICATION : ${e}`);
   }
 }
 export async function searchRenderCards(searchQuery, ifAdult) {
@@ -168,21 +167,21 @@ export async function renderGenre(genreID, ifAdult) {
   }
 }
 
-function renderCardsWatched() {
-  watchedBttn.classList.add('btn-header--watched--active');
-  queueBttn.classList.remove('btn-header--queue--active');
+export function renderCardsWatched() {
+  watchedBtn.classList.add('btn-header--watched--active');
+  queueBtn.classList.remove('btn-header--queue--active');
   getDataWatched();
 }
 
-function renderCardsQueue() {
-  watchedBttn.classList.remove('btn-header--watched--active');
-  queueBttn.classList.add('btn-header--queue--active');
+export function renderCardsQueue() {
+  watchedBtn.classList.remove('btn-header--watched--active');
+  queueBtn.classList.add('btn-header--queue--active');
   getDataQueue();
   // createCards()
 }
 
 export function renderCardsFromLocalStorage() {
   renderCardsWatched();
-  watchedBttn.addEventListener('click', renderCardsWatched);
-  queueBttn.addEventListener('click', renderCardsQueue);
+  watchedBtn.addEventListener('click', renderCardsWatched);
+  queueBtn.addEventListener('click', renderCardsQueue);
 }

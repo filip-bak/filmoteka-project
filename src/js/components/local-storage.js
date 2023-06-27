@@ -1,7 +1,6 @@
 import Notiflix from 'notiflix';
 import Api from './API';
 import { createCards, renderCards } from './cards';
-import { getImg, getGenraByID } from './cards';
 import { TrailersHandle } from './trailer';
 import {
   showLoader,
@@ -11,9 +10,14 @@ import {
   removeFromQueue,
   removeFromWatched,
 } from './notifications';
+import { movieModalInfo } from './movie-modal';
 
 export const cardLibrarySpace = document.querySelector('.library-container');
+
 const placeholderBox = document.querySelector('#placeholder');
+
+export const watchedBtn = document.querySelector('.btn-header--watched');
+export const queueBtn = document.querySelector('.btn-header--queue');
 
 export function localStorageHandler(movieID) {
   if (localStorage.getItem('watched') === null) {
@@ -32,7 +36,8 @@ export function localStorageHandler(movieID) {
   if (watchedMovies.includes(movieID.toString())) {
     addToWatchedButton.classList.add('movie-added');
     addToWatchedButton.classList.add('button-active');
-    addToWatchedButton.textContent = 'REMOVE FROM WATCHED';
+
+    addToWatchedButton.textContent = movieModalInfo(Api.language, 'btnWatchedRemove');
   }
 
   addToWatchedButton.addEventListener('click', () => {
@@ -40,14 +45,18 @@ export function localStorageHandler(movieID) {
     if (addToWatchedButton.classList.contains('movie-added')) {
       watchedList.splice(watchedList.indexOf(addToWatchedButton.dataset.id), 1);
       localStorage.setItem('watched', JSON.stringify(watchedList));
-      addToWatchedButton.textContent = 'ADD TO WATCH';
+
+      addToWatchedButton.textContent = movieModalInfo(Api.language, 'btnWatchedAdd');
+
       addToWatchedButton.classList.remove('movie-added');
       addToWatchedButton.classList.remove('button-active');
       removeFromWatched();
     } else {
       watchedList.push(addToWatchedButton.dataset.id);
       localStorage.setItem('watched', JSON.stringify(watchedList));
-      addToWatchedButton.textContent = 'REMOVE FROM WATCHED';
+
+      addToWatchedButton.textContent = movieModalInfo(Api.language, 'btnWatchedRemove');
+
       addToWatchedButton.classList.add('movie-added');
       addToWatchedButton.classList.add('button-active');
       addToWatched();
@@ -56,7 +65,8 @@ export function localStorageHandler(movieID) {
   if (queueMovies.includes(movieID.toString())) {
     addToQueueButton.classList.add('movie-added');
     addToQueueButton.classList.add('button-active');
-    addToQueueButton.textContent = 'REMOVE FROM QUEUE';
+
+    addToQueueButton.textContent = movieModalInfo(Api.language, 'btnQueueRemove');
   }
 
   addToQueueButton.addEventListener('click', () => {
@@ -64,7 +74,9 @@ export function localStorageHandler(movieID) {
     if (addToQueueButton.classList.contains('movie-added')) {
       queueList.splice(queueList.indexOf(addToQueueButton.dataset.id), 1);
       localStorage.setItem('queue', JSON.stringify(queueList));
-      addToQueueButton.textContent = 'ADD TO QUEUE';
+
+      addToQueueButton.textContent = movieModalInfo(Api.language, 'btnQueueAdd');
+
       addToQueueButton.classList.remove('movie-added');
       addToQueueButton.classList.remove('button-active');
       removeFromQueue();
@@ -72,7 +84,8 @@ export function localStorageHandler(movieID) {
       queueList.push(addToQueueButton.dataset.id);
       localStorage.setItem('queue', JSON.stringify(queueList));
 
-      addToQueueButton.textContent = 'REMOVE FROM QUEUE';
+      addToQueueButton.textContent = movieModalInfo(Api.language, 'btnQueueRemove');
+
       addToQueueButton.classList.add('movie-added');
       addToQueueButton.classList.add('button-active');
       addToQueue();

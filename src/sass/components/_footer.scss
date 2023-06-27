@@ -1,6 +1,6 @@
-@use '../base/typography' as *;
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../base/typography" as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .copyright {
   font-size: var(--fs-copyright);
@@ -37,10 +37,9 @@
 
 .footer__content {
   color: $font-color-copyright;
-  font-size: 14px;
+  font-size: var(--fs-copyright);
+  line-height: var(--lh-300);
   text-align: center;
-  font-weight: 400;
-  line-height: 16.41px;
   @include mq(tablet) {
     display: flex;
     align-items: center;
@@ -56,6 +55,7 @@
 
 .team-btn {
   margin-top: 12px;
+  padding-inline: 9px;
   cursor: pointer;
   border: transparent;
   background-color: transparent;
@@ -74,7 +74,7 @@
     color: $button-bg-color-accent-secondary;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -122,7 +122,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 @keyframes heartScale {

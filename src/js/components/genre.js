@@ -40,11 +40,11 @@ export const handleGenreClick = async event => {
   }
 };
 
-export function genresData(language) {
-  const genreData = [];
-  const genreApiData = Api.getGenresData(language);
+export function genresData() {
+  const genreArray = [];
+  const genreApiData = Api.getGenresData();
   genreApiData.then(result => {
-    genreData.push(...result);
+    genreArray.push(...result);
   });
-  return genreData;
+  return genreArray;
 }
