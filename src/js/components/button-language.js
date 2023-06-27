@@ -154,7 +154,7 @@ function languageChanges(language) {
     footerBtn.childNodes[2].textContent = languageData.footer.en[1];
     footerBtn.childNodes[4].textContent = languageData.footer.en[2];
 
-    if (location.pathname === '/library.html') {
+    if (document.body.id === 'library') {
       watchedBtn.firstElementChild.textContent = languageData.headerLibrary.en[0];
       queueBtn.firstElementChild.textContent = languageData.headerLibrary.en[1];
       return;
@@ -175,7 +175,7 @@ function languageChanges(language) {
     footerBtn.childNodes[4].textContent = languageData.footer.pl[2];
 
     // library page
-    if (location.pathname === '/library.html') {
+    if (document.body.id === 'library') {
       watchedBtn.firstElementChild.textContent = languageData.headerLibrary.pl[0];
       queueBtn.firstElementChild.textContent = languageData.headerLibrary.pl[1];
       return;
