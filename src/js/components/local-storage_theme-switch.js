@@ -1,4 +1,10 @@
-import { bodyMode, toggleMode, footerMode, pagiMode } from '../components/theme-switch';
+import {
+  bodyMode,
+  toggleMode,
+  footerMode,
+  pagiMode,
+  genreContainer,
+} from '../components/theme-switch';
 
 export const Theme = {
   LIGHT: 'light-theme',
@@ -15,6 +21,7 @@ updateTheme();
 checkboxChecked();
 updateThemeFooter();
 updateThemePagination();
+updateThemeGenresTabs();
 
 function updateTheme() {
   if (savedTheme) {
@@ -36,7 +43,13 @@ function updateThemeFooter() {
 
 function updateThemePagination() {
   if (savedTheme === 'dark-theme') {
-    if(pagiMode === null) return;
+    if (pagiMode === null) return;
     pagiMode.classList.add('dark-theme');
+  }
+}
+function updateThemeGenresTabs() {
+  if (savedTheme === 'dark-theme') {
+    if (genreContainer === null) return;
+    genreContainer.classList.add('dark-theme');
   }
 }
