@@ -1,9 +1,9 @@
 import {
   bodyMode,
-  toggleMode,
   footerMode,
-  pagiMode,
   genreContainer,
+  pagiMode,
+  toggleMode,
 } from '../components/theme-switch';
 
 export const Theme = {

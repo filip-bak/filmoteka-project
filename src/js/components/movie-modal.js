@@ -1,9 +1,9 @@
 // function renderModal(data) {} render on element
 import Api from './API';
-import { localStorageHandler } from './local-storage';
-import { showLoader, hideLoader, withoutDetails } from './notifications';
-import { getImg, getGenraByID } from './cards';
 import { languageMovieModalData } from './button-language';
+import { getImg } from './cards';
+import { localStorageHandler } from './local-storage';
+import { hideLoader, showLoader, withoutDetails } from './notifications';
 
 const wrapper = document.querySelector('.wrapper');
 

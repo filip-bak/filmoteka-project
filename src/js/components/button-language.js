@@ -1,14 +1,8 @@
 import Api from './API.js';
 import { ifAdult } from './button-filter.js';
-import {
-  renderCards,
-  renderGenre,
-  searchRenderCards,
-  renderCardsWatched,
-  renderCardsQueue,
-} from './cards.js';
+import { renderCards, renderCardsWatched, renderGenre, searchRenderCards } from './cards.js';
 import { genreSearch, genresData, selectedGenre } from './genre.js';
-import { searchQuery, searchInput } from './search-query.js';
+import { searchInput, searchQuery } from './search-query.js';
 
 export let genreData = null;
 

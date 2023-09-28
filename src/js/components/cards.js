@@ -1,12 +1,12 @@
 'use strict';
 
 import Api from './API.js';
-import { TrailersHandle } from './trailer.js';
-import { searchQueryError, deleteSearchQueryError } from './search-error.js';
-import { getDataQueue, getDataWatched, watchedBtn, queueBtn } from './local-storage.js';
-import { withoutDetails, error } from './notifications.js';
-import { genreSearch } from './genre.js';
 import { genreData } from './button-language.js';
+import { genreSearch } from './genre.js';
+import { getDataQueue, getDataWatched, queueBtn, watchedBtn } from './local-storage.js';
+import { error } from './notifications.js';
+import { deleteSearchQueryError, searchQueryError } from './search-error.js';
+import { TrailersHandle } from './trailer.js';
 export const cardSpace = document.querySelector('.container');
 
 export function getImg(posterPath, isMovieModal = false) {

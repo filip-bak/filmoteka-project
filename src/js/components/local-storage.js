@@ -1,16 +1,16 @@
 import Notiflix from 'notiflix';
 import Api from './API';
-import { createCards, renderCards } from './cards';
-import { TrailersHandle } from './trailer';
+import { createCards } from './cards';
+import { movieModalInfo } from './movie-modal';
 import {
-  showLoader,
-  hideLoader,
   addToQueue,
   addToWatched,
+  hideLoader,
   removeFromQueue,
   removeFromWatched,
+  showLoader,
 } from './notifications';
-import { movieModalInfo } from './movie-modal';
+import { TrailersHandle } from './trailer';
 
 export const cardLibrarySpace = document.querySelector('.library-container');
 

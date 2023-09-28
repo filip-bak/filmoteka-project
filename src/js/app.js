@@ -1,16 +1,16 @@
 'use strict';
 
-import Api from './components/API.js';
+import './components/API.js';
 import './components/utils.js';
 import { cardLibrarySpace } from './components/local-storage.js';
-import { renderCards, searchRenderCards, cardSpace } from './components/cards.js';
+import { renderCards, cardSpace } from './components/cards.js';
 import { handleGenreClick, genresEl } from './components/genre.js';
-import { theme } from './components/local-storage_theme-switch.js';
-import { showModal, showModalLibrary } from './components/movie-modal.js';
+import './components/local-storage_theme-switch.js';
+import { showModal } from './components/movie-modal.js';
 import { showLoader, hideLoader } from './components/notifications.js';
-import { ifAdult } from './components/button-filter.js';
-import showTrailerById, { TrailersHandle } from './components/trailer.js';
-import { pagination, paginationRender } from './components/pagination.js';
+import './components/button-filter.js';
+import './components/trailer.js';
+import './components/pagination.js';
 import { renderCardsFromLocalStorage } from './components/cards.js';
 import './components/button-language.js';
 import './components/search-query.js';

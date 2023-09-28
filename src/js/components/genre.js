@@ -1,11 +1,10 @@
-import { conforms } from 'lodash';
 import Api from './API';
-import { renderGenre } from './cards';
-import { deleteSearchQueryError } from './search-error';
 import { ifAdult } from './button-filter';
-import { pagination } from './pagination';
-import { searchInput } from './search-query';
+import { renderGenre } from './cards';
 import { hideLoader, showLoader } from './notifications';
+import { pagination } from './pagination';
+import { deleteSearchQueryError } from './search-error';
+import { searchInput } from './search-query';
 
 export const genresEl = document.querySelector('.container-genres');
 

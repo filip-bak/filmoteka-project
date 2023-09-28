@@ -1,10 +1,9 @@
-import { TrailersHandle } from './trailer.js';
-import { searchRenderCards, renderCards } from './cards.js';
-import { showLoader, hideLoader, failure } from './notifications.js';
-import { ifAdult } from './button-filter.js';
-import Api from './API.js';
-import { pagination } from './pagination.js';
 import _ from 'lodash';
+import Api from './API.js';
+import { ifAdult } from './button-filter.js';
+import { renderCards, searchRenderCards } from './cards.js';
+import { hideLoader, showLoader } from './notifications.js';
+import { pagination } from './pagination.js';
 import { deleteSearchQueryError } from './search-error.js';
 
 export let searchInput = document.querySelector('.header__search-input');
