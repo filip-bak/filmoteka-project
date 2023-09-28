@@ -40,7 +40,7 @@
   }
   &--watched {
     margin-right: 20px;
-    background-color: $button-bg-color-transparent;
+    background-color: $button-bg-color-dark-transparent;
     &:is(:hover, :focus, :focus-within) {
       border: 1px solid $button-bg-color-accent-priamry;
       outline: none;
@@ -57,7 +57,7 @@
     }
   }
   &--queue {
-    background-color: $button-bg-color-transparent;
+    background-color: $button-bg-color-dark-transparent;
     &:is(:hover, :focus, :focus-within) {
       border: 1px solid $button-bg-color-accent-priamry;
       outline: none;

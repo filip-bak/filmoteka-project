@@ -7,13 +7,12 @@
   line-height: 0;
   bottom: 49px;
   right: 19px;
-  border-radius: 50%;
   width: 47px;
   height: 47px;
 
   &:hover .arrow {
     fill: $bg-color-accent;
-    border: 3px solid $bg-color-accent;
+    border-color: $bg-color-accent;
     animation: arrowFloat 1s infinite;
     .arrow__icon {
       fill: $bg-color-accent;
@@ -37,6 +36,9 @@
   cursor: pointer;
   border: 3 solid #bababa;
   padding: 0;
+  transition: border-color 300ms;
+  background-color: transparent;
+
   @include mq(tablet) {
     bottom: 20px;
   }
@@ -55,6 +57,6 @@
 }
 
 .arrow__icon {
-  fill: #bababa;
-  opacity: 0.75;
+  fill: #919191;
+  transition: fill 300ms;
 }
