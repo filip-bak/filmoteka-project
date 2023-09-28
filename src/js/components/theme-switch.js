@@ -6,16 +6,27 @@ const genreContainer = document.querySelector('.container-genres');
 
 toggleMode.addEventListener('change', event => {
   if (bodyMode.classList.contains('dark-theme')) {
-    bodyMode.classList.remove('dark-theme');
+    // LIGHT THEME
     bodyMode.classList.add('light-theme');
+    bodyMode.classList.remove('dark-theme');
+
+    if (genreContainer === null) return;
     genreContainer.classList.remove('dark-theme');
+
+    if (footerMode === null) return;
     footerMode.classList.remove('dark-theme');
+
     if (pagiMode === null) return;
     pagiMode.classList.remove('dark-theme');
   } else {
-    bodyMode.classList.remove('light-theme');
+    // DARK THEME
     bodyMode.classList.add('dark-theme');
+    bodyMode.classList.remove('light-theme');
+
+    if (footerMode === null) return;
     footerMode.classList.add('dark-theme');
+
+    if (genreContainer === null) return;
     genreContainer.classList.add('dark-theme');
 
     if (pagiMode === null) return;
