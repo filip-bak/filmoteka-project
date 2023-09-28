@@ -2,24 +2,77 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-.btn-filter {
-  display: grid;
-  align-self: end;
-  width: min-content;
-  padding: 0;
-  background: none;
-  border-width: 1px;
-}
-.filter-svg {
-  fill: $fill-filter;
-  width: 40px;
-  height: 40px;
+.filter-btn {
+  cursor: pointer;
+  z-index: 10;
+  border: 1px solid #7a06067a;
+  border-radius: 50%;
+  transition: all 2ms;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 2px 2px 2px rgba(255, 255, 255, 0.1),
+    2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+  // 2px 2px 2px rgb(0 0 0 /0.3);
 
-  @include mq(desktop) {
-    width: 50px;
-    height: 50px;
+  &:hover {
+    scale: 1.05;
+    box-shadow:
+      inset 2px 2px 3px rgba(255, 255, 255, 0.363),
+      2px 2px 3px #000;
+  }
+
+  &:active {
+    background-color: rgba(65, 0, 0, 0.7);
+    // background-color: rgba(65, 0, 0, 0.466);
+    scale: 1;
+    box-shadow:
+      inset 2px 2px 2px #000,
+      2px 2px 3px #fff3;
   }
 }
-.filter-color-adult {
-  fill: $fill-filter-adult;
+.filter-label {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ffffff86 8%, #201d1d75 60%, #fff3 92%);
+  // background: linear-gradient(135deg, #ffffff86 8%, #ffffff1a 60%, #fff3 92%);
+  border: 1px solid #7a06067a;
+  border-radius: 50%;
 }
+.filter-svg {
+  width: 100%;
+  height: 100%;
+  stroke: rgb(218, 218, 218);
+}
+.filter-input {
+  display: none;
+}
+.filter-input:checked + .filter-label {
+  background: linear-gradient(135deg, #ff0b0baf 8%, #eb6308fb 60%, rgba(255, 4, 4, 0.877) 92%);
+}
+
+// ------------- OLD ---------------
+
+// .btn-filter {
+//   display: grid;
+//   align-self: end;
+//   width: min-content;
+//   padding: 0;
+//   background: none;
+//   border-width: 1px;
+// }
+// .filter-svg {
+//   fill: $fill-filter;
+//   width: 40px;
+//   height: 40px;
+
+//   @include mq(desktop) {
+//     width: 50px;
+//     height: 50px;
+//   }
+// }
+// .filter-color-adult {
+//   fill: $fill-filter-adult;
+// }
